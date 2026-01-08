@@ -1,0 +1,31 @@
+<type>(<scope>): <subject>
+
+# Why this change is necessary
+<body>
+
+# Issues, breaking changes, co-authors
+<footer>
+
+# ============================================================================
+# Types: feat, fix, docs, chore, refactor, perf, test, style, ci, build
+# 
+# Scopes: repo, proxy, dotnet, php, frontend, webservers, monitoring,
+#         automation, databases, security, backup, cicd, docs
+#
+# Subject: imperative mood, lowercase, no period, max 72 chars
+# Body: what and why (not how), wrap at 72 chars
+# Footer: Fixes #123, BREAKING CHANGE:, Co-authored-by:
+# ============================================================================
+#
+# Example:
+# feat(frontend): add Next.js SSR support
+#
+# - Add Next.js configuration with SSR
+# - Add environment-based builds
+# - Add deployment automation
+# - Add health checks for Next.js apps
+#
+# Enables server-side rendering for improved SEO and performance
+#
+# Closes #234
+# ============================================================================
