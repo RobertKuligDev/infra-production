@@ -13,14 +13,15 @@ This infrastructure follows a **microservices architecture** with:
 
 ---
 
-## 🌐 Planned Overall Architecture
+## 🌐 Overall Infrastructure Architecture
 
+**Current Status**: Traefik deployed ✅ | All other stacks planned 🔄
 ```
 Internet (HTTPS)
        │
        ▼
 ┌──────────────────┐
-│     Traefik      │  ← Centralized reverse proxy
+│     Traefik      │  ✅ DEPLOYED - Centralized reverse proxy
 │  Reverse Proxy   │     • SSL/TLS termination (Let's Encrypt)
 │   (Port 443)     │     • Service discovery (Docker)
 └────────┬─────────┘     • Routing & load balancing
@@ -32,18 +33,31 @@ Internet (HTTPS)
     │         │        │        │        │        │
     ▼         ▼        ▼        ▼        ▼        ▼
 ┌────────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐
-│ .NET   │ │ PHP  │ │Monitor│ │Auto- │ │Static│ │ Web  │
+│ .NET   │ │ PHP  │ │Monitor││Auto- │ │Static│ │ Web  │
 │ Stack  │ │Stack │ │Stack │ │mation│ │Sites │ │Server│
+│  🔄    │ │  🔄  │ │  🔄  │ │  🔄  │ │  🔄  │ │  🔄  │
 └───┬────┘ └──┬───┘ └──┬───┘ └──┬───┘ └──┬───┘ └──────┘
     │         │        │        │        │
     │    internal networks (isolated)
     │         │        │        │        │
     ▼         ▼        ▼        ▼        ▼
 ┌────────┐ ┌──────┐ ┌──────┐ ┌──────┐
-│Database│ │Database│ │ Time │ │Cache │
-│        │ │        │ │Series│ │      │
+│Database│ │Database││ Time │ │Cache │
+│  🔄    │ │  🔄  │ │Series│ │      │
+│        │ │      │ │  🔄  │ │  🔄  │
 └────────┘ └──────┘ └──────┘ └──────┘
 ```
+
+**Legend**:
+- ✅ **Deployed and operational**
+- 🔄 **Planned / Not yet deployed**
+
+**Data Flow**:
+1. All external traffic → Traefik (SSL termination)
+2. Traefik → Application stacks via `traefik-net`
+3. Applications ↔ Databases via internal networks (isolated)
+4. Monitoring scrapes metrics from all services (planned)
+5. Backups run on schedule, encrypt, and store off-site (planned)
 
 ---
 
@@ -55,29 +69,29 @@ Internet (HTTPS)
 ├─────────────────────────────────────────────────────┤
 │                                                     │
 │  Layer 1: Network Isolation                         │
-│  ├─ External network (traefik-net) for routing     │
-│  └─ Internal networks (per-stack isolation)        │
+│  ├─ External network (traefik-net) for routing      │
+│  └─ Internal networks (per-stack isolation)         │
 │                                                     │
 │  Layer 2: Transport Security                        │
-│  ├─ HTTPS only (HTTP → HTTPS redirect)             │
-│  ├─ Let's Encrypt SSL certificates                 │
-│  └─ Modern TLS configuration                       │
+│  ├─ HTTPS only (HTTP → HTTPS redirect)              │
+│  ├─ Let's Encrypt SSL certificates                  │
+│  └─ Modern TLS configuration                        │
 │                                                     │
 │  Layer 3: Application Security                      │
-│  ├─ Environment-based secrets (.env)               │
-│  ├─ No credentials in code/Git                     │
-│  └─ Strong password policies (20+ chars)           │
+│  ├─ Environment-based secrets (.env)                │
+│  ├─ No credentials in code/Git                      │
+│  └─ Strong password policies (20+ chars)            │
 │                                                     │
 │  Layer 4: Access Control                            │
-│  ├─ Rate limiting (per service)                    │
-│  ├─ IP whitelisting (optional)                     │
-│  ├─ Basic authentication (dashboards)              │
-│  └─ JWT tokens (API access)                        │
+│  ├─ Rate limiting (per service)                     │
+│  ├─ IP whitelisting (optional)                      │
+│  ├─ Basic authentication (dashboards)               │
+│  └─ JWT tokens (API access)                         │
 │                                                     │
 │  Layer 5: Database Security                         │
-│  ├─ Internal network only (no external access)     │
-│  ├─ Strong credentials                             │
-│  └─ Encrypted connections (optional)               │
+│  ├─ Internal network only (no external access)      │
+│  ├─ Strong credentials                              │
+│  └─ Encrypted connections (optional)                │
 │                                                     │
 └─────────────────────────────────────────────────────┘
 ```
@@ -135,10 +149,10 @@ Internet (HTTPS)
 ┌─────────────────────────────────────────────┐
 │          traefik-net (external)             │
 │                                             │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐ │
-│  │ Traefik  │  │  Stack1  │  │  Stack2  │ │
-│  │          │  │   App    │  │   App    │ │
-│  └──────────┘  └──────────┘  └──────────┘ │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
+│  │ Traefik  │  │  Stack1  │  │  Stack2  │   │
+│  │          │  │   App    │  │   App    │   │
+│  └──────────┘  └──────────┘  └──────────┘   │
 │                                             │
 └─────────────────────────────────────────────┘
 
@@ -150,13 +164,13 @@ Security: Only application containers exposed, not databases
 
 ```
 Stack Example: dotnet-app
-┌──────────────────────────────────────────┐
-│     dotnet-internal (bridge network)     │
-│                                          │
-│  ┌──────────────┐    ┌───────────────┐ │
-│  │  Application │────│   Database    │ │
-│  │  Container   │    │   Container   │ │
-│  └──────┬───────┘    └───────────────┘ │
+┌─────────────────────────────────────────┐
+│     dotnet-internal (bridge network)    │
+│                                         │
+│  ┌──────────────┐    ┌───────────────┐  │
+│  │  Application │────│   Database    │  │
+│  │  Container   │    │   Container   │  │
+│  └──────┬───────┘    └───────────────┘  │
 │         │                               │
 │         │ Also connected to             │
 │         │ traefik-net for routing       │
@@ -178,32 +192,32 @@ Every stack follows this pattern:
 ├─────────────────────────────────────────────┤
 │                                             │
 │  docker-compose.yml                         │
-│  ├─ Services definitions                   │
-│  ├─ Networks (traefik-net + internal)      │
-│  ├─ Volumes (data persistence)             │
-│  └─ Labels (Traefik routing)               │
+│  ├─ Services definitions                    │
+│  ├─ Networks (traefik-net + internal)       │
+│  ├─ Volumes (data persistence)              │
+│  └─ Labels (Traefik routing)                │
 │                                             │
 │  .env (not in Git)                          │
-│  ├─ DOMAIN=service.yourdomain.com          │
-│  ├─ DB_PASSWORD=strong_password            │
-│  └─ All stack-specific config              │
+│  ├─ DOMAIN=service.yourdomain.com           │
+│  ├─ DB_PASSWORD=strong_password             │
+│  └─ All stack-specific config               │
 │                                             │
 │  .env.example (in Git)                      │
-│  └─ Template with all variables            │
+│  └─ Template with all variables             │
 │                                             │
 │  deploy.sh                                  │
-│  ├─ Validates .env exists                  │
-│  ├─ Checks required variables              │
-│  ├─ Creates networks if needed             │
-│  └─ Deploys with docker compose            │
+│  ├─ Validates .env exists                   │
+│  ├─ Checks required variables               │
+│  ├─ Creates networks if needed              │
+│  └─ Deploys with docker compose             │
 │                                             │
 │  README.md                                  │
-│  └─ Stack-specific documentation           │
+│  └─ Stack-specific documentation            │
 │                                             │
 │  scripts/                                   │
-│  ├─ backup.sh                              │
-│  ├─ restore.sh                             │
-│  └─ health-check.sh                        │
+│  ├─ backup.sh                               │
+│  ├─ restore.sh                              │
+│  └─ health-check.sh                         │
 │                                             │
 └─────────────────────────────────────────────┘
 ```
@@ -282,20 +296,20 @@ Production Server
 │                                             │
 │  All Application Stacks                     │
 │         │                                   │
-│         ├─> Metrics exposed                │
+│         ├─> Metrics exposed                 │
 │         │                                   │
 │         ▼                                   │
 │   Prometheus                                │
 │         │                                   │
-│         ├─> Scrapes metrics                │
-│         ├─> Stores time-series data        │
+│         ├─> Scrapes metrics                 │
+│         ├─> Stores time-series data         │
 │         │                                   │
 │         ▼                                   │
 │   Grafana                                   │
 │         │                                   │
-│         ├─> Visualizes metrics             │
-│         ├─> Creates dashboards             │
-│         └─> Sends alerts                   │
+│         ├─> Visualizes metrics              │
+│         ├─> Creates dashboards              │
+│         └─> Sends alerts                    │
 │                                             │
 └─────────────────────────────────────────────┘
 ```
@@ -335,6 +349,143 @@ Production Server
 
 ---
 
+## 🌐 Traefik Reverse Proxy (Deployed)
+
+**Status**: ✅ Operational - Handling all ingress traffic
+```
+Internet (Port 80, 443)
+│
+▼
+┌─────────────────────────────────────────────┐
+│ Traefik v3 Container                        │
+│                                             │
+│ Entrypoints:                                │
+│ ├─ :80 (web) → Redirect to HTTPS            │
+│ ├─ :443 (websecure) → TLS termination       │
+│ └─ :8080 (dashboard) → Admin UI             │
+│                                             │
+│ Features:                                   │
+│ ├─ Let's Encrypt (automatic SSL)            │
+│ ├─ Docker provider (service discovery)      │
+│ ├─ File provider (dynamic config)           │
+│ ├─ Metrics (Prometheus format)              │
+│ └─ Health check (/ping)                     │
+│                                             │
+│ Middlewares:                                │
+│ ├─ Rate limiting (configurable)             │
+│ ├─ Security headers (HSTS, CSP, etc)        │
+│ ├─ CORS                                     │
+│ ├─ Compression (gzip)                       │
+│ ├─ IP whitelisting (optional)               │
+│ └─ Basic authentication                     │
+│                                             │
+│ TLS Profiles:                               │
+│ ├─ Modern (TLS 1.2+, strong ciphers)        │
+│ ├─ Strict (TLS 1.3 only)                    │
+│ └─ Compatible (legacy support)              │
+└─────────────┬───────────────────────────────┘
+│
+traefik-net (external)
+│
+┌─────────┴──────────┐
+│                    │
+▼                    ▼
+┌─────────┐ ┌─────────┐
+│ Future  │ │ Future  │
+│ Stacks  │ │ Stacks  │
+│ 🔄      │ │ 🔄      │
+└─────────┘ └─────────┘
+```
+
+### Traefik Routing Flow
+```
+1. Client Request
+       │
+       ├─> https://app.yourdomain.com
+       │
+       ▼
+2. DNS Resolution
+       │
+       ├─> YOUR_SERVER_IP
+       │
+       ▼
+3. Traefik (Port 443)
+       │
+       ├─> SSL/TLS Termination
+       ├─> Certificate from acme.json
+       │
+       ▼
+4. Router Matching
+       │
+       ├─> Check Host() rule
+       ├─> Match: app.yourdomain.com
+       │
+       ▼
+5. Middleware Chain
+       │
+       ├─> Security headers
+       ├─> Rate limiting
+       ├─> Compression
+       │
+       ▼
+6. Load Balancer
+       │
+       ├─> Service: app-service
+       ├─> Backend: app-container:8080
+       │
+       ▼
+7. Application Container
+       │
+       ├─> HTTP (internal)
+       ├─> Process request
+       │
+       ▼
+8. Response
+       │
+       ├─> Back through Traefik
+       ├─> Add headers, compress
+       │
+       ▼
+9. Client Receives Response (HTTPS)
+```
+
+### Traefik File Structure
+```
+reverse-proxy/traefik/
+├── docker-compose.yml          # Main configuration
+├── .env                        # Environment variables (gitignored)
+├── .env.example                # Configuration template
+├── deploy.sh                   # Deployment script
+├── README.md                   # Documentation
+│
+├── letsencrypt/                # SSL certificates
+│   └── acme.json               # Let's Encrypt data (600 permissions)
+│
+├── logs/                       # Access logs
+│   └── access.log
+│
+├── config/                     # Dynamic configuration
+│   ├── middlewares.yml         # Middleware definitions
+│   └── tls.yml                 # TLS options
+│
+└── docs/
+    └── troubleshooting.md      # Traefik-specific issues
+```
+
+### Health Check
+```bash
+# Traefik API
+curl http://localhost:8080/ping
+# Response: OK
+
+# Dashboard
+# http://YOUR_SERVER_IP:8080/dashboard/
+```
+
+See `reverse-proxy/traefik/README.md` for detailed configuration.
+
+---
+
 ## 📝 Notes
 
 - All diagrams use **ASCII art** for git-friendly documentation
@@ -344,6 +495,6 @@ Production Server
 
 ---
 
-**Status**: Initial architecture design  
+**Status**: Traefik Reverse Proxy design  
 **Last Updated**: 2026-01-08  
-**Next Update**: After Traefik deployment
+**Next Update**: After .NET deployment

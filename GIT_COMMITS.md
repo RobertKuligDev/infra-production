@@ -114,7 +114,7 @@ Supporting documentation ready for stack deployment"
 ### 3. Add Traefik Reverse Proxy
 
 ```bash
-git add reverse-proxy/
+git add reverse-proxy/ README.md  GIT_COMMITS.md docs/
 git commit -m "feat(proxy): add Traefik reverse proxy with advanced features
 
 - Docker Compose with Let's Encrypt and HTTPS redirect
@@ -125,6 +125,9 @@ git commit -m "feat(proxy): add Traefik reverse proxy with advanced features
 - Dynamic configuration support for advanced routing
 - Comprehensive documentation with examples
 - Health checks and monitoring endpoints
+- Update README: Traefik status Planned → Ready
+- Update docs/architecture_diagrams: Add Traefik architecture diagram and change Traefik icon to ✅ Deployed
+- Update GIT_COMMITS: Update Traefik commit message to description changes in documentation
 
 Enables secure, monitored routing for all technology stacks"
 ```

@@ -1,0 +1,144 @@
+# =============================================================================
+# FILE: docker-compose.yml
+# DESCRIPTION: Traefik reverse proxy with advanced features
+# VERSION: 1.0 - Enhanced with metrics, health checks, and monitoring
+# =============================================================================
+
+services:
+  traefik:
+    image: traefik:${TRAEFIK_VERSION:-v3.3}
+    container_name: traefik
+    restart: ${RESTART_POLICY:-unless-stopped}
+    
+    command:
+      # ========================================================================
+      # API & Dashboard
+      # ========================================================================
+      - "--api.dashboard=true"
+      - "--api.insecure=${API_INSECURE:-true}"  # Set false in production
+      
+      # ========================================================================
+      # Providers
+      # ========================================================================
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-net"
+      
+      # File provider for dynamic configuration
+      - "--providers.file.directory=/etc/traefik/dynamic"
+      - "--providers.file.watch=true"
+      
+      # ========================================================================
+      # Entrypoints
+      # ========================================================================
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      
+      # HTTP to HTTPS redirect
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      
+      # ========================================================================
+      # SSL/TLS Configuration
+      # ========================================================================
+      # Let's Encrypt using HTTP-01 challenge
+      - "--certificatesresolvers.le.acme.httpchallenge=true"
+      - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.le.acme.email=${ACME_EMAIL}"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+      
+      # TLS options (optional, for custom ciphers/versions)
+      - "--entrypoints.websecure.http.tls.options=default@file"
+      
+      # ========================================================================
+      # Logging
+      # ========================================================================
+      - "--log.level=${TRAEFIK_LOG_LEVEL:-INFO}"
+      - "--log.format=${LOG_FORMAT:-common}"
+      - "--accesslog=true"
+      - "--accesslog.format=${ACCESS_LOG_FORMAT:-common}"
+      - "--accesslog.filepath=/var/log/traefik/access.log"
+      
+      # ========================================================================
+      # Metrics & Monitoring (Prometheus)
+      # ========================================================================
+      - "--metrics.prometheus=${ENABLE_METRICS:-false}"
+      - "--metrics.prometheus.addEntryPointsLabels=true"
+      - "--metrics.prometheus.addRoutersLabels=true"
+      - "--metrics.prometheus.addServicesLabels=true"
+      
+      # ========================================================================
+      # Health Check
+      # ========================================================================
+      - "--ping=true"
+      - "--ping.entrypoint=web"
+      
+      # ========================================================================
+      # Security Headers (Global)
+      # ========================================================================
+      - "--entrypoints.websecure.http.middlewares=security-headers@file"
+    
+    ports:
+      - "80:80"
+      - "443:443"
+      # Dashboard port (remove in production or restrict with firewall)
+      - "${DASHBOARD_PORT:-8080}:8080"
+    
+    environment:
+      - TZ=${TIMEZONE:-UTC}
+      - ACME_EMAIL=${ACME_EMAIL}
+      - TRAEFIK_DASHBOARD_DOMAIN=${TRAEFIK_DASHBOARD_DOMAIN:-}
+    
+    volumes:
+      # Docker socket for service discovery (read-only for security)
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      
+      # Persistent Let's Encrypt certificates
+      - "./letsencrypt:/letsencrypt"
+      
+      # Access logs
+      - "./logs:/var/log/traefik"
+      
+      # Dynamic configuration (middlewares, TLS options)
+      - "./config:/etc/traefik/dynamic:ro"
+    
+    networks:
+      - traefik-net
+    
+    labels:
+      - "traefik.enable=true"
+      
+      # ========================================================================
+      # Dashboard Router (HTTPS with optional auth)
+      # ========================================================================
+      - "traefik.http.routers.dashboard.rule=Host(`${TRAEFIK_DASHBOARD_DOMAIN}`)"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=le"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      
+      # Basic Auth (if TRAEFIK_DASHBOARD_AUTH is set)
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=${TRAEFIK_DASHBOARD_AUTH:-}"
+      
+      # ========================================================================
+      # Metrics Endpoint (if Prometheus is enabled)
+      # ========================================================================
+      - "traefik.http.routers.metrics.rule=Host(`${TRAEFIK_DASHBOARD_DOMAIN}`) && PathPrefix(`/metrics`)"
+      - "traefik.http.routers.metrics.entrypoints=websecure"
+      - "traefik.http.routers.metrics.tls=true"
+      - "traefik.http.routers.metrics.tls.certresolver=le"
+      - "traefik.http.routers.metrics.service=prometheus@internal"
+    
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  traefik-net:
+    external: true
+    name: ${TRAEFIK_NETWORK:-traefik-net}

@@ -1,0 +1,122 @@
+# =============================================================================
+# Traefik Dynamic Configuration - TLS Options
+# =============================================================================
+# This file configures TLS/SSL settings for enhanced security
+# Reference: https://doc.traefik.io/traefik/https/tls/
+
+tls:
+  options:
+    # =========================================================================
+    # Default TLS Configuration (Modern & Secure)
+    # =========================================================================
+    default:
+      minVersion: VersionTLS12
+      maxVersion: VersionTLS13
+      
+      # Cipher suites for TLS 1.2 (ordered by preference)
+      cipherSuites:
+        # TLS 1.3 cipher suites (automatically used when available)
+        - TLS_AES_128_GCM_SHA256
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
+        
+        # TLS 1.2 cipher suites (strong & modern)
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+      
+      # Curve preferences
+      curvePreferences:
+        - CurveP521
+        - CurveP384
+        - CurveP256
+      
+      # Additional security
+      sniStrict: true
+      
+      # ALPN protocols
+      alpnProtocols:
+        - h2
+        - http/1.1
+    
+    # =========================================================================
+    # Strict TLS Configuration (Maximum Security)
+    # =========================================================================
+    strict:
+      minVersion: VersionTLS13
+      maxVersion: VersionTLS13
+      
+      cipherSuites:
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
+      
+      curvePreferences:
+        - CurveP521
+        - CurveP384
+      
+      sniStrict: true
+      
+      alpnProtocols:
+        - h2
+    
+    # =========================================================================
+    # Compatible TLS Configuration (Legacy Support)
+    # =========================================================================
+    # Use only if you need to support older clients
+    compatible:
+      minVersion: VersionTLS11
+      maxVersion: VersionTLS13
+      
+      cipherSuites:
+        # TLS 1.3
+        - TLS_AES_128_GCM_SHA256
+        - TLS_AES_256_GCM_SHA384
+        - TLS_CHACHA20_POLY1305_SHA256
+        
+        # TLS 1.2
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+        
+        # Fallback for older clients (less secure)
+        - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+        - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+      
+      curvePreferences:
+        - CurveP521
+        - CurveP384
+        - CurveP256
+      
+      alpnProtocols:
+        - h2
+        - http/1.1
+
+  # ===========================================================================
+  # Certificate Stores (Optional)
+  # ===========================================================================
+  # stores:
+  #   default:
+  #     defaultCertificate:
+  #       certFile: /path/to/cert.crt
+  #       keyFile: /path/to/cert.key
+
+# =============================================================================
+# Notes
+# =============================================================================
+# - default: Modern configuration balancing security & compatibility
+# - strict: Maximum security, TLS 1.3 only (may break older clients)
+# - compatible: Supports older clients but less secure
+#
+# To use a specific option, add to service labels:
+#   - "traefik.http.routers.myapp.tls.options=strict@file"
+#
+# Test your configuration:
+#   SSL Labs: https://www.ssllabs.com/ssltest/
+#   Mozilla Observatory: https://observatory.mozilla.org/
