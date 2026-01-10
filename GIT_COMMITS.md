@@ -135,7 +135,7 @@ Enables secure, monitored routing for all technology stacks"
 ### 4. Add .NET Applications Stack
 
 ```bash
-git add stacks/dotnet-app/
+git add stacks/dotnet-app/ README.md GIT_COMMITS.md docs/
 git commit -m "feat(dotnet): add .NET stack with complete environment variable support
 
 - All configuration through single .env file
@@ -148,6 +148,9 @@ git commit -m "feat(dotnet): add .NET stack with complete environment variable s
 - Comprehensive troubleshooting guide
 - JWT authentication and email support
 - Resource limits configurable
+- Update README: .NET stack status Planned → Ready
+- Update docs/architecture_diagrams: Add .NET app stack architecture diagram and change .NET icon to ✅ Deployed
+- Update GIT_COMMITS: Update .NET commit message to description changes in documentation
 
 Fully portable .NET application stack ready for production"
 ```

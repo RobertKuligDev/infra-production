@@ -1,6 +1,6 @@
 # infra-production
 
-**🚧 Status**: Add Traefik Reverse Proxy- In progress phase
+**🚧 Status**: Add ASP.NET Core 8+ - In progress phase
 
 Production infrastructure using Traefik reverse proxy and Docker Compose for deploying modern web applications.
 
@@ -17,12 +17,12 @@ This repository follows a modular, cloud-native approach:
 
 ## 🚀 Planned Technology Stacks
 
-**Status**: Traefik deployed ✅ | Other stacks planned 🔄
+**Status**: ASP.NET Core deployed ✅ | Other stacks planned 🔄
 
 | Stack               | Technology                                          | Status      |
 |---------------------|-----------------------------------------------------|-------------|
 | Reverse Proxy       | Traefik v3 + Let's Encrypt                         | ✅ Ready    |
-| .NET Applications   | ASP.NET Core 8+, Blazor                            | 📋 Planned  |
+| .NET Applications   | ASP.NET Core 8+, Blazor                            | ✅ Ready  |
 | PHP Applications    | WordPress, Symfony, Laravel, Drupal, Magento, Zend | 📋 Planned  |
 | Frontend Apps       | React, Vue, Next, Nuxt, Node.js, Express, Angular  | 📋 Planned  |
 | Web Servers         | Nginx, Apache2, Tomcat, Caddy, MailHog             | 📋 Planned  |
@@ -94,7 +94,7 @@ infra-production/
 ├── reverse-proxy/                       # Traefik v3 + Let's Encrypt
 │ └── traefik/
 │
-└── stacks/ # (Coming soon)
+└── stacks/ # (In progress)
 ├── dotnet-app/
 ├── php-app/
 ├── frontend-app/
@@ -117,7 +117,7 @@ infra-production/
 
 ## 🚀 Getting Started
 
-**Current phase** - Deploy Traefik v3 + Let's Encrypt
+**Current phase** - Deploy .NET application stack
 
 Each component will be added incrementally with:
 - Complete documentation
@@ -125,7 +125,7 @@ Each component will be added incrementally with:
 - Configuration examples
 - Troubleshooting guides
 
-**First deployment** (.NET stack) coming soon.
+**First deployment** (PHP application stack) coming soon.
 
 ---
 
@@ -163,7 +163,7 @@ Each `deploy.sh` script:
 
 **Phase 2: Core Infrastructure**
 - [x] Traefik reverse proxy
-- [ ] First application stack (.NET)
+- [x] First application stack (.NET)
 - [ ] Monitoring stack
 
 **Phase 3: Expansion**
@@ -193,11 +193,11 @@ This infrastructure configuration is provided as-is for deployment of your own a
 **Current Milestone**: 🏗️ Deploy Traefik Reverse Proxy
 
 **Next Steps**:
-- [ ] Deploy first application stack (.NET)
 - [ ] Deploy PHP applications stack
 - [ ] Deploy monitoring stack (Grafana + Prometheus)
 - [ ] Deploy static sites and modern frontend stack
 - [ ] Deploy web servers stack (Nginx, Apache, Tomcat)
+- [ ] Deploy automation n8N stack
 
 ---
 

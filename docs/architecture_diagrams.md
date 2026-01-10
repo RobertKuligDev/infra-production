@@ -15,7 +15,7 @@ This infrastructure follows a **microservices architecture** with:
 
 ## 🌐 Overall Infrastructure Architecture
 
-**Current Status**: Traefik deployed ✅ | All other stacks planned 🔄
+**Current Status**: .NET stack deployed ✅ | Other stacks planned 🔄
 ```
 Internet (HTTPS)
        │
@@ -35,7 +35,7 @@ Internet (HTTPS)
 ┌────────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐
 │ .NET   │ │ PHP  │ │Monitor││Auto- │ │Static│ │ Web  │
 │ Stack  │ │Stack │ │Stack │ │mation│ │Sites │ │Server│
-│  🔄    │ │  🔄  │ │  🔄  │ │  🔄  │ │  🔄  │ │  🔄  │
+│  ✅    │ │  🔄  │ │  🔄  │ │  🔄  │ │  🔄  │ │  🔄  │
 └───┬────┘ └──┬───┘ └──┬───┘ └──┬───┘ └──┬───┘ └──────┘
     │         │        │        │        │
     │    internal networks (isolated)
@@ -486,6 +486,115 @@ See `reverse-proxy/traefik/README.md` for detailed configuration.
 
 ---
 
+## 💻 .NET Applications Stack (Deployed)
+```
+┌─────────────────┐
+│   Traefik       │  Port 443 (HTTPS)
+│  Reverse Proxy  │  SSL via Let's Encrypt
+└────────┬────────┘
+         │
+         │ traefik-net (external)
+         │
+         │ Traefik routes based on:
+         │ Host(`${DOMAIN}`)
+         │
+    ┌────▼──────────────────────────────┐
+    │  dotnet-app Container             │
+    │                                   │
+    │  ASP.NET Core Application         │
+    │  ├─ Port 8080 (internal HTTP)    │
+    │  ├─ Health endpoint: /health     │
+    │  ├─ Environment variables        │
+    │  └─ JWT authentication           │
+    └────┬──────────────────────────────┘
+         │
+         │ dotnet_internal (bridge)
+         │ Database connection via
+         │ service name (not localhost)
+         │
+    ┌────▼──────────────────────────────┐
+    │  Database Container               │
+    │                                   │
+    │  PostgreSQL (default)             │
+    │  ├─ Port 5432 (internal only)    │
+    │  ├─ Persistent volume             │
+    │  ├─ Health checks                │
+    │  └─ No external exposure          │
+    │                                   │
+    │  OR SQL Server (profile)          │
+    │  ├─ Port 1433 (internal only)    │
+    │                                   │
+    │  OR MySQL (profile)               │
+    │  └─ Port 3306 (internal only)    │
+    └───────────────────────────────────┘
+```
+
+### .NET Configuration Flow
+```
+1. .env File
+       │
+       ├─ DOMAIN=api.yourdomain.com
+       ├─ POSTGRES_PASSWORD=secret
+       ├─ JWT_SECRET=64chars
+       │
+       ▼
+2. docker-compose.yml
+       │
+       ├─ Reads ${VARIABLES}
+       ├─ Constructs environment
+       │
+       ▼
+3. Application Container
+       │
+       ├─ ConnectionStrings__DefaultConnection
+       ├─ JwtSettings__SecretKey
+       ├─ Environment variables loaded
+       │
+       ▼
+4. ASP.NET Core App
+       │
+       ├─ builder.Configuration
+       ├─ AddEnvironmentVariables()
+       ├─ Configuration["ConnectionStrings:DefaultConnection"]
+       │
+       ▼
+5. Database Connection
+       │
+       └─ Uses service name: "postgres"
+```
+
+### .NET Stack File Structure
+```
+stacks/dotnet-app/
+├── docker-compose.yml          # Service definitions
+├── .env                        # Config (gitignored)
+├── .env.example                # Template
+├── deploy.sh                   # Deployment
+├── README.md                   # Documentation
+│
+├── scripts/
+│   ├── backup.sh              # PostgreSQL backup
+│   ├── restore.sh             # Restore from backup
+│   └── health-check.sh        # Health diagnostics
+│
+└── docs/
+    └── troubleshooting.md     # .NET-specific issues
+```
+
+### .NET Database Profiles
+```yaml
+# Default: PostgreSQL
+docker compose up -d
+
+# SQL Server
+docker compose --profile sqlserver up -d
+
+# MySQL
+docker compose --profile mysql up -d
+```
+
+---
+
 ## 📝 Notes
 
 - All diagrams use **ASCII art** for git-friendly documentation
@@ -495,6 +604,6 @@ See `reverse-proxy/traefik/README.md` for detailed configuration.
 
 ---
 
-**Status**: Traefik Reverse Proxy design  
-**Last Updated**: 2026-01-08  
-**Next Update**: After .NET deployment
+**Status**: Traefik + .NET Stacks (Deployed)  
+**Last Updated**: 2026-01-10  
+**Next Update**: After PHP deployment
