@@ -407,3 +407,25 @@ This is a living document. Updates should include:
 **Last Updated**: 2026-01-08
 
 **Maintainer**: Infrastructure Team
+
+## 🔄 Updated Deployment Procedures (v2.0)
+
+### Multi-Stack Orchestration
+The infrastructure now supports coordinated deployment of all stacks:
+
+```bash
+# New deployment workflow
+./deploy-all.sh
+```
+
+This script:
+1. Creates necessary Docker networks
+2. Deploys Traefik reverse proxy
+3. Waits for Traefik to be ready
+4. Deploys the .NET application stack
+5. Provides status report
+
+### New Utility Scripts
+- `scripts/create-networks.sh` - Idempotent network creation
+- `scripts/wait-for-services.sh` - Health check waiting
+- `scripts/status.sh` - Unified status reporting

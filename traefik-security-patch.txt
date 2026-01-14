@@ -1,0 +1,32 @@
+# Add after line with "source "$SCRIPT_DIR/.env""
+# =============================================================================
+# SECURITY VALIDATION - NEW
+# =============================================================================
+echo -e "${PURPLE}🔒 Validating security configuration...${NC}"
+
+# Security warning for API_INSECURE
+if [ "${API_INSECURE:-true}" = "true" ]; then
+    warning_msg "API_INSECURE=true - This is INSECURE for production!"
+    read -p "Continue anyway? (NOT recommended for production) [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set API_INSECURE=false, then run again."
+        exit 1
+    fi
+else
+    success_msg "API_INSECURE=false (secure)"
+fi
+
+# Validate ACME email format
+if [[ ! "$ACME_EMAIL" =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$ ]]; then
+    warning_msg "ACME_EMAIL format may be invalid: $ACME_EMAIL"
+fi
+
+# Check if dashboard port is exposed (security issue)
+if grep -q '"8080:8080"' "$SCRIPT_DIR/docker-compose.yml" 2>/dev/null || 
+   grep -q '"${DASHBOARD_PORT:-8080}:8080"' "$SCRIPT_DIR/docker-compose.yml" 2>/dev/null; then
+    warning_msg "Dashboard port 8080 is exposed externally - security risk!"
+    echo "Recommendation: Remove port 8080 mapping from docker-compose.yml"
+fi
+
+success_msg "Security validation completed"

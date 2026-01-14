@@ -1,0 +1,53 @@
+# Add after loading environment variables
+# =============================================================================
+# ENHANCED SECURITY VALIDATION - NEW
+# =============================================================================
+echo -e "${PURPLE}🔒 Validating security configuration...${NC}"
+
+# Security checks for passwords
+if [[ "$POSTGRES_PASSWORD" == "ChangeMe123!" || ${#POSTGRES_PASSWORD} -lt 12 ]]; then
+    warning_msg "POSTGRES_PASSWORD is weak or default!"
+    echo "  Current: $POSTGRES_PASSWORD"
+    echo "  Recommendation: Use at least 12 chars with mix of letters, numbers, symbols"
+    read -p "Continue anyway? (NOT recommended) [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set a secure POSTGRES_PASSWORD"
+        exit 1
+    fi
+else
+    success_msg "POSTGRES_PASSWORD strength: OK"
+fi
+
+# JWT Secret validation
+if [[ "$JWT_SECRET" == *"example"* || "$JWT_SECRET" == *"change"* || ${#JWT_SECRET} -lt 32 ]]; then
+    warning_msg "JWT_SECRET may be insecure!"
+    echo "  Current length: ${#JWT_SECRET} chars"
+    echo "  Recommendation: Use at least 32 random chars"
+    echo "  Generate: openssl rand -base64 32"
+    read -p "Continue anyway? (NOT recommended) [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set a secure JWT_SECRET"
+        exit 1
+    fi
+else
+    success_msg "JWT_SECRET strength: OK"
+fi
+
+# Domain validation
+if [[ "$DOMAIN" == *"example"* || "$DOMAIN" == *"localhost"* ]]; then
+    warning_msg "DOMAIN is set to example/localhost"
+    echo "  Current: $DOMAIN"
+    echo "  This may cause issues with SSL certificates"
+    read -p "Continue anyway? [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set your actual domain"
+        exit 1
+    fi
+else
+    success_msg "DOMAIN configuration: OK"
+fi
+
+success_msg "Security validation completed"

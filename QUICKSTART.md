@@ -372,3 +372,20 @@ cd stacks/<stack-name>
 **Success! 🎉** Your infrastructure is now running!
 
 Next: Review [COMPLETE_DEPLOYMENT_GUIDE.md](./COMPLETE_DEPLOYMENT_GUIDE.md) for advanced configuration.
+
+## 🔄 Updated Deployment Flow (v2.0)
+
+### New Features:
+- **Single Command Deployment**: `./deploy-all.sh` for entire infrastructure
+- **Enhanced Validation**: Automatic checks for security misconfigurations
+- **Health Monitoring**: Built-in waiting for service readiness
+- **Status Reporting**: Unified view of all services
+
+### Quick Test:
+```bash
+# Test the new deployment flow
+./scripts/create-networks.sh
+cd reverse-proxy/traefik && ./deploy.sh
+cd ../../stacks/dotnet-app && ./deploy.sh
+./scripts/status.sh
+```

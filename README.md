@@ -202,3 +202,18 @@ This infrastructure configuration is provided as-is for deployment of your own a
 ---
 
 Made with ❤️ for production deployments
+## 🚀 Quick Deployment (Updated)
+
+### Single Command Deployment
+```bash
+./deploy-all.sh
+```
+
+### Utility Scripts
+- `scripts/create-networks.sh` - Create Docker networks
+- `scripts/wait-for-services.sh` - Wait for service health  
+- `scripts/status.sh` - Check all services status
+
+### Security Reference
+- `traefik-security-patch.txt` - Traefik security validation reference
+- `dotnet-security-patch.txt` - .NET app security validation reference
