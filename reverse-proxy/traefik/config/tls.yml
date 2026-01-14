@@ -33,6 +33,7 @@ tls:
         - CurveP521
         - CurveP384
         - CurveP256
+        - X25519
       
       # Additional security
       sniStrict: true
