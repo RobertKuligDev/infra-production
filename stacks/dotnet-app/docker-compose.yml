@@ -19,7 +19,7 @@ services:
     networks:
       - internal
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -38,7 +38,7 @@ services:
     networks:
       - internal
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "${SQLSERVER_SA_PASSWORD}", "-Q", "SELECT 1"]
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "$$SQLSERVER_SA_PASSWORD", "-Q", "SELECT 1"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -60,7 +60,7 @@ services:
     networks:
       - internal
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5

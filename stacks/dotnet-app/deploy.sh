@@ -2,7 +2,7 @@
 # =============================================================================
 # FILE: deploy.sh
 # DESCRIPTION: Deployment script for .NET applications stack
-# VERSION: 1.0 - Environment variables migration
+# VERSION: 1.1 - Security fixes & enhanced validation
 # =============================================================================
 
 set -euo pipefail
@@ -22,7 +22,7 @@ STACK_NAME="${STACK_NAME:-dotnet-app}"
 
 echo -e "${CYAN}╔══════════════════════════════════════════════════════════════╗${NC}"
 echo -e "${CYAN}║                    .NET Applications Stack                   ║${NC}"
-echo -e "${CYAN}║                    Deployment Script                         ║${NC}"
+echo -e "${CYAN}║                    Deployment Script v1.1                    ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo -e "${BLUE}==> Deploying ${STACK_NAME} Stack${NC}"
 echo ""
@@ -86,7 +86,11 @@ set -a
 source "$SCRIPT_DIR/.env"
 set +a
 
-# Validate required variables
+# =============================================================================
+# ENHANCED SECURITY VALIDATION - NEW
+# =============================================================================
+echo -e "${PURPLE}🔒 Validating security configuration...${NC}"
+
 REQUIRED_VARS=(
     "DOTNET_IMAGE"
     "DOMAIN"
@@ -108,11 +112,66 @@ if [ ${#MISSING_VARS[@]} -gt 0 ]; then
 Please set these variables in $SCRIPT_DIR/.env"
 fi
 
-success_msg "All required variables are set"
+# Security checks for passwords
+if [[ "$POSTGRES_PASSWORD" == "ChangeMe123!" || ${#POSTGRES_PASSWORD} -lt 12 ]]; then
+    warning_msg "POSTGRES_PASSWORD is weak or default!"
+    echo "  Current: $POSTGRES_PASSWORD"
+    echo "  Recommendation: Use at least 12 chars with mix of letters, numbers, symbols"
+    read -p "Continue anyway? (NOT recommended) [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set a secure POSTGRES_PASSWORD"
+        exit 1
+    fi
+else
+    success_msg "POSTGRES_PASSWORD strength: OK"
+fi
+
+# JWT Secret validation
+if [[ "$JWT_SECRET" == *"example"* || "$JWT_SECRET" == *"change"* || ${#JWT_SECRET} -lt 32 ]]; then
+    warning_msg "JWT_SECRET may be insecure!"
+    echo "  Current length: ${#JWT_SECRET} chars"
+    echo "  Recommendation: Use at least 32 random chars"
+    echo "  Generate: openssl rand -base64 32"
+    read -p "Continue anyway? (NOT recommended) [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set a secure JWT_SECRET"
+        exit 1
+    fi
+else
+    success_msg "JWT_SECRET strength: OK"
+fi
+
+# Domain validation
+if [[ "$DOMAIN" == *"example"* || "$DOMAIN" == *"localhost"* ]]; then
+    warning_msg "DOMAIN is set to example/localhost"
+    echo "  Current: $DOMAIN"
+    echo "  This may cause issues with SSL certificates"
+    read -p "Continue anyway? [y/N]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Edit .env and set your actual domain"
+        exit 1
+    fi
+else
+    success_msg "DOMAIN configuration: OK"
+fi
+
+success_msg "Security validation completed"
 echo ""
 
 # Navigate to stack directory
 cd "$SCRIPT_DIR"
+
+# Validate docker-compose configuration
+echo -e "${PURPLE}🔧 Validating Docker Compose configuration...${NC}"
+if docker compose config >/dev/null 2>&1; then
+    success_msg "Docker Compose configuration is valid"
+else
+    error_exit "Docker Compose configuration is invalid. Run: docker compose config"
+fi
+echo ""
 
 # Check if Traefik network exists
 if ! docker network inspect "${TRAEFIK_NETWORK:-traefik-net}" &> /dev/null; then
@@ -120,6 +179,12 @@ if ! docker network inspect "${TRAEFIK_NETWORK:-traefik-net}" &> /dev/null; then
     info_msg "Creating network..."
     docker network create "${TRAEFIK_NETWORK:-traefik-net}" || error_exit "Failed to create network"
     success_msg "Network created"
+fi
+
+# Check if internal network exists
+if ! docker network inspect "${STACK_NAME:-dotnet-app}_internal" &> /dev/null; then
+    info_msg "Creating internal network..."
+    docker network create "${STACK_NAME:-dotnet-app}_internal" || warning_msg "Could not create internal network"
 fi
 
 # Pull latest images
@@ -148,9 +213,36 @@ echo -e "${PURPLE}🚀 Starting services...${NC}"
 docker compose up -d || error_exit "Failed to start services"
 echo ""
 
-# Wait for services to be healthy
+# Wait for services to be healthy with better waiting
 echo -e "${PURPLE}⏳ Waiting for services to initialize...${NC}"
-sleep 10
+echo -n "Waiting for PostgreSQL..."
+for i in {1..30}; do
+    if docker compose ps postgres 2>/dev/null | grep -q "(healthy)"; then
+        success_msg " PostgreSQL is healthy"
+        break
+    fi
+    sleep 2
+    echo -n "."
+    if [ $i -eq 30 ]; then
+        warning_msg " PostgreSQL health check timeout"
+        echo "Check logs: docker compose logs postgres"
+    fi
+done
+
+echo -n "Waiting for application..."
+for i in {1..45}; do
+    if docker compose ps app 2>/dev/null | grep -q "(healthy)"; then
+        success_msg " Application is healthy"
+        break
+    fi
+    sleep 2
+    echo -n "."
+    if [ $i -eq 45 ]; then
+        warning_msg " Application health check timeout"
+        echo "Check logs: docker compose logs app"
+    fi
+done
+echo ""
 
 # Check service health
 echo -e "${BLUE}📋 Service Status:${NC}"
@@ -169,6 +261,19 @@ fi
 if [ "${RUN_MIGRATIONS:-false}" = "true" ]; then
     echo -e "${PURPLE}🔄 Running database migrations...${NC}"
     docker compose --profile tools run --rm migrate || warning_msg "Migration failed - check logs"
+    echo ""
+fi
+
+# Test application endpoint (optional)
+if [ "${TEST_ENDPOINT:-true}" = "true" ]; then
+    echo -e "${PURPLE}🔍 Testing application endpoint...${NC}"
+    sleep 5
+    if curl -s -f "https://${DOMAIN}${HEALTH_CHECK_PATH:-/health}" > /dev/null 2>&1; then
+        success_msg "Application endpoint responding"
+    else
+        warning_msg "Application endpoint may not be ready"
+        echo "Try manually: curl https://${DOMAIN}${HEALTH_CHECK_PATH:-/health}"
+    fi
     echo ""
 fi
 
