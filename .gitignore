@@ -214,3 +214,7 @@ NOTES.md
 # Custom Exclusions (project-specific)
 # =============================================================================
 # Add your custom exclusions below this line
+# runtime data - never commit
+dev/services/ollama/models/
+dev/apps/*/db/
+dev/services/monitoring/grafana/plugins/
