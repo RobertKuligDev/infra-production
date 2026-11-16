@@ -1,0 +1,39 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/shadows' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  ds-popover-panel
+  Floating panel for popover content.
+*/
+.ds-popover-panel {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+
+  background: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  padding: $space-3;
+
+  /* OPEN STATE */
+  &--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* SIDES */
+  &--side-bottom { top: 100%; left: 0; }
+  &--side-top { bottom: 100%; left: 0; }
+  &--side-left { right: 100%; top: 0; }
+  &--side-right { left: 100%; top: 0; }
+
+  /* ALIGNMENTS */
+  &--align-start { left: 0; right: auto; }
+  &--align-center { transform: translateX(-50%); left: 50%; }
+  &--align-end { right: 0; left: auto; }
+}

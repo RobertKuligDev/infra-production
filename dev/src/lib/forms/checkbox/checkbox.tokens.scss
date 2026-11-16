@@ -1,0 +1,129 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Checkbox component-level tokens.
+  Defines spacing, colors, and variant primitives.
+*/
+/*
+  Base
+*/
+@mixin checkbox-base {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  cursor: pointer;
+}
+
+/*
+  Input (hidden)
+*/
+@mixin checkbox-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*
+  Box
+*/
+@mixin checkbox-box {
+  width: 18px;
+  height: 18px;
+  border-radius: $radius-xs;
+  border: 2px solid $color-border;
+  background: $color-surface;
+  display: inline-block;
+  position: relative;
+  transition: all 0.15s ease;
+
+  input:checked + & {
+    background: $color-accent-primary;
+    border-color: $color-accent-primary;
+  }
+
+  input:checked + &::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: $color-white;
+    border-radius: $radius-xxs;
+  }
+}
+
+/*
+  Indeterminate
+*/
+@mixin checkbox-box-indeterminate {
+  background: $color-accent-primary;
+  border-color: $color-accent-primary;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    right: 3px;
+    height: 2px;
+    background: $color-white;
+    transform: translateY(-50%);
+  }
+}
+
+/*
+  Label
+*/
+@mixin checkbox-label {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+/*
+  Helper
+*/
+@mixin checkbox-helper {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-left: 26px;
+}
+
+/*
+  Error
+*/
+@mixin checkbox-error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+  margin-left: 26px;
+}
+
+@mixin checkbox-box-error {
+  border-color: $color-danger;
+}
+
+/*
+  Disabled
+*/
+@mixin checkbox-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*
+  Variants
+*/
+@mixin checkbox-variant-default {}
+
+@mixin checkbox-variant-subtle {
+  .ds-checkbox__box {
+    background: $color-surface-subtle;
+  }
+}
+
+@mixin checkbox-variant-contrast {
+  .ds-checkbox__box {
+    background: $color-surface-contrast;
+    border-color: transparent;
+  }
+}

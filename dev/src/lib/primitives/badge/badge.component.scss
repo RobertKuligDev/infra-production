@@ -1,0 +1,33 @@
+@use './badge.tokens' as *;
+
+/*
+  ds-badge
+  Visual primitive with variant styling.
+*/
+.ds-badge {
+  @include badge-base;
+
+  &--default {
+    @include badge-variant-default;
+  }
+
+  &--subtle {
+    @include badge-variant-subtle;
+  }
+
+  &--contrast {
+    @include badge-variant-contrast;
+  }
+
+  &--success {
+    @include badge-variant-success;
+  }
+
+  &--warning {
+    @include badge-variant-warning;
+  }
+
+  &--danger {
+    @include badge-variant-danger;
+  }
+}

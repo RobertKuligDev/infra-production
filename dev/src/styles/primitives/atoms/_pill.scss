@@ -1,0 +1,27 @@
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/primitives/radius' as *;
+@use '../tokens/primitives/typography' as *;
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧱 PILL PRIMITIVE
+  Foundation-level UI atom.
+  Provides rounded label styling for categories and metadata.
+  ============================================
+*/
+
+@mixin pill-base {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: $space-1 $space-3;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-full;
+}
+
+@mixin pill-variant($color) {
+  background: rgba($color, 0.14);
+  color: $color;
+}

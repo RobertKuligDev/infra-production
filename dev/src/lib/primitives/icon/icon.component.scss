@@ -1,0 +1,34 @@
+@use "./icon.tokens" as *;
+
+/*
+  ds-icon
+  Visual primitive with size and color variants.
+*/
+.ds-icon {
+  @include icon-base;
+
+  /* Sizes */
+  &--sm {
+    @include icon-size-sm;
+  }
+  &--md {
+    @include icon-size-md;
+  }
+  &--lg {
+    @include icon-size-lg;
+  }
+
+  /* Colors */
+  &--primary {
+    @include icon-color-primary;
+  }
+  &--secondary {
+    @include icon-color-secondary;
+  }
+  &--muted {
+    @include icon-color-muted;
+  }
+  &--inverse {
+    @include icon-color-inverse;
+  }
+}

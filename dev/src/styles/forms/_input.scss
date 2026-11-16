@@ -1,0 +1,12 @@
+@use './form.mixins' as mix;
+
+/* ============================================
+   🧩 INPUT COMPONENT   ============================================ */
+
+.input {
+  @include mix.input-base;
+}
+
+.input--error {
+  @include mix.input-error;
+}

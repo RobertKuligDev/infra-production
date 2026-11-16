@@ -1,0 +1,16 @@
+@use '../tokens/primitives/typography' as *;
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧱 METRIC PRIMITIVE
+  Foundation-level numeric emphasis.
+  Provides large, bold numeric display for KPIs and stats.
+  ============================================
+*/
+
+@mixin metric-base {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  color: semantic-colors.$color-text-primary;
+}

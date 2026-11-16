@@ -1,0 +1,36 @@
+<!--
+  ds-slider
+  Accessible slider with drag, keyboard, and min/max/step.
+-->
+<label [ngClass]="classes()">
+  <span class="ds-slider__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+
+  <div class="ds-slider__track" #track>
+    <div class="ds-slider__fill" [style.width.%]="(value() - min()) / (max() - min()) * 100"></div>
+
+    <div
+      class="ds-slider__thumb"
+      tabindex="0"
+      role="slider"
+      [attr.aria-valuemin]="min()"
+      [attr.aria-valuemax]="max()"
+      [attr.aria-valuenow]="value()"
+      [attr.aria-invalid]="!!error()"
+      [style.left.%]="(value() - min()) / (max() - min()) * 100"
+      (mousedown)="startDrag($event)"
+      (touchstart)="startDrag($event)"
+      (keydown)="onKey($event)"
+      (blur)="onTouched()"
+    ></div>
+  </div>
+</label>
+
+<p *ngIf="helper() && !error()" class="ds-slider__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-slider__error">
+  {{ error() }}
+</p>

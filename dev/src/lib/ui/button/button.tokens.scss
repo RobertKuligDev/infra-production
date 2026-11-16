@@ -1,0 +1,99 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Button component-level tokens.
+  Defines styling primitives for button variants, sizes, and interactive states.
+  Used exclusively by the ds-button UI component.
+*/
+/*
+  Base button reset
+*/
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+
+  padding: $space-2 $space-4;
+  border-radius: $radius-sm;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  transition: background 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, opacity 0.15s ease;
+}
+
+/*
+  Sizes
+*/
+@mixin button-size-sm {
+  padding: $space-1 $space-3;
+  font-size: 13px;
+}
+
+@mixin button-size-md {
+  padding: $space-2 $space-4;
+  font-size: 14px;
+}
+
+@mixin button-size-lg {
+  padding: $space-3 $space-5;
+  font-size: 15px;
+}
+
+/*
+  Variants
+*/
+@mixin button-variant-primary {
+  background: $color-accent-primary;
+  color: $color-white;
+
+  &:hover {
+    background: $color-accent-primary-dark;
+  }
+}
+
+@mixin button-variant-secondary {
+  background: transparent;
+  border-color: $color-border;
+  color: $color-text-primary;
+
+  &:hover {
+    border-color: $color-text-primary;
+  }
+}
+
+@mixin button-variant-ghost {
+  background: transparent;
+  color: $color-text-muted;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
+
+@mixin button-variant-danger {
+  background: $color-danger;
+  color: $color-white;
+
+  &:hover {
+    background: $color-danger-dark;
+  }
+}
+
+@mixin button-variant-link {
+  background: transparent;
+  color: $color-accent-primary;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,11 @@
+@use '../../tokens/primitives/spacing' as spacing;
+@use '../../tokens/component-tokens/layout' as layout-tokens;
+
+@mixin wrapper-base(
+  $max-width: spacing.$spacing-wrapper-width-base
+) {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+  padding-inline: spacing.$spacing-wrapper-padding-x;
+}

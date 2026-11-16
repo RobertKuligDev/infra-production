@@ -1,0 +1,4 @@
+<aside [ngClass]="classes" [ngStyle]="styleVars">
+  <h3 *ngIf="title" class="{{ base }}__title">{{ title }}</h3>
+  <ng-content></ng-content>
+</aside>

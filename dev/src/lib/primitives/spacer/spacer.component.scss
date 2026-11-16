@@ -1,0 +1,25 @@
+@use "./spacer.tokens" as *;
+
+/*
+  ds-spacer
+  Layout primitive with size variants.
+*/
+.ds-spacer {
+  @include spacer-base;
+
+  &--xs {
+    @include spacer-size-xs;
+  }
+  &--sm {
+    @include spacer-size-sm;
+  }
+  &--md {
+    @include spacer-size-md;
+  }
+  &--lg {
+    @include spacer-size-lg;
+  }
+  &--xl {
+    @include spacer-size-xl;
+  }
+}

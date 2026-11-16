@@ -1,0 +1,34 @@
+@use '../_split' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 SPLIT LAYOUT PRIMITIVE
+  BEM utility mapping to foundation split mixins.
+  ============================================
+*/
+
+.split {
+  @include foundation.split-base(
+    spacing.$spacing-content-gap-lg
+  );
+}
+
+/* Gap variants */
+.split--sm {
+  @include foundation.split-base(
+    spacing.$spacing-content-gap-sm
+  );
+}
+
+.split--md {
+  @include foundation.split-base(
+    spacing.$spacing-content-gap-md
+  );
+}
+
+.split--lg {
+  @include foundation.split-base(
+    spacing.$spacing-content-gap-lg
+  );
+}

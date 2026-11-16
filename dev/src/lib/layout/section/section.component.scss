@@ -1,0 +1,17 @@
+/*
+  Section layout primitive.
+  Controls vertical rhythm and optional internal spacing.
+  Backgrounds, separators, and UI styling belong to section-container.
+*/
+
+.section {
+  position: relative;
+
+  /* Vertical rhythm controlled by component tokens */
+  padding-block: var(--section-padding, var(--section-base));
+
+  /* Optional internal spacing between children */
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap, var(--space-7));
+}

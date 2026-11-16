@@ -1,0 +1,30 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Carousel dots tokens.
+  Defines spacing, sizing, and active-state styling.
+*/
+@mixin carousel-dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-2;
+}
+
+@mixin carousel-dot-base {
+  width: 6px;
+  height: 6px;
+  border-radius: $radius-pill;
+  border: none;
+  background: $color-border;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, width 0.15s ease;
+}
+
+@mixin carousel-dot-active {
+  width: 18px;
+  background: $color-accent-primary;
+}

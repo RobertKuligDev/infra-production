@@ -1,0 +1,11 @@
+/*
+  ds-carousel-item
+  Single slide item inside the carousel track.
+  - takes full viewport width
+  - prevents shrinking
+*/
+.ds-carousel__item {
+  min-width: 100%;
+  flex: 0 0 100%;
+  display: block;
+}

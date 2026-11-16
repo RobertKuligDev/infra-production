@@ -1,0 +1,62 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Icon component-level tokens.
+  Defines size, color, and base rendering primitives.
+*/
+
+/*
+  Base
+*/
+@mixin icon-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+/*
+  Sizes
+*/
+@mixin icon-size-sm {
+  width: 14px;
+  height: 14px;
+}
+
+@mixin icon-size-md {
+  width: 18px;
+  height: 18px;
+}
+
+@mixin icon-size-lg {
+  width: 24px;
+  height: 24px;
+}
+
+/*
+  Colors
+*/
+@mixin icon-color-primary {
+  color: $color-text-primary;
+}
+
+@mixin icon-color-secondary {
+  color: $color-text-secondary;
+}
+
+@mixin icon-color-muted {
+  color: $color-text-muted;
+}
+
+@mixin icon-color-inverse {
+  color: $color-white;
+}

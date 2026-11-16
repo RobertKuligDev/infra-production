@@ -1,0 +1,41 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Accordion item tokens
+  Defines borders, spacing, transitions and content animation.
+*/
+/* Base wrapper */
+@mixin accordion-item-base {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+/* Header button */
+@mixin accordion-item-header {
+  width: 100%;
+  padding: $space-3;
+  background: $color-surface;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Chevron icon */
+@mixin accordion-item-chevron {
+  transition: transform 0.2s ease;
+}
+
+/* Collapsible content */
+@mixin accordion-item-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 $space-3;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+}

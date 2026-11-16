@@ -1,0 +1,10 @@
+<!--
+  Section wrapper.
+  Runtime CSS variables control padding and background.
+  ID is optional and SSR-safe.
+-->
+<section [id]="sectionId()" class="section" [ngStyle]="styleVars()">
+  <div class="container">
+    <ng-content></ng-content>
+  </div>
+</section>

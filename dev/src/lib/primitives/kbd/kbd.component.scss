@@ -1,0 +1,9 @@
+@use './kbd.tokens' as *;
+
+/*
+  ds-kbd
+  Keyboard key visual primitive.
+*/
+.ds-kbd {
+  @include kbd-base;
+}

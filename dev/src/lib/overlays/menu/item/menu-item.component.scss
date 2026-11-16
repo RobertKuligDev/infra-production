@@ -1,0 +1,20 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  ds-menu-item
+  Single clickable menu option.
+*/
+.ds-menu-item {
+  width: 100%;
+  padding: $space-2 $space-3;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: $color-text-primary;
+
+  &:hover {
+    background: $color-surface-subtle;
+  }
+}

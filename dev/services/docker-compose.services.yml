@@ -1,0 +1,106 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dev-postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ~/.devcontainers/data/postgres:/var/lib/postgresql/data
+      - ./init/keycloak.sql:/docker-entrypoint-initdb.d/keycloak.sql
+    networks:
+      - internal-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7
+    container_name: dev-redis
+    restart: unless-stopped
+    volumes:
+      - ~/.devcontainers/data/redis:/data
+    networks:
+      - internal-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: dev-rabbitmq
+    restart: unless-stopped
+    volumes:
+      - ~/.devcontainers/data/rabbitmq:/var/lib/rabbitmq
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rabbit.rule=Host(`${DOMAIN_RABBITMQ}`)"
+      - "traefik.http.routers.rabbit.entrypoints=websecure"
+      - "traefik.http.routers.rabbit.tls=true"
+      - "traefik.http.services.rabbit.loadbalancer.server.port=15672"
+
+  minio:
+    image: minio/minio:latest
+    container_name: dev-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    volumes:
+      - ~/.devcontainers/data/minio:/data
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.minio.rule=Host(`${DOMAIN_MINIO}`)"
+      - "traefik.http.routers.minio.entrypoints=websecure"
+      - "traefik.http.routers.minio.tls=true"
+      - "traefik.http.services.minio.loadbalancer.server.port=9001"
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    container_name: dev-meilisearch
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ~/.devcontainers/data/meilisearch:/meili_data
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.meili.rule=Host(`${DOMAIN_MEILISEARCH}`)"
+      - "traefik.http.routers.meili.entrypoints=websecure"
+      - "traefik.http.routers.meili.tls=true"
+      - "traefik.http.services.meili.loadbalancer.server.port=7700"
+
+  mailhog:
+      image: mailhog/mailhog:latest
+      container_name: dev-mailhog
+      restart: unless-stopped
+      networks:
+        - traefik-net
+        - internal-net
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.mailhog.rule=Host(`${DOMAIN_MAILHOG}`)"
+        - "traefik.http.routers.mailhog.entrypoints=websecure"
+        - "traefik.http.routers.mailhog.tls=true"
+        - "traefik.http.services.mailhog.loadbalancer.server.port=8025"      
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

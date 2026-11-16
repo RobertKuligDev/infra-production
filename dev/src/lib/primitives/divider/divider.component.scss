@@ -1,0 +1,9 @@
+@use './divider.tokens' as *;
+
+/*
+  ds-divider
+  Simple horizontal rule primitive.
+*/
+.ds-divider {
+  @include divider-base;
+}

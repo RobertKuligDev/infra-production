@@ -1,0 +1,12 @@
+<!--
+  ds-icon
+  Visual primitive for rendering SVG icons.
+  Supports size and color variants.
+-->
+<span [ngClass]="classes()">
+  <ng-container *ngIf="!src">
+    <ng-content></ng-content>
+  </ng-container>
+
+  <img *ngIf="src" [src]="src" alt="" />
+</span>

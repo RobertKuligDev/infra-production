@@ -1,0 +1,18 @@
+<!--
+  ds-tooltip
+  Minimal tooltip that appears on hover or focus.
+  Uses ARIA-describedby for accessibility.
+-->
+<span class="ds-tooltip__trigger" [attr.aria-describedby]="open() ? 'tooltip' : null">
+  <ng-content></ng-content>
+</span>
+
+<div
+  *ngIf="open()"
+  class="ds-tooltip__content"
+  [ngClass]="classes()"
+  role="tooltip"
+  id="tooltip"
+>
+  {{ text() }}
+</div>

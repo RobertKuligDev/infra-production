@@ -1,0 +1,55 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Badge component-level tokens.
+  Defines spacing, typography, and variant primitives.
+*/
+
+/*
+  Base
+*/
+@mixin badge-base {
+  display: inline-block;
+  padding: $space-1 $space-2;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  border-radius: $radius-sm;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/*
+  Variants
+*/
+@mixin badge-variant-default {
+  background: $color-surface-subtle;
+  color: $color-text-primary;
+}
+
+@mixin badge-variant-subtle {
+  background: transparent;
+  color: $color-text-secondary;
+}
+
+@mixin badge-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}
+
+@mixin badge-variant-success {
+  background: $color-success;
+  color: $color-white;
+}
+
+@mixin badge-variant-warning {
+  background: $color-warning;
+  color: $color-text-primary;
+}
+
+@mixin badge-variant-danger {
+  background: $color-danger;
+  color: $color-white;
+}

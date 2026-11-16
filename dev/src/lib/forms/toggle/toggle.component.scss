@@ -1,0 +1,57 @@
+@use './toggle.tokens' as *;
+
+/*
+  ds-toggle
+  Toggle switch with variant and state styling.
+*/
+.ds-toggle {
+  @include toggle-base;
+
+  &__input {
+    @include toggle-input;
+  }
+
+  &__track {
+    @include toggle-track;
+  }
+
+  &__thumb {
+    @include toggle-thumb;
+  }
+
+  &__label {
+    @include toggle-label;
+  }
+
+  &__helper {
+    @include toggle-helper;
+  }
+
+  &__error {
+    @include toggle-error;
+  }
+
+  &--checked .ds-toggle__thumb {
+    @include toggle-thumb-checked;
+  }
+
+  &--checked .ds-toggle__track {
+    @include toggle-track-checked;
+  }
+
+  &--error .ds-toggle__track {
+    @include toggle-track-error;
+  }
+
+  &--disabled {
+    @include toggle-disabled;
+  }
+
+  &--subtle {
+    @include toggle-variant-subtle;
+  }
+
+  &--contrast {
+    @include toggle-variant-contrast;
+  }
+}

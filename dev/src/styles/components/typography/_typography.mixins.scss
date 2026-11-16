@@ -1,0 +1,34 @@
+@use '../../tokens/colors' as *;
+@use '../../tokens/typography' as *;
+
+/* ============================================
+   ✍️ TYPOGRAPHY MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+/* Accent text */
+@mixin text-accent($color: $color-accent-primary) {
+  color: $color;
+}
+
+/* Gradient text */
+@mixin text-gradient(
+  $from: $color-accent-primary,
+  $to: $color-accent-secondary
+) {
+  background: linear-gradient(135deg, $from 0%, $to 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Muted text */
+@mixin text-muted {
+  color: $color-text-muted;
+}
+
+/* Lead paragraph */
+@mixin text-lead {
+  font-size: $body-lg-size;
+  line-height: $line-height-base;
+  color: $color-text-secondary;
+}

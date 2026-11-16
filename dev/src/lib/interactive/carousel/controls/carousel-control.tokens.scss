@@ -1,0 +1,27 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Carousel control tokens.
+  Shared styling for prev/next buttons.
+*/
+@mixin carousel-control-base {
+  border: none;
+  background: $color-surface;
+  border-radius: $radius-md;
+  padding: $space-2 $space-3;
+  cursor: pointer;
+  color: $color-text-primary;
+  font-size: 20px;
+  line-height: 1;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

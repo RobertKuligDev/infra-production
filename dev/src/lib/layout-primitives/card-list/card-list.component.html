@@ -1,0 +1,8 @@
+<!--
+  Card list wrapper.
+  Uses BEM naming inherited from the parent section.
+  CSS variables control spacing and column count.
+-->
+<ul [ngClass]="base()" [ngStyle]="styleVars()">
+  <ng-content></ng-content>
+</ul>

@@ -1,0 +1,43 @@
+@use '../_section' as foundation;
+@use '../../tokens/semantic/sections' as section-colors;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 SECTION LAYOUT PRIMITIVE
+  BEM utility mapping to foundation section mixins.
+  ============================================
+*/
+
+.section {
+  @include foundation.section-base(section-colors.$section-bg-default);
+  @include foundation.section-padding(spacing.$spacing-section-padding-base);
+}
+
+/* Padding variants */
+.section--tight {
+  @include foundation.section-base(section-colors.$section-bg-default);
+  @include foundation.section-padding(spacing.$spacing-section-padding-tight);
+}
+
+.section--wide {
+  @include foundation.section-base(section-colors.$section-bg-default);
+  @include foundation.section-padding(spacing.$spacing-section-padding-wide);
+}
+
+/* Background variants */
+.section--contrast {
+  @include foundation.section-base(section-colors.$section-bg-contrast);
+  @include foundation.section-padding(spacing.$spacing-section-padding-base);
+}
+
+.section--hero {
+  @include foundation.section-base(section-colors.$section-bg-hero);
+  @include foundation.section-padding(spacing.$spacing-section-padding-wide);
+}
+
+/* Utility variant */
+.section--flush {
+  @include foundation.section-base(section-colors.$section-bg-default);
+  padding-block: 0;
+}

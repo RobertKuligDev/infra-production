@@ -1,0 +1,23 @@
+<!--
+  Tabbed Section UI component.
+  Renders optional header, tabs, and tab content in a structured layout.
+-->
+<section [ngClass]="classes()">
+  <header class="ds-tabbed-section__header" *ngIf="hasTitle() || hasDescription()">
+    <h2 class="ds-tabbed-section__title" *ngIf="hasTitle()">
+      {{ title() }}
+    </h2>
+
+    <p class="ds-tabbed-section__description" *ngIf="hasDescription()">
+      {{ description() }}
+    </p>
+  </header>
+
+  <div class="ds-tabbed-section__tabs">
+    <ng-content select="[tabs]"></ng-content>
+  </div>
+
+  <div class="ds-tabbed-section__content">
+    <ng-content></ng-content>
+  </div>
+</section>

@@ -1,0 +1,6 @@
+frontend.persistenceMaxQPS:
+  - value: 2000
+frontend.historyMaxQPS:
+  - value: 2000
+system.advancedVisibilityWritingMode:
+  - value: "on"

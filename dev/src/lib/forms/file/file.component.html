@@ -1,0 +1,38 @@
+<!--
+  ds-file
+  File picker with drag & drop and file list.
+-->
+<label [ngClass]="classes()">
+  <span class="ds-file__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+
+  <div class="ds-file__dropzone">
+    <input
+      type="file"
+      class="ds-file__input"
+      [multiple]="multiple()"
+      [disabled]="disabled()"
+      (change)="onFileSelect($event)"
+      (blur)="onTouched()"
+    />
+
+    <span class="ds-file__placeholder">
+      Drop files here or click to browse
+    </span>
+  </div>
+</label>
+
+<ul class="ds-file__list" *ngIf="files().length > 0">
+  <li class="ds-file__item" *ngFor="let f of files()">
+    {{ f.name }}
+  </li>
+</ul>
+
+<p *ngIf="helper() && !error()" class="ds-file__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-file__error">
+  {{ error() }}
+</p>

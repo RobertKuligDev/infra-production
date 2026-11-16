@@ -1,0 +1,28 @@
+<!--
+  ds-textarea
+  Multi-line text input with label, helper, error, and optional auto-resize.
+-->
+<label [ngClass]="classes()">
+  <span class="ds-textarea__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+
+  <textarea
+    #textarea
+    class="ds-textarea__field"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [value]="value()"
+    (input)="updateValue($event)"
+    (blur)="onTouched()"
+    [attr.aria-invalid]="!!error()"
+  ></textarea>
+</label>
+
+<p *ngIf="helper() && !error()" class="ds-textarea__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-textarea__error">
+  {{ error() }}
+</p>

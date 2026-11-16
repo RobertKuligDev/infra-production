@@ -1,0 +1,37 @@
+@use './pagination.tokens' as *;
+
+/*
+  ds-pagination
+  Full pagination control with ellipsis and navigation.
+*/
+.ds-pagination {
+  @include pagination-base;
+
+  &--default {
+    @include pagination-variant-default;
+  }
+
+  &--subtle {
+    @include pagination-variant-subtle;
+  }
+
+  &--contrast {
+    @include pagination-variant-contrast;
+  }
+
+  &__control {
+    @include pagination-control;
+  }
+
+  &__page {
+    @include pagination-page;
+
+    &.is-active {
+      @include pagination-page-active;
+    }
+  }
+
+  &__ellipsis {
+    @include pagination-ellipsis;
+  }
+}

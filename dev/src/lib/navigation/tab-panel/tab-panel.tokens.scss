@@ -1,0 +1,19 @@
+@use 'tokens/primitives/spacing' as *;
+
+/*
+  Tab Panel component-level tokens.
+  Defines spacing and typography primitives for tab content.
+*/
+/*
+  Base
+*/
+@mixin tab-panel-base {
+  padding: $space-4 0;
+}
+
+/*
+  Active
+*/
+@mixin tab-panel-active {
+  display: block;
+}

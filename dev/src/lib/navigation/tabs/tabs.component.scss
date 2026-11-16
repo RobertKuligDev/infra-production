@@ -1,0 +1,41 @@
+@use './tabs.tokens' as *;
+
+/*
+  Tabs UI Control.
+  Provides interactive tablist with variant and direction styling.
+*/
+.ds-tabs {
+  @include tabs-base;
+
+  &--direction-row {
+    @include tabs-direction-row;
+  }
+
+  &--direction-column {
+    @include tabs-direction-column;
+  }
+
+  &--align-start {
+    justify-content: flex-start;
+  }
+
+  &--align-center {
+    justify-content: center;
+  }
+
+  &--align-end {
+    justify-content: flex-end;
+  }
+
+  &--underline {
+    @include tabs-variant-underline;
+  }
+
+  &--pill {
+    @include tabs-variant-pill;
+  }
+
+  &--segmented {
+    @include tabs-variant-segmented;
+  }
+}

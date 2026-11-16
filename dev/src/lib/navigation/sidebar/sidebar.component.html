@@ -1,0 +1,23 @@
+<!--
+  Sidebar UI component.
+  Renders optional header, description, actions, and body content.
+-->
+<div [ngClass]="classes()">
+  <div class="ds-sidebar__header" *ngIf="hasTitle() || hasDescription()">
+    <h2 class="ds-sidebar__title" *ngIf="hasTitle()">
+      {{ title() }}
+    </h2>
+
+    <p class="ds-sidebar__description" *ngIf="hasDescription()">
+      {{ description() }}
+    </p>
+
+    <div class="ds-sidebar__actions">
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+
+  <div class="ds-sidebar__body">
+    <ng-content></ng-content>
+  </div>
+</div>

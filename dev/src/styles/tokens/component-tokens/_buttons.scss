@@ -1,0 +1,46 @@
+@use '../primitives/spacing' as *;
+@use '../primitives/radius' as *;
+@use '../primitives/typography' as *;
+@use '../semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🔘 BUTTON TOKENS
+  Component-level button configuration.
+  Provides padding, radius, typography and color roles.
+  ============================================
+*/
+
+/*
+  Sizing
+  --------------------------------------------
+*/
+$btn-padding-y:    $space-2;
+$btn-padding-x:    $space-4;
+$btn-padding-y-sm: $space-1;
+$btn-padding-x-sm: $space-3;
+
+/*
+  Radius
+  --------------------------------------------
+*/
+$btn-radius:      $radius-md;
+$btn-radius-pill: $radius-full;
+
+/*
+  Typography
+  --------------------------------------------
+*/
+$btn-font-size:   $font-size-sm;
+$btn-font-weight: $font-weight-medium;
+
+/*
+  Colors
+  --------------------------------------------
+*/
+$btn-primary-bg:    semantic-colors.$color-accent-primary;
+$btn-primary-text:  semantic-colors.$color-text-inverse;
+
+$btn-secondary-bg:      semantic-colors.$color-surface;
+$btn-secondary-text:    semantic-colors.$color-text-primary;
+$btn-secondary-border:  rgba(semantic-colors.$color-bg-contrast, 0.12);

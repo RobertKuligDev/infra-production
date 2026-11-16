@@ -1,0 +1,24 @@
+<!--
+  ds-breadcrumb
+  Navigation primitive for hierarchical page structure.
+-->
+
+<nav class="ds-breadcrumb" aria-label="Breadcrumb">
+  <ng-container *ngFor="let item of items(); let last = last">
+    <a
+      *ngIf="!item.active; else activeTpl"
+      [routerLink]="item.link"
+      class="ds-breadcrumb__item"
+    >
+      {{ item.label }}
+    </a>
+
+    <ng-template #activeTpl>
+      <span class="ds-breadcrumb__item ds-breadcrumb__item--active">
+        {{ item.label }}
+      </span>
+    </ng-template>
+
+    <span *ngIf="!last" class="ds-breadcrumb__separator">/</span>
+  </ng-container>
+</nav>

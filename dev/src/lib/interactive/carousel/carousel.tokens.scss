@@ -1,0 +1,27 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Carousel component-level tokens.
+  Defines spacing and variant primitives.
+*/
+/* Base styles */
+@mixin carousel-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+/*
+  Variants
+*/
+@mixin carousel-variant-default {}
+
+@mixin carousel-variant-subtle {
+  background: $color-surface-subtle;
+}
+
+@mixin carousel-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}

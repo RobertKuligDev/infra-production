@@ -1,0 +1,28 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/shadows' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  ds-context-menu-panel
+  Floating panel positioned at cursor.
+*/
+.ds-context-menu-panel {
+  position: fixed;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+
+  background: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  padding: $space-2 0;
+
+  &--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}

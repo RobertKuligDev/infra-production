@@ -1,0 +1,21 @@
+@use '../tokens/primitives/spacing' as *;
+
+/*
+  ============================================
+  🧱 SPACER PRIMITIVE
+  Foundation-level layout primitive.
+  Provides vertical spacing based on the design-system spacing scale.
+  ============================================
+*/
+
+@mixin spacer-base {
+  display: block;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+@mixin spacer-size-xs { height: $space-2; }
+@mixin spacer-size-sm { height: $space-3; }
+@mixin spacer-size-md { height: $space-4; }
+@mixin spacer-size-lg { height: $space-6; }
+@mixin spacer-size-xl { height: $space-8; }

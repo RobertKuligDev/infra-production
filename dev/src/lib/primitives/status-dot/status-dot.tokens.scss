@@ -1,0 +1,36 @@
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Status dot component-level tokens.
+  Defines base size and color variants.
+*/
+
+/*
+  Base
+*/
+@mixin status-dot-base {
+  width: 8px;
+  height: 8px;
+  border-radius: $radius-full;
+  display: inline-block;
+}
+
+/*
+  Variants
+*/
+@mixin status-dot-variant-success {
+  background: $color-success;
+}
+
+@mixin status-dot-variant-warning {
+  background: $color-warning;
+}
+
+@mixin status-dot-variant-danger {
+  background: $color-danger;
+}
+
+@mixin status-dot-variant-muted {
+  background: $color-text-muted;
+}

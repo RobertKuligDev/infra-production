@@ -1,0 +1,41 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Pill component-level tokens.
+  Defines spacing, typography, and variant primitives.
+*/
+
+/*
+  Base
+*/
+@mixin pill-base {
+  display: inline-flex;
+  align-items: center;
+  padding: $space-1 $space-3;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  border-radius: $radius-full;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/*
+  Variants
+*/
+@mixin pill-variant-default {
+  background: $color-surface-subtle;
+  color: $color-text-primary;
+}
+
+@mixin pill-variant-accent {
+  background: $color-accent-primary;
+  color: $color-white;
+}
+
+@mixin pill-variant-muted {
+  background: $color-surface;
+  color: $color-text-secondary;
+}

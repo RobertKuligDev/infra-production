@@ -1,0 +1,120 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Toggle component-level tokens.
+  Defines spacing, colors, and variant primitives.
+*/
+/*
+  Base
+*/
+@mixin toggle-base {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  cursor: pointer;
+}
+
+/*
+  Input (hidden)
+*/
+@mixin toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*
+  Track
+*/
+@mixin toggle-track {
+  width: 36px;
+  height: 20px;
+  background: $color-border;
+  border-radius: 20px;
+  position: relative;
+  transition: background 0.15s ease;
+}
+
+/*
+  Track checked
+*/
+@mixin toggle-track-checked {
+  background: $color-accent-primary;
+}
+
+/*
+  Thumb
+*/
+@mixin toggle-thumb {
+  width: 16px;
+  height: 16px;
+  background: $color-white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.15s ease;
+}
+
+/*
+  Thumb checked
+*/
+@mixin toggle-thumb-checked {
+  transform: translateX(16px);
+}
+
+/*
+  Label
+*/
+@mixin toggle-label {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+/*
+  Helper
+*/
+@mixin toggle-helper {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-left: 42px;
+}
+
+/*
+  Error
+*/
+@mixin toggle-error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+  margin-left: 42px;
+}
+
+@mixin toggle-track-error {
+  background: $color-danger;
+}
+
+/*
+  Disabled
+*/
+@mixin toggle-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*
+  Variants
+*/
+@mixin toggle-variant-subtle {
+  .ds-toggle__track {
+    background: $color-surface-subtle;
+  }
+}
+
+@mixin toggle-variant-contrast {
+  .ds-toggle__track {
+    background: $color-surface-contrast;
+  }
+}

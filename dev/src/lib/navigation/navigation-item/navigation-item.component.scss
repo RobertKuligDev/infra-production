@@ -1,0 +1,29 @@
+@use './navigation-item.tokens' as *;
+
+/*
+  ds-navigation-item
+  Navigation primitive with hover, active and variant styling.
+*/
+.ds-nav-item {
+  @include nav-item-base;
+
+  &:hover {
+    @include nav-item-hover;
+  }
+
+  &--active {
+    @include nav-item-active;
+  }
+
+  &--default {
+    @include nav-item-variant-default;
+  }
+
+  &--accent {
+    @include nav-item-variant-accent;
+  }
+
+  &--danger {
+    @include nav-item-variant-danger;
+  }
+}

@@ -1,0 +1,22 @@
+@use './dropdown.tokens' as *;
+
+/*
+  ds-dropdown
+  Root wrapper for dropdown.
+  Applies variant-level styling and basic positioning context.
+*/
+.ds-dropdown {
+  @include dropdown-base;
+
+  &--default {
+    @include dropdown-variant-default;
+  }
+
+  &--subtle {
+    @include dropdown-variant-subtle;
+  }
+
+  &--contrast {
+    @include dropdown-variant-contrast;
+  }
+}

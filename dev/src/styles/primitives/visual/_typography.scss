@@ -1,0 +1,51 @@
+@use '../tokens/primitives/typography' as type-tokens;
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  ✍️ TYPOGRAPHY PRIMITIVES
+  Foundation-level text styling.
+  Provides headings, body text and semantic text utilities.
+  ============================================
+*/
+
+@mixin heading-1 {
+  font-size: type-tokens.$heading-1-size;
+  font-weight: type-tokens.$heading-1-weight;
+  line-height: type-tokens.$heading-1-lh;
+  color: semantic-colors.$color-text-primary;
+}
+
+@mixin heading-2 {
+  font-size: type-tokens.$heading-2-size;
+  font-weight: type-tokens.$heading-2-weight;
+  line-height: type-tokens.$heading-2-lh;
+  color: semantic-colors.$color-text-primary;
+}
+
+@mixin heading-3 {
+  font-size: type-tokens.$heading-3-size;
+  font-weight: type-tokens.$heading-3-weight;
+  line-height: type-tokens.$heading-3-lh;
+  color: semantic-colors.$color-text-primary;
+}
+
+@mixin body {
+  font-size: type-tokens.$body-base-size;
+  line-height: type-tokens.$line-height-base;
+  color: semantic-colors.$color-text-secondary;
+}
+
+@mixin body-lg {
+  font-size: type-tokens.$body-lg-size;
+  line-height: type-tokens.$line-height-base;
+  color: semantic-colors.$color-text-secondary;
+}
+
+@mixin label {
+  font-size: type-tokens.$label-size;
+  font-weight: type-tokens.$label-weight;
+  letter-spacing: type-tokens.$label-tracking;
+  text-transform: uppercase;
+  color: semantic-colors.$color-text-label;
+}

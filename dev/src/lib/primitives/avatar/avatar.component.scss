@@ -1,0 +1,29 @@
+@use "./avatar.tokens" as *;
+
+/*
+  ds-avatar
+  Avatar primitive with size variants and placeholder.
+*/
+.ds-avatar {
+  @include avatar-base;
+
+  &--sm {
+    @include avatar-size-sm;
+  }
+  &--md {
+    @include avatar-size-md;
+  }
+  &--lg {
+    @include avatar-size-lg;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__placeholder {
+    @include avatar-placeholder;
+  }
+}

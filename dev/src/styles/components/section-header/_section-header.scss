@@ -1,0 +1,29 @@
+@use '../primitives/typography' as *;
+@use '../tokens/spacing' as *;
+
+/* ============================================
+   🏷 SECTION HEADER COMPONENT CLASSES
+   ============================================ */
+
+.section-header {
+  text-align: center;
+  max-width: 40rem;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.section-header__label {
+  @include label;
+}
+
+.section-header__title {
+  @include heading-2;
+}
+
+.section-header__description {
+  @include body-lg;
+  max-width: 32rem;
+  margin-inline: auto;
+}

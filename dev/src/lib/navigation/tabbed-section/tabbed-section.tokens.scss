@@ -1,0 +1,59 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Tabbed Section component-level tokens.
+  Defines spacing and typography primitives for tabbed sections.
+  Used exclusively by the ds-tabbed-section UI component.
+*/
+/*
+  Base container
+*/
+@mixin tabbed-section-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding: $space-6 0;
+}
+
+/*
+  Header
+*/
+@mixin tabbed-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+/*
+  Title
+*/
+@mixin tabbed-section-title {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $color-text-primary;
+}
+
+/*
+  Description
+*/
+@mixin tabbed-section-description {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 60ch;
+}
+
+/*
+  Tabs wrapper
+*/
+@mixin tabbed-section-tabs {
+  margin-bottom: $space-2;
+}
+
+/*
+  Content wrapper
+*/
+@mixin tabbed-section-content {
+  display: block;
+}

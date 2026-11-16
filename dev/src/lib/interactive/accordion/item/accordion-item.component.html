@@ -1,0 +1,25 @@
+<!--
+  ds-accordion-item
+  Expandable item with header and collapsible content.
+-->
+<div class="ds-accordion-item" [class.ds-accordion-item--open]="open()">
+
+  <button
+    class="ds-accordion-item__header"
+    (click)="toggle()"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="id() + '-content'"
+  >
+    <ng-content select="[accordion-title]"></ng-content>
+    <span class="ds-accordion-item__chevron">⌄</span>
+  </button>
+
+  <div
+    class="ds-accordion-item__content"
+    [id]="id() + '-content'"
+    [attr.aria-hidden]="!open()"
+  >
+    <ng-content select="[accordion-content]"></ng-content>
+  </div>
+
+</div>

@@ -1,0 +1,40 @@
+@use '../_inline' as foundation;
+
+/*
+  ============================================
+  🧱 INLINE LAYOUT PRIMITIVE
+  BEM utility mapping to foundation inline mixins.
+  ============================================
+*/
+
+/* Base inline layout */
+.inline {
+  @include foundation.inline-base;
+  @include foundation.inline-gap-md;
+}
+
+/* Gap variants */
+.inline--sm {
+  @include foundation.inline-base;
+  @include foundation.inline-gap-sm;
+}
+
+.inline--lg {
+  @include foundation.inline-base;
+  @include foundation.inline-gap-lg;
+}
+
+/* Alignment variants */
+.inline--align-start  { @include foundation.inline-base; @include foundation.inline-align-start; }
+.inline--align-center { @include foundation.inline-base; @include foundation.inline-align-center; }
+.inline--align-end    { @include foundation.inline-base; @include foundation.inline-align-end; }
+
+/* Justification variants */
+.inline--justify-start   { @include foundation.inline-base; @include foundation.inline-justify-start; }
+.inline--justify-center  { @include foundation.inline-base; @include foundation.inline-justify-center; }
+.inline--justify-end     { @include foundation.inline-base; @include foundation.inline-justify-end; }
+.inline--justify-between { @include foundation.inline-base; @include foundation.inline-justify-between; }
+
+/* Wrapping variants */
+.inline--wrap   { @include foundation.inline-base; @include foundation.inline-wrap; }
+.inline--nowrap { @include foundation.inline-base; @include foundation.inline-nowrap; }

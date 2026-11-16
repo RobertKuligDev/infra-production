@@ -1,0 +1,27 @@
+@use '../_wrapper' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 WRAPPER LAYOUT PRIMITIVE
+  BEM utility mapping to foundation wrapper mixins.
+  ============================================
+*/
+
+.wrapper {
+  @include foundation.wrapper-base(
+    spacing.$spacing-wrapper-width-base
+  );
+}
+
+.wrapper--narrow {
+  @include foundation.wrapper-base(
+    spacing.$spacing-wrapper-width-narrow
+  );
+}
+
+.wrapper--wide {
+  @include foundation.wrapper-base(
+    spacing.$spacing-wrapper-width-wide
+  );
+}

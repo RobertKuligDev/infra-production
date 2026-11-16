@@ -1,0 +1,34 @@
+@use '../tokens/sidebar' as *;
+@use '../primitives/typography' as *;
+@use '../tokens/spacing' as *;
+
+/* ============================================
+   🧱 SIDEBAR COMPONENT CLASSES
+   ============================================ */
+
+.sidebar {
+  background: $sidebar-bg;
+  border: 1px solid $sidebar-border;
+  border-radius: $sidebar-radius;
+  padding: $sidebar-padding;
+  display: flex;
+  flex-direction: column;
+  gap: $sidebar-gap;
+}
+
+.sidebar__title {
+  font-size: $sidebar-title-size;
+  font-weight: 600;
+}
+.sidebar__item {
+  font-size: $sidebar-item-size;
+  color: $sidebar-item-color;
+  padding: $sidebar-item-padding;
+  border-radius: $sidebar-item-radius;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: $sidebar-item-hover-bg;
+    color: $sidebar-item-hover-color;
+  }
+}

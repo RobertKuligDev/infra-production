@@ -1,0 +1,12 @@
+<!--
+  ds-context-menu-panel
+  Floating panel for context menu.
+-->
+<div
+  class="ds-context-menu-panel"
+  [class.ds-context-menu-panel--open]="menu.open()"
+  [style.left.px]="menu.x()"
+  [style.top.px]="menu.y()"
+>
+  <ng-content></ng-content>
+</div>

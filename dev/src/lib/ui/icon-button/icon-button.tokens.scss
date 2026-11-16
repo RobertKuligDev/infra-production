@@ -1,0 +1,84 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Icon Button component-level tokens.
+  Defines styling primitives for icon button variants, sizes, and interactive states.
+  Used exclusively by the ds-icon-btn UI component.
+*/
+/*
+  Base reset
+*/
+@mixin icon-button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+
+  transition: background 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, opacity 0.15s ease;
+}
+
+/*
+  Sizes
+*/
+@mixin icon-button-size-sm {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+@mixin icon-button-size-md {
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+}
+
+@mixin icon-button-size-lg {
+  width: 42px;
+  height: 42px;
+  font-size: 18px;
+}
+
+/*
+  Variants
+*/
+@mixin icon-button-variant-primary {
+  background: $color-accent-primary;
+  color: $color-white;
+
+  &:hover {
+    background: $color-accent-primary-dark;
+  }
+}
+
+@mixin icon-button-variant-secondary {
+  border-color: $color-border;
+  color: $color-text-primary;
+
+  &:hover {
+    border-color: $color-text-primary;
+  }
+}
+
+@mixin icon-button-variant-ghost {
+  color: $color-text-muted;
+
+  &:hover {
+    color: $color-text-primary;
+    background: $color-surface-hover;
+  }
+}
+
+@mixin icon-button-variant-danger {
+  background: $color-danger;
+  color: $color-white;
+
+  &:hover {
+    background: $color-danger-dark;
+  }
+}

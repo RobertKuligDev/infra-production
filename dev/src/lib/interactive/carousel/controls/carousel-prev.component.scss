@@ -1,0 +1,9 @@
+@use './carousel-control.tokens' as *;
+
+/*
+  ds-carousel-prev
+  Previous slide control button.
+*/
+.ds-carousel__control--prev {
+  @include carousel-control-base;
+}

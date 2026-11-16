@@ -1,0 +1,42 @@
+/* content-block.component.scss */
+.#{$block}__content {
+  padding: var(--space-xl);
+  background: var(--surface-1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-strong);
+
+  &--align-left {
+    text-align: left;
+  }
+
+  &--align-center {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  &--width-narrow {
+    max-width: 50ch;
+  }
+
+  &--width-base {
+    max-width: 70ch;
+  }
+
+  &--width-wide {
+    max-width: 90ch;
+  }
+
+  &--default {
+    background: var(--surface-1);
+  }
+
+  &--subtle {
+    background: var(--surface-muted);
+  }
+
+  &--contrast {
+    background: var(--surface-contrast);
+    color: var(--text-on-contrast);
+  }
+}

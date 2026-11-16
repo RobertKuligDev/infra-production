@@ -1,0 +1,16 @@
+@use '../tokens/component-tokens/layout' as layout-tokens;
+
+/*
+  ============================================
+  🧱 CONTAINER PRIMITIVE
+  Foundation-level layout container.
+  Provides max-width and horizontal centering.
+  ============================================
+*/
+
+@mixin container-base {
+  width: 100%;
+  max-width: layout-tokens.$container-max-width;
+  margin-inline: auto;
+  padding-inline: layout-tokens.$container-padding-x;
+}

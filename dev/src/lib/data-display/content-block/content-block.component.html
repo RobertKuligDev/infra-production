@@ -1,0 +1,23 @@
+<!--
+  Content Block UI component.
+  Renders optional header, description, and content with semantic alignment.
+-->
+<div [ngClass]="classes()">
+  <div class="ds-content-block__header" *ngIf="hasTitle() || hasDescription()">
+    <h2 class="ds-content-block__title" *ngIf="hasTitle()">
+      {{ title() }}
+    </h2>
+
+    <p class="ds-content-block__description" *ngIf="hasDescription()">
+      {{ description() }}
+    </p>
+
+    <div class="ds-content-block__actions">
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+
+  <div class="ds-content-block__body">
+    <ng-content></ng-content>
+  </div>
+</div>

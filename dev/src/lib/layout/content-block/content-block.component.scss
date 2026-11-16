@@ -1,0 +1,12 @@
+@use 'styles/primitives/layout/_content-block' as foundation;
+
+/*
+  Content block layout primitive.
+  Uses component-level tokens for spacing and max-width.
+*/
+
+.content-block {
+  @include foundation.content-block(var(--content-block-gap));
+
+  max-width: var(--content-block-max-width, 65ch);
+}

@@ -1,0 +1,15 @@
+/*
+  Card list UI component.
+  Uses runtime CSS variables for spacing and column count.
+  This is NOT a layout primitive — it is a UI-level abstraction.
+*/
+
+.#{$block}__list {
+  display: grid;
+
+  /* Component-level spacing token */
+  gap: var(--list-gap, var(--space-7));
+
+  /* Component-level column configuration */
+  grid-template-columns: repeat(var(--list-cols, 3), 1fr);
+}

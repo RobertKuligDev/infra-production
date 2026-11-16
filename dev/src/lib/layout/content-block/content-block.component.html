@@ -1,0 +1,8 @@
+<!--
+  Content block layout primitive.
+  Provides vertical spacing and max-width constraints.
+  Does NOT apply background, borders, shadows, or UI styling.
+-->
+<div [ngClass]="classes()" [ngStyle]="styleVars()">
+  <ng-content></ng-content>
+</div>

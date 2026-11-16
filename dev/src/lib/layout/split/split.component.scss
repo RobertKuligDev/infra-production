@@ -1,0 +1,27 @@
+@use 'styles/primitives/_responsives' as *;
+
+/*
+  Split layout primitive.
+  Uses component-level tokens for spacing and ratio.
+*/
+
+.split {
+  display: grid;
+  grid-template-columns: var(--split-ratio, 1fr 1fr);
+  gap: var(--split-gap, var(--space-7));
+  align-items: center;
+
+  /* Reverse order (useful for image/text swaps) */
+  &--reverse {
+    direction: rtl;
+
+    > * {
+      direction: ltr;
+    }
+  }
+
+  /* Mobile fallback — stack vertically */
+  @include respond-md {
+    grid-template-columns: 1fr;
+  }
+}

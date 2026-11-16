@@ -1,0 +1,53 @@
+@use './checkbox.tokens' as *;
+
+/*
+  ds-checkbox
+  Checkbox with variant and state styling.
+*/
+.ds-checkbox {
+  @include checkbox-base;
+
+  &__input {
+    @include checkbox-input;
+  }
+
+  &__box {
+    @include checkbox-box;
+  }
+
+  &__label {
+    @include checkbox-label;
+  }
+
+  &__helper {
+    @include checkbox-helper;
+  }
+
+  &__error {
+    @include checkbox-error;
+  }
+
+  &--default {
+    @include checkbox-variant-default;
+  }
+
+  &--subtle {
+    @include checkbox-variant-subtle;
+  }
+
+  &--contrast {
+    @include checkbox-variant-contrast;
+  }
+
+  &--error .ds-checkbox__box {
+    @include checkbox-box-error;
+  }
+
+  &--disabled {
+    @include checkbox-disabled;
+  }
+
+  &--indeterminate .ds-checkbox__box {
+    @include checkbox-box-indeterminate;
+  }
+}

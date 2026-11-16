@@ -1,0 +1,21 @@
+<!--
+  Card UI component.
+  Provides structured content areas: header, media, body, and footer.
+-->
+<div [ngClass]="classes()">
+  <div class="ds-card__media">
+    <ng-content select="[media]"></ng-content>
+  </div>
+
+  <div class="ds-card__header">
+    <ng-content select="[header]"></ng-content>
+  </div>
+
+  <div class="ds-card__body">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="ds-card__footer">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+@use '../tokens/primitives/colors' as *;
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/primitives/radius' as *;
+@use '../tokens/primitives/typography' as *;
+
+/*
+  ============================================
+  🧱 BADGE PRIMITIVE
+  Foundation-level UI atom.
+  Provides compact label styling for status and metadata.
+  ============================================
+*/
+
+@mixin badge-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-1 $space-2;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  border-radius: $radius-sm;
+  white-space: nowrap;
+}
+
+@mixin badge-variant($color) {
+  background: rgba($color, 0.12);
+  color: $color;
+}

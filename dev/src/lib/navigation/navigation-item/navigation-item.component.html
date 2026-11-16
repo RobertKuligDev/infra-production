@@ -1,0 +1,18 @@
+<!--
+  ds-navigation-item
+  Atomic navigation primitive for headers, sidebars and menus.
+-->
+
+<a
+  *ngIf="link; else staticLabel"
+  [routerLink]="link"
+  [ngClass]="classes()"
+>
+  <ng-content></ng-content>
+</a>
+
+<ng-template #staticLabel>
+  <span [ngClass]="classes()">
+    <ng-content></ng-content>
+  </span>
+</ng-template>

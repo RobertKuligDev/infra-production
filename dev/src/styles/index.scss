@@ -1,0 +1,29 @@
+/* ============================================
+🌐 DESIGN SYSTEM ENTRY POINT
+============================================ */
+@layer tokens, base, primitives, components, forms, utilities, overrides;
+
+@layer tokens {
+  @forward './tokens/index';
+}
+
+@layer base {
+// CSS Reset / Normalize can be added here if desired, or you can use a separate file and @forward it here. For example:
+  // *, *::before, *::after { box-sizing: border-box; }
+}
+
+@layer primitives {
+  @forward './primitives/index';
+}
+
+@layer components {
+  @forward './components/index';
+}
+
+@layer forms {
+  @forward './forms/index';
+}
+
+@layer utilities {
+  @forward './utilities/index';
+}

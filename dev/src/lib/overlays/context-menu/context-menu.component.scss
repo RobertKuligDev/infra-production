@@ -1,0 +1,9 @@
+@use './context-menu.tokens' as *;
+
+/*
+  ds-context-menu
+  Root wrapper.
+*/
+.ds-context-menu {
+  @include context-menu-base;
+}

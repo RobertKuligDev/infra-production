@@ -1,0 +1,16 @@
+<div [ngClass]="classes">
+  <div class="{{ base }}__body">
+    <h2 *ngIf="title" class="{{ base }}__title">{{ title }}</h2>
+    <p *ngIf="description" class="{{ base }}__description">
+      {{ description }}
+    </p>
+  </div>
+
+  <a
+    *ngIf="buttonText && buttonLink"
+    [routerLink]="buttonLink"
+    class="btn btn--secondary"
+  >
+    {{ buttonText }}
+  </a>
+</div>

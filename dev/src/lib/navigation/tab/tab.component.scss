@@ -1,0 +1,25 @@
+@use './tab.tokens' as *;
+
+/*
+  Tab UI Control.
+  Provides interactive tab trigger with variant and active state styling.
+*/
+.ds-tab {
+  @include tab-base;
+
+  &--active {
+    @include tab-active;
+  }
+
+  &--default {
+    @include tab-variant-default;
+  }
+
+  &--pill {
+    @include tab-variant-pill;
+  }
+
+  &--segmented {
+    @include tab-variant-segmented;
+  }
+}

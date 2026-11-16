@@ -1,0 +1,53 @@
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/spacing' as *;
+@use 'styles/tokens/zindex' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Surface component-level tokens.
+  Defines background, elevation, and border primitives.
+*/
+
+/*
+  Base
+*/
+@mixin surface-base {
+  display: block;
+  background: $color-surface;
+  border-radius: $radius-md;
+}
+
+/*
+  Variants
+*/
+@mixin surface-variant-default {
+  background: $color-surface;
+}
+
+@mixin surface-variant-subtle {
+  background: $color-surface-subtle;
+}
+
+@mixin surface-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}
+
+/*
+  Elevation
+*/
+@mixin surface-elevation-0 {
+  box-shadow: none;
+}
+
+@mixin surface-elevation-1 {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+@mixin surface-elevation-2 {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+}
+
+@mixin surface-elevation-3 {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.14);
+}

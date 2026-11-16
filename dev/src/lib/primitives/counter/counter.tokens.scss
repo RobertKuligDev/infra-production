@@ -1,0 +1,53 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Counter component-level tokens.
+  Defines spacing, typography, and variant primitives.
+*/
+
+/*
+  Base
+*/
+@mixin counter-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+
+  padding: 0 $space-1;
+  border-radius: $radius-full;
+
+  font-size: $font-size-xs;
+  font-weight: 600;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+/*
+  Variants
+*/
+@mixin counter-variant-default {
+  background: $color-surface-subtle;
+  color: $color-text-primary;
+}
+
+@mixin counter-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}
+
+@mixin counter-variant-accent {
+  background: $color-accent-primary;
+  color: $color-white;
+}
+
+@mixin counter-variant-danger {
+  background: $color-danger;
+  color: $color-white;
+}

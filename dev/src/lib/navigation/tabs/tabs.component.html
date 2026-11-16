@@ -1,0 +1,11 @@
+<!--
+  Tabs UI Control.
+  Renders tablist and projects ds-tab children.
+-->
+<div
+  [ngClass]="classes()"
+  role="tablist"
+  [attr.aria-orientation]="direction()"
+>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,28 @@
+@use '../tokens/colors' as *;
+@use '../tokens/typography' as *;
+
+/* ============================================
+   ✍️ TEXT UTILITIES
+   ============================================ */
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.text-primary   { color: $color-text-primary; }
+.text-secondary { color: $color-text-secondary; }
+.text-muted     { color: $color-text-muted; }
+
+.text-accent    { color: $color-accent-primary; }
+.text-accent-2  { color: $color-accent-secondary; }
+
+.text-sm  { font-size: $body-sm-size; }
+.text-md  { font-size: $body-base-size; }
+.text-lg  { font-size: $body-lg-size; }
+
+.text-label {
+  font-size: $label-size;
+  font-weight: $label-weight;
+  letter-spacing: $label-tracking;
+  text-transform: uppercase;
+}

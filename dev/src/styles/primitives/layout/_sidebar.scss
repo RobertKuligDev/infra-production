@@ -1,0 +1,23 @@
+@use '../../tokens/primitives/spacing' as spacing;
+@use '../../tokens/component-tokens/sidebar' as sidebar-tokens;
+@use '../layout-helpers/breakpoints' as *;
+
+/*
+  ============================================
+  🧱 SIDEBAR PRIMITIVE (FOUNDATION)
+  Two-column layout with responsive collapse.
+  ============================================
+*/
+
+@mixin sidebar-base(
+  $sidebar-width: sidebar-tokens.$sidebar-width,
+  $gap: spacing.$spacing-content-gap-lg
+) {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr;
+  gap: $gap;
+
+  @include respond-md {
+    grid-template-columns: 1fr;
+  }
+}

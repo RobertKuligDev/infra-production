@@ -1,0 +1,11 @@
+@use './card.mixins' as mix;
+
+/* ============================================
+   🧱 CARD COMPONENT CLASSES
+   ============================================ */
+
+.card { @include mix.card-base; }
+.card--clickable { @include mix.card-clickable; }
+
+.card__title { @include mix.card-title; }
+.card__description { @include mix.card-description; }

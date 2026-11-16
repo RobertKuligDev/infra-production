@@ -1,0 +1,39 @@
+<!--
+  ds-rating
+  Star rating control with hover preview and keyboard support.
+-->
+<label [ngClass]="classes()">
+  <span class="ds-rating__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+
+  <div
+    class="ds-rating__stars"
+    role="radiogroup"
+    (mouseleave)="setHover(null)"
+  >
+    <button
+      *ngFor="let i of [].constructor(max()); let idx = index"
+      type="button"
+      class="ds-rating__star"
+      role="radio"
+      [attr.aria-checked]="value() === idx + 1"
+      [class.is-filled]="(hover() ?? value()) >= idx + 1"
+      [disabled]="disabled()"
+      (mouseenter)="setHover(idx + 1)"
+      (click)="select(idx + 1)"
+      (keydown)="onKey($event)"
+      (blur)="onTouched()"
+    >
+      ★
+    </button>
+  </div>
+</label>
+
+<p *ngIf="helper() && !error()" class="ds-rating__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-rating__error">
+  {{ error() }}
+</p>

@@ -1,0 +1,47 @@
+@use 'styles/primitives/_responsives' as *;
+
+/*
+  Sidebar layout primitive.
+  Uses component-level tokens for spacing and sidebar width.
+*/
+
+.sidebar-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  gap: var(--sidebar-gap, var(--space-7));
+  align-items: start;
+
+  /* Reverse order (sidebar on the right) */
+  &--reverse {
+    grid-template-columns: 1fr var(--sidebar-width);
+
+    .sidebar {
+      order: 2;
+    }
+
+    .content {
+      order: 1;
+    }
+  }
+
+  /* Mobile fallback — stack vertically */
+  &--stack-mobile {
+    @include respond-md {
+      grid-template-columns: 1fr;
+      gap: var(--sidebar-gap);
+
+      .sidebar,
+      .content {
+        order: unset;
+      }
+    }
+  }
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+}
+
+.content {
+  width: 100%;
+}

@@ -1,0 +1,36 @@
+@use '../_typography' as foundation;
+@use '../../tokens/semantic/colors' as colors;
+
+/*
+  ============================================
+  ✍️ TYPOGRAPHY VISUAL PRIMITIVE
+  BEM utility mapping to foundation typography mixins.
+  ============================================
+*/
+
+/* Headings */
+.heading-1 { @include foundation.heading-1; }
+.heading-2 { @include foundation.heading-2; }
+.heading-3 { @include foundation.heading-3; }
+
+/* Body text */
+.body     { @include foundation.body; }
+.body-lg  { @include foundation.body-lg; }
+
+/* Labels */
+.label { @include foundation.label; }
+
+/* Color variants */
+.text-primary   { color: colors.$color-text-primary; }
+.text-secondary { color: colors.$color-text-secondary; }
+.text-muted     { color: colors.$color-text-muted; }
+.text-inverse   { color: colors.$color-text-inverse; }
+.text-accent    { color: colors.$color-accent-primary; }
+.text-success   { color: colors.$color-success; }
+.text-error     { color: colors.$color-error; }
+
+/* Alignment utilities */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+.text-justify { text-align: justify; }

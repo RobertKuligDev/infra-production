@@ -1,0 +1,43 @@
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/component-tokens/layout' as layout-tokens;
+@use '../layout-helpers/breakpoints' as *;
+@use '../container' as c;
+
+/*
+  ============================================
+  🧱 LAYOUT PRIMITIVES
+  High-level utility mixins for flex, container, stack, section and inline.
+  ============================================
+*/
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin container {
+  @include c.container-base;
+}
+
+@mixin stack($gap: $space-4) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin section-padding($size: layout-tokens.$section-padding-base) {
+  padding-block: $size;
+}
+
+@mixin inline($gap: $space-4) {
+  display: flex;
+  align-items: center;
+  gap: $gap;
+}

@@ -1,0 +1,21 @@
+@use 'tokens/primitives/spacing' as *;
+
+/*
+  ds-carousel-viewport
+  Viewport and track for sliding items.
+  - viewport clips overflow
+  - track slides horizontally using transform
+*/
+.ds-carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.ds-carousel__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}

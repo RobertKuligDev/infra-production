@@ -1,0 +1,40 @@
+@use '../tokens/cards' as *;
+@use '../tokens/colors' as *;
+@use '../tokens/shadows' as *;
+@use '../tokens/spacing' as *;
+
+/* ============================================
+   🧱 CARD MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+@mixin card-base {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: $card-radius;
+  padding: $card-padding;
+  box-shadow: $card-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: $card-gap;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@mixin card-clickable {
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.45);
+  }
+}
+
+@mixin card-title {
+  font-size: $card-title-size;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+@mixin card-description {
+  font-size: $card-description-size;
+  color: $color-text-secondary;
+}

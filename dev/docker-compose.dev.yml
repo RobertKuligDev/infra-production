@@ -1,0 +1,62 @@
+services:
+  traefik:
+    build:
+      context: ./traefik
+      dockerfile: Dockerfile.traefik
+    image: custom-traefik:3.7
+    container_name: dev-traefik
+    restart: unless-stopped
+
+    command:
+      - "--api.dashboard=true"
+      - "--api=true"
+
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik-net"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+
+      - "--providers.file.directory=/etc/traefik/dynamic"
+      - "--providers.file.watch=true"
+
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/letsencrypt:/letsencrypt
+      - ./traefik/certs:/certs:ro
+      - ./traefik/config:/etc/traefik/dynamic:ro
+      - ./traefik/logs:/var/log/traefik
+
+    networks:
+      - traefik-net
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_DASHBOARD_DOMAIN}`)"      
+      - "traefik.http.routers.metrics.rule=Host(`${TRAEFIK_DASHBOARD_DOMAIN}`)&&PathPrefix(`/metrics`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.middlewares=traefik-auth"
+
+      # Basic Auth
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_HASH}"
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

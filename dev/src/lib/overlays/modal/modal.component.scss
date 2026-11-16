@@ -1,0 +1,41 @@
+@use './modal.tokens' as *;
+
+/*
+  ds-modal
+  Centered modal dialog with overlay and variant styling.
+*/
+.ds-modal__overlay {
+  @include modal-overlay;
+}
+
+.ds-modal__dialog {
+  @include modal-dialog-base;
+
+  &.ds-modal--default {
+    @include modal-variant-default;
+  }
+
+  &.ds-modal--subtle {
+    @include modal-variant-subtle;
+  }
+
+  &.ds-modal--contrast {
+    @include modal-variant-contrast;
+  }
+}
+
+.ds-modal__header {
+  @include modal-header;
+}
+
+.ds-modal__body {
+  @include modal-body;
+}
+
+.ds-modal__footer {
+  @include modal-footer;
+}
+
+.ds-modal__close {
+  @include modal-close;
+}

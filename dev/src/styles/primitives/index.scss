@@ -1,0 +1,33 @@
+/*
+  ============================================
+  🧱 PRIMITIVES INDEX
+  Aggregates all foundation-level primitives.
+  ============================================
+*/
+
+/* Layout primitives */
+@forward './layout-helpers/index.scss';
+@forward './layout/index.scss';
+
+/* Core primitives */
+@forward './typography';
+@forward './effects';
+@forward './grid';
+@forward './stack';
+@forward './container';
+@forward './section';
+@forward './inline';
+@forward './spacer';
+
+/* Atom primitives */
+@forward './badge';
+@forward './pill';
+@forward './chip';
+@forward './label';
+@forward './divider';
+@forward './code-block';
+@forward './table-row';
+@forward './status-dot';
+@forward './kbd';
+@forward './metric';
+@forward './stat-block';

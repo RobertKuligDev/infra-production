@@ -1,0 +1,31 @@
+# ./traefik/config/dynamic.yml
+http:
+  middlewares:
+  traefik-auth:
+    basicAuth:
+      users:
+        - "admin:$apr1$abc123$xyzhashedpassword1234567890"
+    
+    security-headers:
+      headers:
+        frameDeny: true
+        contentTypeNosniff: true
+        browserXssFilter: true
+        referrerPolicy: "no-referrer-when-downgrade"
+        forceSTSHeader: true
+        stsSeconds: 31536000
+        stsIncludeSubdomains: true
+        stsPreload: true
+
+    rate-limit-soft:
+      rateLimit:
+        average: 50
+        burst: 100
+
+    rate-limit-strict:
+      rateLimit:
+        average: 10
+        burst: 20
+
+    compress:
+      compress: {}

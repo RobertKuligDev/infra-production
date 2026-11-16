@@ -1,0 +1,15 @@
+/*
+  ============================================
+  📱 PRIMITIVE BREAKPOINTS
+  Foundation-level viewport breakpoints.
+  Provides compile-time map for responsive mixins.
+  ============================================
+*/
+
+$breakpoints: (
+  sm: 480px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px
+);

@@ -1,0 +1,15 @@
+@use './form.mixins' as mix;
+
+/* ============================================
+   🧩 TEXTAREA COMPONENT
+   ============================================ */
+
+.textarea {
+  @include mix.input-base;
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.textarea--error {
+  @include mix.input-error;
+}

@@ -1,0 +1,53 @@
+@use './radio.tokens' as *;
+
+/*
+  ds-radio
+  Radio button with variant and state styling.
+*/
+.ds-radio {
+  @include radio-base;
+
+  &__input {
+    @include radio-input;
+  }
+
+  &__circle {
+    @include radio-circle;
+  }
+
+  &__label {
+    @include radio-label;
+  }
+
+  &__helper {
+    @include radio-helper;
+  }
+
+  &__error {
+    @include radio-error;
+  }
+
+  &--default {
+    @include radio-variant-default;
+  }
+
+  &--subtle {
+    @include radio-variant-subtle;
+  }
+
+  &--contrast {
+    @include radio-variant-contrast;
+  }
+
+  &--checked .ds-radio__circle {
+    @include radio-circle-checked;
+  }
+
+  &--error .ds-radio__circle {
+    @include radio-circle-error;
+  }
+
+  &--disabled {
+    @include radio-disabled;
+  }
+}

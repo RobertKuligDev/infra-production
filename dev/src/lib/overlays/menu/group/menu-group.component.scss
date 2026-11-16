@@ -1,0 +1,24 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  ds-menu-group
+  Group label + items.
+*/
+.ds-menu-group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: $color-text-muted;
+    padding: 0 $space-3;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+  }
+}

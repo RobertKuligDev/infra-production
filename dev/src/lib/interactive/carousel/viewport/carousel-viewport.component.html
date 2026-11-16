@@ -1,0 +1,12 @@
+<!--
+  ds-carousel-viewport
+  Provides the visible clipping area and the sliding track.
+-->
+<div class="ds-carousel__viewport">
+  <div
+    class="ds-carousel__track"
+    [style.transform]="'translateX(-' + carousel.index() * 100 + '%)'"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

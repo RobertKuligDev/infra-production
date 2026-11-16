@@ -1,0 +1,49 @@
+@use './cta-block.tokens' as *;
+
+/*
+  CTA Block UI component.
+  Provides structured call-to-action layout with title, description, and button.
+  Uses component-level tokens for spacing, alignment, and variant styling.
+*/
+.ds-cta-block {
+  @include cta-block-base;
+
+  &__title {
+    @include cta-block-title;
+  }
+
+  &__description {
+    @include cta-block-description;
+  }
+
+  &__button {
+    @include cta-block-button;
+  }
+
+  &--align-start {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    text-align: center;
+    align-items: center;
+  }
+
+  &--align-end {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  &--default {
+    @include cta-block-variant-default;
+  }
+
+  &--subtle {
+    @include cta-block-variant-subtle;
+  }
+
+  &--contrast {
+    @include cta-block-variant-contrast;
+  }
+}

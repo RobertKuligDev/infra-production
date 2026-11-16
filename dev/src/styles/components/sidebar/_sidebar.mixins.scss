@@ -1,0 +1,25 @@
+@use '../../tokens/spacing' as *;
+@use '../../tokens/colors' as *;
+
+/* ============================================
+   🧱 SIDEBAR MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+@mixin sidebar-base($width: 18rem) {
+  width: $width;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  background: $color-bg-subtle;
+  padding: $space-4;
+}
+
+@mixin sidebar-item {
+  padding: $space-2 $space-3;
+  border-radius: 6px;
+  color: $color-text-secondary;
+
+  &:hover {
+    background: rgba($color-text-secondary, 0.08);
+  }
+}

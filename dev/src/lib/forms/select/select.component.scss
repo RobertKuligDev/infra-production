@@ -1,0 +1,61 @@
+@use './select.tokens' as *;
+
+/*
+  Select UI Control.
+  Provides dropdown with variant and state styling.
+*/
+.ds-select {
+  @include select-base;
+
+  &__label {
+    @include select-label;
+  }
+
+  &__trigger {
+    @include select-trigger;
+  }
+
+  &__value {
+    @include select-value;
+  }
+
+  &__icon {
+    @include select-icon;
+  }
+
+  &__dropdown {
+    @include select-dropdown;
+  }
+
+  &__option {
+    @include select-option;
+  }
+
+  &__helper {
+    @include select-helper;
+  }
+
+  &__error {
+    @include select-error;
+  }
+
+  &--default {
+    @include select-variant-default;
+  }
+
+  &--subtle {
+    @include select-variant-subtle;
+  }
+
+  &--contrast {
+    @include select-variant-contrast;
+  }
+
+  &--error .ds-select__trigger {
+    @include select-trigger-error;
+  }
+
+  &--disabled .ds-select__trigger {
+    @include select-trigger-disabled;
+  }
+}

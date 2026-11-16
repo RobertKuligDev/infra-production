@@ -1,0 +1,31 @@
+@use "./dot.tokens" as *;
+
+/*
+  ds-dot
+  Visual primitive with size and variant styling.
+*/
+.ds-dot {
+  @include dot-base;
+
+  /* Sizes */
+  &--xs {
+    @include dot-size-xs;
+  }
+  &--sm {
+    @include dot-size-sm;
+  }
+  &--md {
+    @include dot-size-md;
+  }
+
+  /* Variants */
+  &--default {
+    @include dot-variant-default;
+  }
+  &--strong {
+    @include dot-variant-strong;
+  }
+  &--contrast {
+    @include dot-variant-contrast;
+  }
+}

@@ -1,0 +1,49 @@
+@use '../tokens/semantic/colors' as semantic-colors;
+@use '../tokens/primitives/zindex' as *;
+
+/*
+  ============================================
+  ✨ EFFECT PRIMITIVES
+  Foundation-level visual effects.
+  Provides separators, overlays and decorative helpers.
+  ============================================
+*/
+
+@mixin section-separator($color: semantic-colors.$color-border-section) {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, #fff 0%, $color 100%) 40%,
+      transparent
+    );
+
+    z-index: $z-content;
+  }
+}
+
+@mixin dot-texture($opacity: 0.06, $size: 2rem) {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, $opacity) 1px,
+      transparent 1px
+    );
+
+    background-size: $size $size;
+    pointer-events: none;
+    z-index: 0;
+  }
+}

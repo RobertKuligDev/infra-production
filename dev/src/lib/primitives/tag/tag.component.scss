@@ -1,0 +1,22 @@
+@use "./tag.tokens" as *;
+
+/*
+  ds-tag
+  Visual primitive with variant styling.
+*/
+.ds-tag {
+  @include tag-base;
+
+  &--default {
+    @include tag-variant-default;
+  }
+  &--muted {
+    @include tag-variant-muted;
+  }
+  &--accent {
+    @include tag-variant-accent;
+  }
+  &--outline {
+    @include tag-variant-outline;
+  }
+}

@@ -1,0 +1,21 @@
+@use '../tokens/primitives/typography' as *;
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/primitives/radius' as *;
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧱 CODE BLOCK PRIMITIVE
+  Foundation-level code styling.
+  Provides monospace formatting and contrast background.
+  ============================================
+*/
+
+@mixin code-block-base {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  padding: $space-2 $space-3;
+  background: semantic-colors.$color-surface-contrast;
+  border-radius: $radius-md;
+  color: semantic-colors.$color-text-primary;
+}

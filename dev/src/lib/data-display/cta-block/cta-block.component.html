@@ -1,0 +1,19 @@
+<!--
+  CTA Block UI component.
+  Renders title, description, and a primary action button.
+-->
+<div [ngClass]="classes()">
+  <h2 class="ds-cta-block__title">{{ title() }}</h2>
+
+  <p class="ds-cta-block__description" *ngIf="description()">
+    {{ description() }}
+  </p>
+
+  <ds-button
+    class="ds-cta-block__button"
+    [routerLink]="buttonLink()"
+    variant="primary"
+  >
+    {{ buttonText() }}
+  </ds-button>
+</div>

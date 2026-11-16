@@ -1,0 +1,28 @@
+<!--
+  ds-input
+  Labeled text input with helper and error message.
+  Implements CVA for Angular forms.
+-->
+<div [ngClass]="classes()">
+  <label *ngIf="label()" class="ds-input__label">
+    {{ label() }}
+  </label>
+
+  <input
+    class="ds-input__field"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [value]="value()"
+    (input)="updateValue($event)"
+    (blur)="onTouched()"
+    [attr.aria-invalid]="!!error()"
+  />
+
+  <p *ngIf="helper() && !error()" class="ds-input__helper">
+    {{ helper() }}
+  </p>
+
+  <p *ngIf="error()" class="ds-input__error">
+    {{ error() }}
+  </p>
+</div>

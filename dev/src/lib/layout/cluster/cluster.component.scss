@@ -1,0 +1,52 @@
+/*
+  Cluster layout primitive.
+  Uses component-level tokens for spacing and semantic alignment modifiers.
+*/
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cluster-gap, var(--space-5));
+
+  &--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  /* Vertical alignment */
+  &--align-start {
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-end {
+    align-items: flex-end;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+
+  /* Horizontal alignment */
+  &--justify-start {
+    justify-content: flex-start;
+  }
+
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--justify-end {
+    justify-content: flex-end;
+  }
+
+  &--justify-between {
+    justify-content: space-between;
+  }
+
+  &--justify-around {
+    justify-content: space-around;
+  }
+}

@@ -1,0 +1,52 @@
+@use '../_container' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 CONTAINER LAYOUT PRIMITIVE
+  High-level BEM utility mapping to foundation container mixins.
+  ============================================
+*/
+
+/* Base container */
+.container {
+  @include foundation.container-base;
+}
+
+/* Width variants */
+.container--narrow {
+  @include foundation.container-base;
+  max-width: spacing.$spacing-wrapper-width-narrow;
+}
+
+.container--wide {
+  @include foundation.container-base;
+  max-width: spacing.$spacing-wrapper-width-wide;
+}
+
+/* Padding variants */
+.container--flush {
+  @include foundation.container-base;
+  padding-inline: 0;
+}
+
+.container--padded {
+  @include foundation.container-base;
+  padding-inline: spacing.$spacing-container-padding-x * 1.5;
+}
+
+/* Alignment variants */
+.container--align-left {
+  @include foundation.container-base;
+  margin-inline: 0 auto;
+}
+
+.container--align-center {
+  @include foundation.container-base;
+  margin-inline: auto;
+}
+
+.container--align-right {
+  @include foundation.container-base;
+  margin-inline: auto 0;
+}

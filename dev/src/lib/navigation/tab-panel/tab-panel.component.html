@@ -1,0 +1,14 @@
+<!--
+  ds-tab-panel
+  Content panel associated with a ds-tab.
+  Visible only when its tab is active.
+-->
+<div
+  [ngClass]="classes()"
+  role="tabpanel"
+  [attr.aria-labelledby]="id()"
+  [attr.id]="id() + '-panel'"
+  [hidden]="!isActive()"
+>
+  <ng-content></ng-content>
+</div>

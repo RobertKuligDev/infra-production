@@ -1,0 +1,14 @@
+@use './accordion.tokens' as *;
+
+/*
+  ds-accordion
+  Root accordion wrapper.
+  Applies variant-level styling and layout spacing.
+*/
+.ds-accordion {
+  @include accordion-base;
+
+  &--default { @include accordion-variant-default; }
+  &--subtle { @include accordion-variant-subtle; }
+  &--contrast { @include accordion-variant-contrast; }
+}

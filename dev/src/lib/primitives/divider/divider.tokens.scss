@@ -1,0 +1,15 @@
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Divider component-level tokens.
+  Defines base visual primitive for separation.
+*/
+
+/*
+  Base
+*/
+@mixin divider-base {
+  width: 100%;
+  height: 1px;
+  background: $color-border;
+}

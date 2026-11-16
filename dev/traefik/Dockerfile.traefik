@@ -1,0 +1,8 @@
+FROM traefik:3.7
+
+RUN apk add --no-cache \
+    ca-certificates \
+    curl \
+    docker-cli
+
+RUN docker --version

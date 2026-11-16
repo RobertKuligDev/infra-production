@@ -1,0 +1,89 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Modal component-level tokens.
+  Defines overlay, dialog, spacing, and variant primitives.
+*/
+/*
+  Overlay
+*/
+@mixin modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/*
+  Dialog
+*/
+@mixin modal-dialog-base {
+  background: $color-surface;
+  border-radius: $radius-md;
+  padding: $space-4;
+  width: 100%;
+  max-width: 480px;
+  outline: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/*
+  Header
+*/
+@mixin modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $space-3;
+}
+
+/*
+  Body
+*/
+@mixin modal-body {
+  margin-bottom: $space-4;
+}
+
+/*
+  Footer
+*/
+@mixin modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-2;
+}
+
+/*
+  Close button
+*/
+@mixin modal-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/*
+  Variants
+*/
+@mixin modal-variant-default {}
+
+@mixin modal-variant-subtle {
+  background: $color-surface-subtle;
+}
+
+@mixin modal-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}

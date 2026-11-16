@@ -1,0 +1,75 @@
+@use '../primitives/spacing' as *;
+
+/*
+  ============================================
+  🏷 SEMANTIC SPACING TOKENS
+  Meaning-driven spacing layer.
+  Maps raw spacing primitives to contextual roles.
+  ============================================
+*/
+
+/*
+  --------------------------------------------
+  Layout spacing
+  --------------------------------------------
+  Used by containers, wrappers, sections, grids.
+*/
+$spacing-container-padding-x: $space-4;
+$spacing-container-padding-y: $space-4;
+
+$spacing-section-padding-base:  $space-8;
+$spacing-section-padding-tight: $space-6;
+$spacing-section-padding-wide:  $space-12;
+
+/*
+  --------------------------------------------
+  Wrapper spacing
+  --------------------------------------------
+  Used by wrapper layout primitive.
+*/
+$spacing-wrapper-padding-x: $space-4;
+$spacing-wrapper-padding-y: $space-4;
+
+/* Width tiers (semantic meaning, not raw values) */
+$spacing-wrapper-width-narrow:  48rem;
+$spacing-wrapper-width-base:    64rem;
+$spacing-wrapper-width-wide:    80rem;
+
+/*
+  --------------------------------------------
+  Content spacing
+  --------------------------------------------
+  Used by content-block, text layouts, readable areas.
+*/
+$spacing-content-gap-sm: $space-3;
+$spacing-content-gap-md: $space-4;
+$spacing-content-gap-lg: $space-6;
+
+/*
+  --------------------------------------------
+  Grid spacing
+  --------------------------------------------
+  Used by grid primitives and layout grids.
+*/
+$spacing-grid-gap-sm: $space-3;
+$spacing-grid-gap-md: $space-5;
+$spacing-grid-gap-lg: $space-8;
+
+/*
+  --------------------------------------------
+  Form spacing
+  --------------------------------------------
+  Used by form rows, field groups, input stacks.
+*/
+$spacing-form-row-gap: $space-4;
+$spacing-form-group-gap: $space-6;
+
+/*
+  --------------------------------------------
+  Component spacing
+  --------------------------------------------
+  Used by cards, panels, surfaces, overlays.
+*/
+$spacing-card-padding:     $space-5;
+$spacing-panel-padding:    $space-6;
+$spacing-surface-padding:  $space-4;

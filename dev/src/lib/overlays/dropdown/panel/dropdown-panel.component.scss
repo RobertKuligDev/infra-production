@@ -1,0 +1,35 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/shadows' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  ds-dropdown-panel
+  Floating panel for dropdown items.
+*/
+.ds-dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: $space-2;
+  min-width: 160px;
+  padding: $space-1 0;
+  background: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+
+  &--align-end {
+    right: 0;
+    left: auto;
+  }
+
+  &--open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}

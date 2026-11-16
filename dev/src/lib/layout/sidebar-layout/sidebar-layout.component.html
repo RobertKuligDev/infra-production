@@ -1,0 +1,14 @@
+<!--
+  Sidebar layout primitive.
+  Provides a two-column layout with a fixed-width sidebar.
+  Supports reversing order and stacking on mobile.
+-->
+<div [ngClass]="classes()" [ngStyle]="styleVars()">
+  <div class="sidebar">
+    <ng-content select="[sidebar]"></ng-content>
+  </div>
+
+  <div class="content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>

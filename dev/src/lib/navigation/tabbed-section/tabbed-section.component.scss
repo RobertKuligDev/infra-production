@@ -1,0 +1,30 @@
+@use './tabbed-section.tokens' as *;
+
+/*
+  Tabbed Section UI component.
+  Provides structured section layout with header, tabs, and content.
+  Uses component-level tokens for spacing and typography.
+*/
+.ds-tabbed-section {
+  @include tabbed-section-base;
+
+  &__header {
+    @include tabbed-section-header;
+  }
+
+  &__title {
+    @include tabbed-section-title;
+  }
+
+  &__description {
+    @include tabbed-section-description;
+  }
+
+  &__tabs {
+    @include tabbed-section-tabs;
+  }
+
+  &__content {
+    @include tabbed-section-content;
+  }
+}

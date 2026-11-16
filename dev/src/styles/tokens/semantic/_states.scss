@@ -1,0 +1,21 @@
+@use '../primitives/colors' as *;
+
+/*
+  ============================================
+  🏷 SEMANTIC STATES
+  Contextual aliases for stateful colors.
+  Provides roles for success, warning, error, info.
+  ============================================
+*/
+
+$state-success-bg:  #ecfdf3;
+$state-success-fg:  #166534;
+
+$state-warning-bg:  #fffbeb;
+$state-warning-fg:  #92400e;
+
+$state-danger-bg:   #fef2f2;
+$state-danger-fg:   #b91c1c;
+
+$state-info-bg:     #eff6ff;
+$state-info-fg:     #1d4ed8;

@@ -1,0 +1,84 @@
+@use '../tokens/buttons' as *;
+@use '../tokens/colors' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/radius' as *;
+
+/* ============================================
+   🎛 BUTTON MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $btn-padding-y $btn-padding-x;
+  border-radius: $btn-radius;
+  font-size: $btn-font-size;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+/* PRIMARY */
+@mixin button-primary {
+  @include button-base;
+  background: $btn-primary-bg;
+  color: $btn-primary-text;
+
+  &:hover {
+    background: $btn-primary-hover;
+    transform: translateY(-1px);
+  }
+}
+
+/* SECONDARY */
+@mixin button-secondary {
+  @include button-base;
+  background: $btn-secondary-bg;
+  border-color: $btn-secondary-border;
+  color: $btn-secondary-text;
+
+  &:hover {
+    background: $btn-secondary-hover;
+  }
+}
+
+/* SUBTLE */
+@mixin button-subtle {
+  @include button-base;
+  background: transparent;
+  color: $btn-subtle-text;
+
+  &:hover {
+    background: $btn-subtle-hover;
+    color: $color-text-primary;
+  }
+}
+
+/* DANGER */
+@mixin button-danger {
+  @include button-base;
+  background: $btn-danger-bg;
+  color: $btn-danger-text;
+
+  &:hover {
+    background: $btn-danger-hover;
+    transform: translateY(-1px);
+  }
+}
+
+/* ICON BUTTON */
+@mixin button-icon($size: 2.25rem) {
+  @include button-base;
+  width: $size;
+  height: $size;
+  padding: 0;
+}

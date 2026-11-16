@@ -1,0 +1,16 @@
+<!--
+  Button UI component.
+  Renders semantic button content with optional loading and disabled states.
+-->
+<button
+  type="button"
+  [ngClass]="classes()"
+  [attr.aria-disabled]="ariaDisabled()"
+  [disabled]="isDisabled() || isLoading()"
+>
+  <span class="ds-btn__spinner" *ngIf="isLoading()"></span>
+
+  <span class="ds-btn__content">
+    <ng-content></ng-content>
+  </span>
+</button>

@@ -1,0 +1,57 @@
+<!--
+  ds-pagination
+  Full pagination control with ellipsis and navigation.
+-->
+<nav class="ds-pagination" [ngClass]="'ds-pagination--' + variant()">
+  <button
+    type="button"
+    class="ds-pagination__control"
+    (click)="first()"
+    [disabled]="page() === 1"
+  >
+    «
+  </button>
+
+  <button
+    type="button"
+    class="ds-pagination__control"
+    (click)="prev()"
+    [disabled]="page() === 1"
+  >
+    ‹
+  </button>
+
+  <ng-container *ngFor="let p of pages()">
+    <button
+      *ngIf="isNumber(p); else ellipsis"
+      type="button"
+      class="ds-pagination__page"
+      [class.is-active]="page() === p"
+      (click)="goTo(p)"
+    >
+      {{ p }}
+    </button>
+
+    <ng-template #ellipsis>
+      <span class="ds-pagination__ellipsis">…</span>
+    </ng-template>
+  </ng-container>
+
+  <button
+    type="button"
+    class="ds-pagination__control"
+    (click)="next()"
+    [disabled]="page() === total()"
+  >
+    ›
+  </button>
+
+  <button
+    type="button"
+    class="ds-pagination__control"
+    (click)="last()"
+    [disabled]="page() === total()"
+  >
+    »
+  </button>
+</nav>

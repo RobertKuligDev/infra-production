@@ -1,0 +1,57 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Chip component-level tokens.
+  Defines spacing, typography, and variant primitives.
+*/
+
+/*
+  Base
+*/
+@mixin chip-base {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: $space-1 $space-2;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  border-radius: $radius-full;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/*
+  Variants
+*/
+@mixin chip-variant-default {
+  background: $color-surface-subtle;
+  color: $color-text-primary;
+}
+
+@mixin chip-variant-subtle {
+  background: transparent;
+  color: $color-text-secondary;
+}
+
+@mixin chip-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}
+
+@mixin chip-variant-success {
+  background: $color-success;
+  color: $color-white;
+}
+
+@mixin chip-variant-warning {
+  background: $color-warning;
+  color: $color-text-primary;
+}
+
+@mixin chip-variant-danger {
+  background: $color-danger;
+  color: $color-white;
+}

@@ -1,0 +1,30 @@
+@use '../_surface' as foundation;
+
+/*
+  ============================================
+  🧱 SURFACE VISUAL PRIMITIVE
+  BEM utility mapping to foundation surface mixins.
+  ============================================
+*/
+
+.surface {
+  @include foundation.surface-base;
+  @include foundation.surface-variant-default;
+}
+
+/* Variants */
+.surface--subtle {
+  @include foundation.surface-base;
+  @include foundation.surface-variant-subtle;
+}
+
+.surface--contrast {
+  @include foundation.surface-base;
+  @include foundation.surface-variant-contrast;
+}
+
+/* Elevation */
+.surface--elev-0 { @include foundation.surface-elevation-0; }
+.surface--elev-1 { @include foundation.surface-elevation-1; }
+.surface--elev-2 { @include foundation.surface-elevation-2; }
+.surface--elev-3 { @include foundation.surface-elevation-3; }

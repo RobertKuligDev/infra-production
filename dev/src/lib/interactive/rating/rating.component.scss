@@ -1,0 +1,41 @@
+@use './rating.tokens' as *;
+
+/*
+  ds-rating
+  Star rating with variant and state styling.
+*/
+.ds-rating {
+  @include rating-base;
+
+  &__label {
+    @include rating-label;
+  }
+
+  &__stars {
+    @include rating-stars;
+  }
+
+  &__star {
+    @include rating-star;
+  }
+
+  &__helper {
+    @include rating-helper;
+  }
+
+  &__error {
+    @include rating-error;
+  }
+
+  &--default { @include rating-variant-default; }
+  &--subtle { @include rating-variant-subtle; }
+  &--contrast { @include rating-variant-contrast; }
+
+  &--error .ds-rating__star {
+    @include rating-star-error;
+  }
+
+  &--disabled {
+    @include rating-disabled;
+  }
+}

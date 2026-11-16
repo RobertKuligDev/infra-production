@@ -1,0 +1,39 @@
+@use '../_sidebar' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 SIDEBAR LAYOUT PRIMITIVE
+  BEM utility mapping to foundation sidebar mixins.
+  ============================================
+*/
+
+.sidebar-layout {
+  @include foundation.sidebar-base();
+}
+
+/* Gap variants */
+.sidebar-layout--sm {
+  @include foundation.sidebar-base(
+    $gap: spacing.$spacing-content-gap-sm
+  );
+}
+
+.sidebar-layout--lg {
+  @include foundation.sidebar-base(
+    $gap: spacing.$spacing-content-gap-lg
+  );
+}
+
+/* Sidebar width variants */
+.sidebar-layout--narrow {
+  @include foundation.sidebar-base(
+    $sidebar-width: 16rem
+  );
+}
+
+.sidebar-layout--wide {
+  @include foundation.sidebar-base(
+    $sidebar-width: 24rem
+  );
+}

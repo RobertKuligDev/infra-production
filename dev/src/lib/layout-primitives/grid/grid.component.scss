@@ -1,0 +1,44 @@
+@use 'primitives/_responsives' as *;
+
+/*
+  Grid primitive.
+  Uses BEM modifiers for column configuration.
+  Gap is controlled via runtime CSS variable (--grid-gap).
+*/
+.grid {
+  display: grid;
+  gap: var(--grid-gap, var(--space-5));
+
+  /* Fixed column templates */
+  &--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &--cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  /* Auto-fit / auto-fill responsive grids */
+  &--cols-auto {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var(--grid-auto-min), 1fr)
+    );
+  }
+
+  &--cols-fluid {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--grid-auto-min), 1fr)
+    );
+  }
+
+  /* Mobile fallback — single column */
+  @include respond-md {
+    grid-template-columns: 1fr;
+  }
+}

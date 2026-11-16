@@ -1,0 +1,49 @@
+/* sidebar.component.scss */
+.#{$block}__sidebar {
+  @include card-base;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: var(--sidebar-width, 280px);
+
+  &--left {
+    order: -1;
+  }
+
+  &--right {
+    order: 1;
+  }
+
+  &--sticky {
+    position: sticky;
+    top: var(--space-xl);
+  }
+
+  &--default {
+    background: var(--surface-1);
+  }
+
+  &--muted {
+    background: var(--surface-muted);
+  }
+
+  &--contrast {
+    background: var(--surface-contrast);
+    color: var(--text-on-contrast);
+  }
+}
+
+.#{$block}__sidebar-title {
+  font-size: var(--font-sm);
+  font-weight: var(--font-bold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.#{$block}__sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}

@@ -1,0 +1,57 @@
+@use './content-block.tokens' as *;
+
+/*
+  Content Block UI component.
+  Provides structured content container with optional header and actions.
+  Uses component-level tokens for spacing, typography, and variant styling.
+*/
+.ds-content-block {
+  @include content-block-base;
+
+  &__header {
+    @include content-block-header;
+  }
+
+  &__title {
+    @include content-block-title;
+  }
+
+  &__description {
+    @include content-block-description;
+  }
+
+  &__actions {
+    @include content-block-actions;
+  }
+
+  &__body {
+    @include content-block-body;
+  }
+
+  &--align-start {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    text-align: center;
+    align-items: center;
+  }
+
+  &--align-end {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  &--default {
+    @include content-block-variant-default;
+  }
+
+  &--subtle {
+    @include content-block-variant-subtle;
+  }
+
+  &--contrast {
+    @include content-block-variant-contrast;
+  }
+}

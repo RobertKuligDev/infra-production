@@ -1,0 +1,28 @@
+services:
+  temporal-worker:
+    build:
+      context: ./services/temporal-worker-dotnet
+    container_name: dev-temporal-worker
+    restart: unless-stopped
+    networks:
+      - internal-net
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL__HOST=temporal:7233
+      - PLAYWRIGHT_HOST=http://playwright-bridge:3000
+      - OLLAMA_HOST=http://ollama:11434
+      - POSTGRES__HOST=postgres
+      - POSTGRES__PORT=5432
+      - POSTGRES__DB=${POSTGRES_DB}
+      - POSTGRES__USER=${POSTGRES_USER}
+      - POSTGRES__PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+          test: ["CMD-SHELL", "pgrep dotnet"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+
+networks:
+  internal-net:
+    external: true

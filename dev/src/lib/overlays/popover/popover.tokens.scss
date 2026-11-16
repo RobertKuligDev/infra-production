@@ -1,0 +1,8 @@
+/*
+  Popover tokens
+  Defines base layout and positioning context.
+*/
+@mixin popover-base {
+  position: relative;
+  display: inline-block;
+}

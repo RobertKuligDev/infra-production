@@ -1,0 +1,92 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Input component-level tokens.
+  Defines spacing, typography, and variant primitives for input fields.
+*/
+/*
+  Base
+*/
+@mixin input-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+/*
+  Label
+*/
+@mixin input-label {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+/*
+  Field
+*/
+@mixin input-field {
+  padding: $space-2 $space-3;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  background: $color-surface;
+  color: $color-text-primary;
+  font-size: $font-size-md;
+  transition: border-color 0.15s ease;
+
+  &:focus {
+    border-color: $color-accent-primary;
+    outline: none;
+  }
+}
+
+/*
+  Helper
+*/
+@mixin input-helper {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+/*
+  Error
+*/
+@mixin input-error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+}
+
+@mixin input-field-error {
+  border-color: $color-danger;
+}
+
+/*
+  Disabled
+*/
+@mixin input-field-disabled {
+  background: $color-surface-subtle;
+  color: $color-text-muted;
+  cursor: not-allowed;
+}
+
+/*
+  Variants
+*/
+@mixin input-variant-default {}
+
+@mixin input-variant-subtle {
+  .ds-input__field {
+    background: $color-surface-subtle;
+  }
+}
+
+@mixin input-variant-contrast {
+  .ds-input__field {
+    background: $color-surface-contrast;
+    color: $color-white;
+    border-color: transparent;
+  }
+}

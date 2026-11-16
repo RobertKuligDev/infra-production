@@ -1,0 +1,57 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Pagination component-level tokens.
+  Defines spacing, sizing, and variant primitives.
+*/
+@mixin pagination-base {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+@mixin pagination-control {
+  padding: $space-2 $space-3;
+  border: none;
+  background: $color-surface;
+  border-radius: $radius-md;
+  cursor: pointer;
+  color: $color-text-primary;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin pagination-page {
+  padding: $space-2 $space-3;
+  border: none;
+  background: $color-surface;
+  border-radius: $radius-md;
+  cursor: pointer;
+  color: $color-text-primary;
+}
+
+@mixin pagination-page-active {
+  background: $color-accent-primary;
+  color: $color-white;
+}
+
+@mixin pagination-ellipsis {
+  padding: $space-2 $space-3;
+  color: $color-text-secondary;
+}
+
+@mixin pagination-variant-default {}
+
+@mixin pagination-variant-subtle {
+  background: $color-surface-subtle;
+}
+
+@mixin pagination-variant-contrast {
+  background: $color-surface-contrast;
+  color: $color-white;
+}

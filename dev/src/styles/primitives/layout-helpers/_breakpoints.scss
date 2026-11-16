@@ -1,0 +1,24 @@
+@use '../tokens/primitives/breakpoints' as *;
+
+/*
+  ============================================
+  📱 RESPONSIVE MIXINS
+  Foundation-level breakpoint utilities.
+  Provides media-query helpers for adaptive layouts.
+  ============================================
+*/
+
+@mixin respond($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint '#{$breakpoint}' not found.";
+  }
+}
+
+@mixin respond-sm { @include respond(sm) { @content; } }
+@mixin respond-md { @include respond(md) { @content; } }
+@mixin respond-lg { @include respond(lg) { @content; } }
+@mixin respond-xl { @include respond(xl) { @content; } }

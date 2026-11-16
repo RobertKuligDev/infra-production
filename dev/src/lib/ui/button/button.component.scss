@@ -1,0 +1,67 @@
+@use './button.tokens' as *;
+
+/*
+  Button UI component.
+  Implements variants, sizes, and interactive states.
+  Uses component-level tokens for styling.
+*/
+.ds-btn {
+  @include button-base;
+
+  &--sm {
+    @include button-size-sm;
+  }
+
+  &--md {
+    @include button-size-md;
+  }
+
+  &--lg {
+    @include button-size-lg;
+  }
+
+  &--primary {
+    @include button-variant-primary;
+  }
+
+  &--secondary {
+    @include button-variant-secondary;
+  }
+
+  &--ghost {
+    @include button-variant-ghost;
+  }
+
+  &--danger {
+    @include button-variant-danger;
+  }
+
+  &--link {
+    @include button-variant-link;
+  }
+
+  &--loading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ds-btn__spinner {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

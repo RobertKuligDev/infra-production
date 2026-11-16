@@ -1,0 +1,14 @@
+@use './tab-panel.tokens' as *;
+
+/*
+  Tab Panel UI Control.
+  Displays content associated with a tab.
+  Visibility controlled by ds-tabs active state.
+*/
+.ds-tab-panel {
+  @include tab-panel-base;
+
+  &--active {
+    @include tab-panel-active;
+  }
+}

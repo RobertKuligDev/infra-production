@@ -1,0 +1,66 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Toast component-level tokens.
+  Defines spacing, colors, and variant primitives.
+*/
+/*
+  Base
+*/
+@mixin toast-base {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  color: $color-white;
+  min-width: 240px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/*
+  Text
+*/
+@mixin toast-text {
+  font-size: $font-size-sm;
+  font-weight: 500;
+}
+
+/*
+  Close
+*/
+@mixin toast-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/*
+  Variants
+*/
+@mixin toast-variant-success {
+  background: $color-success;
+}
+
+@mixin toast-variant-error {
+  background: $color-danger;
+}
+
+@mixin toast-variant-warning {
+  background: $color-warning;
+  color: $color-text-primary;
+}
+
+@mixin toast-variant-info {
+  background: $color-accent-primary;
+}

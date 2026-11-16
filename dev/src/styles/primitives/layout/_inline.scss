@@ -1,0 +1,33 @@
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 INLINE PRIMITIVE (FOUNDATION)
+  Horizontal layout primitive with alignment,
+  justification, wrapping and semantic gap sizes.
+  ============================================
+*/
+
+@mixin inline-base {
+  display: flex;
+}
+
+/* Alignment */
+@mixin inline-align-start   { align-items: flex-start; }
+@mixin inline-align-center  { align-items: center; }
+@mixin inline-align-end     { align-items: flex-end; }
+
+/* Justification */
+@mixin inline-justify-start   { justify-content: flex-start; }
+@mixin inline-justify-center  { justify-content: center; }
+@mixin inline-justify-end     { justify-content: flex-end; }
+@mixin inline-justify-between { justify-content: space-between; }
+
+/* Wrapping */
+@mixin inline-wrap     { flex-wrap: wrap; }
+@mixin inline-nowrap   { flex-wrap: nowrap; }
+
+/* Gap variants (semantic spacing) */
+@mixin inline-gap-sm { gap: spacing.$spacing-content-gap-sm; }
+@mixin inline-gap-md { gap: spacing.$spacing-content-gap-md; }
+@mixin inline-gap-lg { gap: spacing.$spacing-content-gap-lg; }

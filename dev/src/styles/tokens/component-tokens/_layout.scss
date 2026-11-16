@@ -1,0 +1,31 @@
+@use '../primitives/spacing' as *;
+@use '../primitives/breakpoints' as *;
+
+/*
+  ============================================
+  🧭 LAYOUT TOKENS
+  Component-level layout configuration.
+  Provides container, section and vertical rhythm tokens.
+  ============================================
+*/
+
+/*
+  Container
+  --------------------------------------------
+*/
+$container-max-width: map-get($breakpoints, xl);
+$container-padding-x: $space-4;
+
+/*
+  Sections
+  --------------------------------------------
+*/
+$section-padding-tight: $space-6;
+$section-padding-base:  $space-8;
+$section-padding-wide:  $space-10;
+
+/*
+  Vertical rhythm
+  --------------------------------------------
+*/
+$section-gap: $space-6;

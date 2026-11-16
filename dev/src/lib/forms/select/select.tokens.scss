@@ -1,0 +1,147 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Select component-level tokens.
+  Defines spacing, typography, and variant primitives for select dropdowns.
+*/
+/*
+  Base
+*/
+@mixin select-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  position: relative;
+}
+
+/*
+  Label
+*/
+@mixin select-label {
+  font-size: $font-size-sm;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+/*
+  Trigger
+*/
+@mixin select-trigger {
+  padding: $space-2 $space-3;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  background: $color-surface;
+  color: $color-text-primary;
+  font-size: $font-size-md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid $color-accent-primary;
+    outline-offset: 2px;
+  }
+}
+
+/*
+  Value
+*/
+@mixin select-value {
+  flex: 1;
+  text-align: left;
+}
+
+/*
+  Icon
+*/
+@mixin select-icon {
+  margin-left: $space-2;
+  opacity: 0.6;
+}
+
+/*
+  Dropdown
+*/
+@mixin select-dropdown {
+  position: absolute;
+  top: calc(100% + $space-1);
+  left: 0;
+  right: 0;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  padding: $space-2 0;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/*
+  Option
+*/
+@mixin select-option {
+  padding: $space-2 $space-3;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-surface-subtle;
+  }
+
+  &[aria-selected="true"] {
+    background: $color-surface-subtle;
+    font-weight: 600;
+  }
+}
+
+/*
+  Helper
+*/
+@mixin select-helper {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+/*
+  Error
+*/
+@mixin select-error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+}
+
+@mixin select-trigger-error {
+  border-color: $color-danger;
+}
+
+/*
+  Disabled
+*/
+@mixin select-trigger-disabled {
+  background: $color-surface-subtle;
+  color: $color-text-muted;
+  cursor: not-allowed;
+}
+
+/*
+  Variants
+*/
+@mixin select-variant-default {}
+
+@mixin select-variant-subtle {
+  .ds-select__trigger {
+    background: $color-surface-subtle;
+  }
+}
+
+@mixin select-variant-contrast {
+  .ds-select__trigger {
+    background: $color-surface-contrast;
+    color: $color-white;
+    border-color: transparent;
+  }
+}

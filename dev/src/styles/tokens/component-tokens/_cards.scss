@@ -1,0 +1,39 @@
+@use '../primitives/spacing' as *;
+@use '../primitives/radius' as *;
+@use '../primitives/shadows' as *;
+@use '../semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧾 CARD TOKENS
+  Component-level card configuration.
+  Provides padding, radius, shadow and surface roles.
+  ============================================
+*/
+
+/*
+  Layout
+  --------------------------------------------
+*/
+$card-padding:    $space-4;
+$card-padding-lg: $space-5;
+
+/*
+  Radius
+  --------------------------------------------
+*/
+$card-radius: $radius-md;
+
+/*
+  Elevation
+  --------------------------------------------
+*/
+$card-shadow:       $shadow-sm;
+$card-shadow-hover: $shadow-md;
+
+/*
+  Colors
+  --------------------------------------------
+*/
+$card-bg:     semantic-colors.$color-surface;
+$card-border: rgba(semantic-colors.$color-bg-contrast, 0.08);

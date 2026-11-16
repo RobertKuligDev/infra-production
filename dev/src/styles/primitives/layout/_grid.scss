@@ -1,0 +1,39 @@
+@use '../../tokens/primitives/spacing' as spacing;
+@use '../../tokens/component-tokens/layout' as layout-tokens;
+@use './layout-helpers/breakpoints' as *;
+
+/*
+  ============================================
+  🧱 GRID PRIMITIVE (FOUNDATION)
+  Foundation-level grid utilities.
+  Provides column templates, gaps and responsive helpers.
+  ============================================
+*/
+
+/* Explicit template grid */
+@mixin grid-template(
+  $template,
+  $gap: spacing.$spacing-grid-gap-md
+) {
+  display: grid;
+  grid-template-columns: $template;
+  gap: $gap;
+
+  @include respond-md {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Auto-fit / auto-fill grid */
+@mixin grid-auto(
+  $min: layout-tokens.$grid-auto-min,
+  $gap: spacing.$spacing-grid-gap-md
+) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+  gap: $gap;
+
+  @include respond-md {
+    grid-template-columns: 1fr;
+  }
+}

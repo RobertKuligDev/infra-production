@@ -1,0 +1,127 @@
+{
+  "name": "DevMorph — Job Offer Notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "minutes", "minutesInterval": 15 }
+          ]
+        }
+      },
+      "id": "schedule-notify",
+      "name": "Every 15 minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-1200, 0]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM pending_notifications LIMIT 10",
+        "options": {}
+      },
+      "id": "get-pending",
+      "name": "Get Pending Notifications",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [-976, 0],
+      "credentials": {
+        "postgres": {
+          "id": "LOCAL_POSTGRES",
+          "name": "postgres_local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "strict", "version": 2 },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.job_id }}",
+              "rightValue": "",
+              "operator": { "type": "string", "operation": "notEquals" },
+              "id": "has-jobs"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "has-pending",
+      "name": "Has Pending?",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [-752, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "const job = $input.item.json;\n\nconst overall = Math.round((job.overall || 0) * 100);\nconst verdict = job.verdict || 'CONSIDER';\nconst emoji = verdict === 'PRIORITY' ? '🔥' : '👀';\nconst track = job.track || 'UNKNOWN';\nconst trackLabel = track === 'A' ? '.NET/DevOps' : track === 'B' ? 'WordPress/PHP' : 'Nieznany';\n\nconst redFlags = (job.red_flags || []).filter(f => f !== 'none').join(', ') || 'brak';\nconst greenFlags = (job.green_flags || []).filter(f => f !== 'none').join(', ') || 'brak';\n\nconst body = `${emoji} NOWE ZLECENIE [${verdict}] — Score: ${overall}/100\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📋 OFERTA\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nPortal:  ${job.source_portal || '?'}\nTytuł:   ${job.title || '?'}\nFirma:   ${job.company || '?'}\nBudżet:  ${job.salary || 'nie podano'}\nURL:     ${job.url}\nTrack:   ${track} (${trackLabel})\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n🤖 ANALIZA AI (Ollama)\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nScore:         ${overall}/100\nTech match:    ${Math.round((job.tech_score || 0) * 100)}/100\nSeniority:     ${Math.round((job.seniority_score || 0) * 100)}/100\nProject fit:   ${Math.round((job.project_fit || 0) * 100)}/100\nBudżet fit:    ${Math.round((job.budget_fit || 0) * 100)}/100\nStawka:        ${job.suggested_rate || 'do negocjacji'}\n\n🚩 Red flags:  ${redFlags}\n✅ Green flags: ${greenFlags}\n💡 ${job.reasoning || ''}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n✍️ PROPOZYCJA [BALANCED — rekomendowana]\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n${job.proposal_balanced || 'Propozycja nie została jeszcze wygenerowana.'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📄 AGGRESSIVE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n${job.proposal_aggressive || '-'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📄 PREMIUM\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n${job.proposal_premium || '-'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nID oferty: ${job.job_id}\nOceniono: ${job.scored_at}`;\n\nreturn [{ json: {\n  subject: `${emoji} [${verdict}] ${job.source_portal}: ${job.title} | ${overall}/100`,\n  body,\n  score_id: job.score_id,\n  job_id: job.job_id,\n  verdict\n}}];"
+      },
+      "id": "prepare-email",
+      "name": "Prepare Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-528, 0]
+    },
+    {
+      "parameters": {
+        "fromEmail": "agent@localhost",
+        "toEmail": "robert@localhost",
+        "subject": "={{ $json.subject }}",
+        "text": "={{ $json.body }}",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [-304, 0],
+      "credentials": {
+        "smtp": {
+          "id": "SMTP_LOCAL",
+          "name": "SMTP Local"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=UPDATE job_scores SET email_sent = true WHERE id = {{ $('Prepare Email').item.json.score_id }}",
+        "options": {}
+      },
+      "id": "mark-sent",
+      "name": "Mark Email Sent",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [-80, 0],
+      "credentials": {
+        "postgres": {
+          "id": "LOCAL_POSTGRES",
+          "name": "postgres_local"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Every 15 minutes": {
+      "main": [[{ "node": "Get Pending Notifications", "type": "main", "index": 0 }]]
+    },
+    "Get Pending Notifications": {
+      "main": [[{ "node": "Has Pending?", "type": "main", "index": 0 }]]
+    },
+    "Has Pending?": {
+      "main": [[{ "node": "Prepare Email", "type": "main", "index": 0 }]]
+    },
+    "Prepare Email": {
+      "main": [[{ "node": "Send Email", "type": "main", "index": 0 }]]
+    },
+    "Send Email": {
+      "main": [[{ "node": "Mark Email Sent", "type": "main", "index": 0 }]]
+    }
+  },
+  "meta": {
+    "instanceId": "devmorph-local"
+  }
+}

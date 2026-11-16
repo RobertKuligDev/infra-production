@@ -1,0 +1,20 @@
+@use '../tokens/primitives/typography' as *;
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/primitives/radius' as *;
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧱 KBD PRIMITIVE
+  Foundation-level keyboard key styling.
+  ============================================
+*/
+
+@mixin kbd-base {
+  font-family: $font-family-mono;
+  font-size: $font-size-xs;
+  padding: $space-1 $space-2;
+  background: semantic-colors.$color-surface-contrast;
+  border-radius: $radius-sm;
+  border: 1px solid semantic-colors.$color-border-subtle;
+}

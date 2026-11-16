@@ -1,0 +1,17 @@
+@use './carousel-dots.tokens' as *;
+
+/*
+  ds-carousel-dots
+  Pagination dots for carousel.
+*/
+.ds-carousel__dots {
+  @include carousel-dots-container;
+}
+
+.ds-carousel__dot {
+  @include carousel-dot-base;
+
+  &.is-active {
+    @include carousel-dot-active;
+  }
+}

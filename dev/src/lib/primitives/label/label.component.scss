@@ -1,0 +1,21 @@
+@use './label.tokens' as *;
+
+/*
+  ds-label
+  Visual primitive with variant styling.
+*/
+.ds-label {
+  @include label-base;
+
+  &--default {
+    @include label-variant-default;
+  }
+
+  &--subtle {
+    @include label-variant-subtle;
+  }
+
+  &--contrast {
+    @include label-variant-contrast;
+  }
+}

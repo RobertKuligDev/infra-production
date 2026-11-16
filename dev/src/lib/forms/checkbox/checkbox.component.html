@@ -1,0 +1,30 @@
+<!--
+  ds-checkbox
+  Accessible checkbox with label, helper, error, and indeterminate state.
+-->
+<label [ngClass]="classes()">
+  <input
+    type="checkbox"
+    class="ds-checkbox__input"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    [indeterminate]="indeterminate()"
+    (change)="toggle()"
+    (blur)="onTouched()"
+    [attr.aria-invalid]="!!error()"
+  />
+
+  <span class="ds-checkbox__box"></span>
+
+  <span class="ds-checkbox__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+</label>
+
+<p *ngIf="helper() && !error()" class="ds-checkbox__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-checkbox__error">
+  {{ error() }}
+</p>

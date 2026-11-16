@@ -1,0 +1,9 @@
+@use './popover.tokens' as *;
+
+/*
+  ds-popover
+  Root wrapper for popover.
+*/
+.ds-popover {
+  @include popover-base;
+}

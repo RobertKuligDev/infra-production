@@ -1,0 +1,30 @@
+/* ============================================
+   🧩 FORM TOKENS
+   ============================================ */
+
+$input-bg: var(--color-bg-surface);
+$input-border: var(--color-border-subtle);
+$input-border-hover: var(--color-border-strong);
+$input-border-focus: var(--color-accent-primary);
+$input-border-error: var(--color-danger);
+
+$input-text: var(--color-text-primary);
+$input-placeholder: var(--color-text-muted);
+
+$input-radius: var(--radius-sm);
+$input-padding-y: var(--space-2);
+$input-padding-x: var(--space-3);
+
+$input-font-size: var(--font-size-base);
+$input-line-height: var(--line-height-base);
+
+$input-disabled-bg: var(--color-bg-depth-1);
+$input-disabled-text: var(--color-text-muted);
+
+$label-size: var(--label-size);
+$label-weight: var(--label-weight);
+$label-tracking: var(--label-tracking);
+
+$helper-text-size: var(--body-sm-size);
+$error-text-size: var(--body-sm-size);
+$error-text-color: var(--color-danger);

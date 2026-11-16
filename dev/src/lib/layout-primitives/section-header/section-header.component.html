@@ -1,0 +1,30 @@
+<div [ngClass]="[base, base + '--' + align]">
+  <span *ngIf="showLabel && label" class="{{ base }}__label">
+    {{ label }}
+  </span>
+
+  <ng-container [ngSwitch]="level">
+    <h1 *ngSwitchCase="'h1'" class="{{ base }}__title">
+      <ng-container *ngIf="icon">
+        <span class="{{ base }}__icon" aria-hidden="true">{{ icon }}</span>
+      </ng-container>
+      {{ title }}
+    </h1>
+    <h2 *ngSwitchCase="'h2'" class="{{ base }}__title">
+      <ng-container *ngIf="icon">
+        <span class="{{ base }}__icon" aria-hidden="true">{{ icon }}</span>
+      </ng-container>
+      {{ title }}
+    </h2>
+    <h3 *ngSwitchCase="'h3'" class="{{ base }}__title">
+      <ng-container *ngIf="icon">
+        <span class="{{ base }}__icon" aria-hidden="true">{{ icon }}</span>
+      </ng-container>
+      {{ title }}
+    </h3>
+  </ng-container>
+
+  <p *ngIf="showDescription && description" class="{{ base }}__description">
+    {{ description }}
+  </p>
+</div>

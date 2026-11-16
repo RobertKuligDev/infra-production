@@ -1,0 +1,48 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: dev-zookeeper
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - internal-net
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: dev-kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - internal-net
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: dev-kafdrop
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:9092"
+      SERVER_PORT: 8080
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kafdrop.rule=Host(`${DOMAIN_KAFDROP}`)"
+      - "traefik.http.routers.kafdrop.entrypoints=websecure"
+      - "traefik.http.routers.kafdrop.tls=true"
+      - "traefik.http.services.kafdrop.loadbalancer.server.port=8080"
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

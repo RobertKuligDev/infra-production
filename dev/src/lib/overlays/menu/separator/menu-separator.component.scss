@@ -1,0 +1,12 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  ds-menu-separator
+  Divider between menu items.
+*/
+.ds-menu-separator {
+  height: 1px;
+  background: $color-border;
+  margin: $space-1 0;
+}

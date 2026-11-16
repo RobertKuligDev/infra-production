@@ -1,0 +1,20 @@
+@use '../../tokens/semantic/sections' as section-colors;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 SECTION PRIMITIVE (FOUNDATION)
+  Structural block with semantic background
+  and semantic vertical spacing.
+  ============================================
+*/
+
+@mixin section-base($bg: section-colors.$section-bg-default) {
+  position: relative;
+  background: $bg;
+  width: 100%;
+}
+
+@mixin section-padding($size: spacing.$spacing-section-padding-base) {
+  padding-block: $size;
+}

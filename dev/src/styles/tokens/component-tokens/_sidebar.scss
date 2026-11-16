@@ -1,0 +1,27 @@
+@use '../primitives/spacing' as *;
+@use '../semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  📚 SIDEBAR TOKENS
+  Component-level sidebar configuration.
+  Provides width, padding and surface roles.
+  ============================================
+*/
+
+/*
+  Layout
+  --------------------------------------------
+*/
+$sidebar-width:      280px;
+$sidebar-padding-x:  $space-4;
+$sidebar-padding-y:  $space-4;
+$sidebar-item-gap:   $space-2;
+
+/*
+  Colors
+  --------------------------------------------
+*/
+$sidebar-bg:     semantic-colors.$color-bg-contrast;
+$sidebar-text:   semantic-colors.$color-text-inverse;
+$sidebar-border: rgba(semantic-colors.$color-bg-contrast, 0.4);

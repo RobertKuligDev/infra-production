@@ -1,0 +1,57 @@
+@use './sidebar.tokens' as *;
+
+/*
+  Sidebar UI component.
+  Provides styled sidebar container with optional header and actions.
+  Uses component-level tokens for spacing, typography, and variant styling.
+*/
+.ds-sidebar {
+  @include sidebar-base;
+
+  &__header {
+    @include sidebar-header;
+  }
+
+  &__title {
+    @include sidebar-title;
+  }
+
+  &__description {
+    @include sidebar-description;
+  }
+
+  &__actions {
+    @include sidebar-actions;
+  }
+
+  &__body {
+    @include sidebar-body;
+  }
+
+  &--align-start {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    text-align: center;
+    align-items: center;
+  }
+
+  &--align-end {
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  &--default {
+    @include sidebar-variant-default;
+  }
+
+  &--subtle {
+    @include sidebar-variant-subtle;
+  }
+
+  &--contrast {
+    @include sidebar-variant-contrast;
+  }
+}

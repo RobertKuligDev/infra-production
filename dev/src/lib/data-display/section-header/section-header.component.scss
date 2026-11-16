@@ -1,0 +1,34 @@
+@use './section-header.tokens' as *;
+
+/*
+  Section Header UI component.
+  Provides structured heading hierarchy with optional label and description.
+  Uses component-level tokens for spacing, typography, and alignment.
+*/
+.ds-section-header {
+  @include section-header-base;
+
+  &__label {
+    @include section-header-label;
+  }
+
+  &__title {
+    @include section-header-title;
+  }
+
+  &__description {
+    @include section-header-description;
+  }
+
+  &--align-start {
+    text-align: left;
+  }
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &--align-end {
+    text-align: right;
+  }
+}

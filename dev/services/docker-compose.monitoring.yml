@@ -1,0 +1,60 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: dev-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./services/monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - traefik-net
+      - internal-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: dev-grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./services/monitoring/grafana:/var/lib/grafana
+    ports:
+      - "3001:3000"
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.grafana.rule: Host(`${DOMAIN_GRAFANA}`)
+      traefik.http.routers.grafana.entrypoints: websecure
+      traefik.http.routers.grafana.tls: "true"
+      traefik.http.services.grafana.loadbalancer.server.port: 3000
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: dev-node-exporter
+    restart: unless-stopped
+    pid: host
+    network_mode: host
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: dev-cadvisor
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8085:8080"
+    networks:
+      - internal-net
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

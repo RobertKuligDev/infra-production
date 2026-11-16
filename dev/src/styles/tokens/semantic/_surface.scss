@@ -1,0 +1,14 @@
+@use './colors' as *;
+
+/*
+  ============================================
+  🏷 SEMANTIC SURFACE
+  Contextual aliases for surfaces.
+  Provides roles for cards, panels and elevated blocks.
+  ============================================
+*/
+
+$surface-default:   $color-surface;
+$surface-subtle:    $color-surface-subtle;
+$surface-hover:     $color-surface-hover;
+$surface-contrast:  $color-surface-contrast;

@@ -1,0 +1,14 @@
+<!--
+  Icon Button UI component.
+  Renders a single icon with interactive states and accessibility attributes.
+-->
+<button
+  type="button"
+  [ngClass]="classes()"
+  [attr.aria-disabled]="ariaDisabled()"
+  [disabled]="isDisabled()"
+>
+  <span class="ds-icon-btn__icon">
+    <ng-content></ng-content>
+  </span>
+</button>

@@ -1,0 +1,15 @@
+<!--
+  ds-tab
+  Single tab trigger inside ds-tabs.
+  Delegates active state to parent TabsComponent.
+-->
+<button
+  [ngClass]="classes()"
+  role="tab"
+  [attr.aria-selected]="isActive()"
+  [attr.aria-controls]="id() + '-panel'"
+  [attr.id]="id()"
+  tabindex="0"
+>
+  <ng-content></ng-content>
+</button>

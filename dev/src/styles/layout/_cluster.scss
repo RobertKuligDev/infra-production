@@ -1,0 +1,39 @@
+@use '../_cluster' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 CLUSTER LAYOUT PRIMITIVE
+  BEM utility mapping to foundation mixins.
+  ============================================
+*/
+
+.cluster {
+  @include foundation.cluster-base(
+    spacing.$spacing-content-gap-md
+  );
+}
+
+.cluster--sm {
+  @include foundation.cluster-base(
+    spacing.$spacing-content-gap-sm
+  );
+}
+
+.cluster--lg {
+  @include foundation.cluster-base(
+    spacing.$spacing-content-gap-lg
+  );
+}
+
+.cluster--xl {
+  @include foundation.cluster-base(
+    spacing.$spacing-content-gap-xl
+  );
+}
+
+.cluster--xxl {
+  @include foundation.cluster-base(
+    spacing.$spacing-content-gap-xxl
+  );
+}

@@ -1,0 +1,19 @@
+@use '../../tokens/spacing' as *;
+@use '../../tokens/colors' as *;
+
+/* ============================================
+   📋 LIST MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+@mixin list-base($gap: $space-3) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin list-item {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  color: $color-text-secondary;
+}

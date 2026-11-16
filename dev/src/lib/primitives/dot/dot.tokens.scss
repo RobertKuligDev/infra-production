@@ -1,0 +1,49 @@
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Dot component-level tokens.
+  Defines base size and neutral color variants.
+*/
+
+/*
+  Base
+*/
+@mixin dot-base {
+  display: inline-block;
+  border-radius: $radius-full;
+  flex-shrink: 0;
+}
+
+/*
+  Sizes
+*/
+@mixin dot-size-xs {
+  width: 4px;
+  height: 4px;
+}
+
+@mixin dot-size-sm {
+  width: 6px;
+  height: 6px;
+}
+
+@mixin dot-size-md {
+  width: 8px;
+  height: 8px;
+}
+
+/*
+  Variants
+*/
+@mixin dot-variant-default {
+  background: $color-text-muted;
+}
+
+@mixin dot-variant-strong {
+  background: $color-text-primary;
+}
+
+@mixin dot-variant-contrast {
+  background: $color-surface-contrast;
+}

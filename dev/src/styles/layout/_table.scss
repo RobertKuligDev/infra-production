@@ -1,0 +1,33 @@
+@use '../_table' as foundation;
+
+/*
+  ============================================
+  🧱 TABLE LAYOUT PRIMITIVE
+  BEM utility mapping to foundation table mixins.
+  ============================================
+*/
+
+/* Table wrapper */
+.table {
+  @include foundation.table-base;
+}
+
+/* Rows */
+.table__row {
+  @include foundation.table-row-base;
+}
+
+.table__row--contrast {
+  @include foundation.table-row-base;
+  @include foundation.table-row-contrast;
+}
+
+.table__row--hover {
+  @include foundation.table-row-base;
+  @include foundation.table-row-hover;
+}
+
+/* Cells */
+.table__cell {
+  @include foundation.table-cell-base;
+}

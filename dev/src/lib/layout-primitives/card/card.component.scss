@@ -1,0 +1,48 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+/*
+  Card UI component.
+  Uses semantic tokens for background, borders, and shadows.
+  Variants are controlled via BEM modifiers.
+*/
+
+.card {
+  @include card-base;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &--default {
+    background: var(--surface-1);
+  }
+
+  &--elevated {
+    background: var(--surface-2);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &--muted {
+    background: var(--surface-muted);
+    border: 1px solid var(--border-subtle);
+  }
+
+  &--feature {
+    background: var(--surface-feature);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-md);
+  }
+
+  &--product {
+    background: var(--surface-product);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+  }
+
+  &--interactive {
+    cursor: pointer;
+    &:hover {
+      box-shadow: var(--shadow-hover);
+    }
+  }
+}

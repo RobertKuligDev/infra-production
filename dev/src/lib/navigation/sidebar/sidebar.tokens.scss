@@ -1,0 +1,84 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Sidebar component-level tokens.
+  Defines spacing, typography, and variant primitives for sidebar containers.
+  Used exclusively by the ds-sidebar UI component.
+*/
+/*
+  Base container
+*/
+@mixin sidebar-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-6 0;
+}
+
+/*
+  Header
+*/
+@mixin sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+/*
+  Title
+*/
+@mixin sidebar-title {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-text-primary;
+}
+
+/*
+  Description
+*/
+@mixin sidebar-description {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 60ch;
+}
+
+/*
+  Actions
+*/
+@mixin sidebar-actions {
+  margin-top: $space-2;
+}
+
+/*
+  Body
+*/
+@mixin sidebar-body {
+  display: block;
+}
+
+/*
+  Variants
+*/
+@mixin sidebar-variant-default {
+  background: transparent;
+}
+
+@mixin sidebar-variant-subtle {
+  background: $color-surface-subtle;
+  padding: $space-6;
+  border-radius: 8px;
+}
+
+@mixin sidebar-variant-contrast {
+  background: $color-surface-contrast;
+  padding: $space-6;
+  border-radius: 8px;
+  color: $color-white;
+
+  .ds-sidebar__title,
+  .ds-sidebar__description {
+    color: $color-white;
+  }
+}

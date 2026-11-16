@@ -1,0 +1,43 @@
+@use './toast.tokens' as *;
+
+/*
+  ds-toast
+  Stackable toast notification with variant styling.
+*/
+.ds-toast-container {
+  position: fixed;
+  top: $space-4;
+  right: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  z-index: 3000;
+}
+
+.ds-toast {
+  @include toast-base;
+
+  &--success {
+    @include toast-variant-success;
+  }
+
+  &--error {
+    @include toast-variant-error;
+  }
+
+  &--warning {
+    @include toast-variant-warning;
+  }
+
+  &--info {
+    @include toast-variant-info;
+  }
+
+  &__text {
+    @include toast-text;
+  }
+
+  &__close {
+    @include toast-close;
+  }
+}

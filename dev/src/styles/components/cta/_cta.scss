@@ -1,0 +1,29 @@
+@use '../primitives/typography' as *;
+@use '../tokens/spacing' as *;
+@use '../tokens/colors' as *;
+
+/* ============================================
+   🎯 CTA BLOCK COMPONENT CLASSES
+   ============================================ */
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  text-align: center;
+}
+
+.cta__title {
+  @include heading-2;
+}
+
+.cta__description {
+  @include body-lg;
+  color: $color-text-secondary;
+}
+
+.cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: $space-4;
+}

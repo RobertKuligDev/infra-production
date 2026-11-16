@@ -1,0 +1,124 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  File component-level tokens.
+*/
+/*
+  Base
+*/
+@mixin file-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+/*
+  Label
+*/
+@mixin file-label {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+/*
+  Dropzone
+*/
+@mixin file-dropzone {
+  padding: $space-5;
+  border: 1px dashed $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+@mixin file-dropzone-dragover {
+  border-color: $color-accent-primary;
+  background: rgba($color-accent-primary, 0.05);
+}
+
+@mixin file-dropzone-error {
+  border-color: $color-danger;
+}
+
+/*
+  Input (hidden)
+*/
+@mixin file-input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+/*
+  Placeholder
+*/
+@mixin file-placeholder {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+/*
+  File list
+*/
+@mixin file-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+@mixin file-item {
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+}
+
+/*
+  Helper
+*/
+@mixin file-helper {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+/*
+  Error
+*/
+@mixin file-error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+}
+
+/*
+  Disabled
+*/
+@mixin file-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*
+  Variants
+*/
+@mixin file-variant-default {}
+
+@mixin file-variant-subtle {
+  .ds-file__dropzone {
+    background: $color-surface-subtle;
+  }
+}
+
+@mixin file-variant-contrast {
+  .ds-file__dropzone {
+    background: $color-surface-contrast;
+    color: $color-white;
+    border-color: transparent;
+  }
+}

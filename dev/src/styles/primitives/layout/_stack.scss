@@ -1,0 +1,31 @@
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 STACK PRIMITIVE (FOUNDATION)
+  Vertical layout primitive with semantic gaps,
+  alignment and justification utilities.
+  ============================================
+*/
+
+@mixin stack-base {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Alignment */
+@mixin stack-align-stretch { align-items: stretch; }
+@mixin stack-align-start   { align-items: flex-start; }
+@mixin stack-align-center  { align-items: center; }
+@mixin stack-align-end     { align-items: flex-end; }
+
+/* Justification */
+@mixin stack-justify-start   { justify-content: flex-start; }
+@mixin stack-justify-center  { justify-content: center; }
+@mixin stack-justify-end     { justify-content: flex-end; }
+@mixin stack-justify-between { justify-content: space-between; }
+
+/* Gap variants (semantic spacing) */
+@mixin stack-gap-sm { gap: spacing.$spacing-content-gap-sm; }
+@mixin stack-gap-md { gap: spacing.$spacing-content-gap-md; }
+@mixin stack-gap-lg { gap: spacing.$spacing-content-gap-lg; }

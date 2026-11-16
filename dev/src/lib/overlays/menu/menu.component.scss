@@ -1,0 +1,9 @@
+@use './menu.tokens' as *;
+
+/*
+  ds-menu
+  Root menu container.
+*/
+.ds-menu {
+  @include menu-base;
+}

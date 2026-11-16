@@ -1,0 +1,64 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Tab component-level tokens.
+  Defines spacing, typography, and variant primitives for tab triggers.
+*/
+/*
+  Base
+*/
+@mixin tab-base {
+  padding: $space-2 $space-4;
+  font-size: $font-size-md;
+  font-weight: 500;
+  color: $color-text-secondary;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: color 0.15s ease, background 0.15s ease;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent-primary;
+    outline-offset: 2px;
+  }
+}
+
+/*
+  Active
+*/
+@mixin tab-active {
+  color: $color-text-primary;
+}
+
+/*
+  Variants
+*/
+@mixin tab-variant-default {
+  border-bottom: 2px solid transparent;
+
+  &.ds-tab--active {
+    border-bottom-color: $color-accent-primary;
+  }
+}
+
+@mixin tab-variant-pill {
+  &.ds-tab--active {
+    background: $color-surface-subtle;
+    color: $color-text-primary;
+  }
+}
+
+@mixin tab-variant-segmented {
+  &.ds-tab--active {
+    background: $color-surface-contrast;
+    color: $color-white;
+  }
+}

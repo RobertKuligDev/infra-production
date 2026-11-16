@@ -1,0 +1,36 @@
+@use '../primitives/spacing' as *;
+@use '../primitives/radius' as *;
+@use '../primitives/typography' as *;
+@use '../semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  📣 CTA TOKENS
+  Component-level call-to-action configuration.
+  Provides layout, colors and typography for CTA blocks.
+  ============================================
+*/
+
+/*
+  Layout
+  --------------------------------------------
+*/
+$cta-padding-y: $space-6;
+$cta-padding-x: $space-5;
+$cta-gap:       $space-3;
+
+/*
+  Colors
+  --------------------------------------------
+*/
+$cta-bg:      semantic-colors.$color-accent-primary;
+$cta-text:    semantic-colors.$color-text-inverse;
+$cta-subtext: rgba(semantic-colors.$color-text-inverse, 0.8);
+
+/*
+  Typography
+  --------------------------------------------
+*/
+$cta-title-size:       $font-size-2xl;
+$cta-title-weight:     $font-weight-semibold;
+$cta-description-size: $font-size-md;

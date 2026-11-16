@@ -1,0 +1,17 @@
+@use '../tokens/primitives/radius' as *;
+
+/*
+  ============================================
+  🧱 STATUS DOT PRIMITIVE
+  Foundation-level status indicator.
+  Provides small colored dot for status and presence indicators.
+  ============================================
+*/
+
+@mixin status-dot($color, $size: 8px) {
+  width: $size;
+  height: $size;
+  border-radius: $radius-full;
+  background: $color;
+  box-shadow: 0 0 6px rgba($color, 0.5);
+}

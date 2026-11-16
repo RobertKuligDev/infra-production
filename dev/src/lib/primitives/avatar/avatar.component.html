@@ -1,0 +1,10 @@
+<!--
+  ds-avatar
+  Visual primitive for user or entity avatar.
+-->
+<div [ngClass]="classes()">
+  <img *ngIf="src" [src]="src" [alt]="alt" />
+  <span *ngIf="!src" class="ds-avatar__placeholder">
+    <ng-content></ng-content>
+  </span>
+</div>

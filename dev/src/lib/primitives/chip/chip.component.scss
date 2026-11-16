@@ -1,0 +1,28 @@
+@use "./chip.tokens" as *;
+
+/*
+  ds-chip
+  Visual primitive with variant styling.
+*/
+.ds-chip {
+  @include chip-base;
+
+  &--default {
+    @include chip-variant-default;
+  }
+  &--subtle {
+    @include chip-variant-subtle;
+  }
+  &--contrast {
+    @include chip-variant-contrast;
+  }
+  &--success {
+    @include chip-variant-success;
+  }
+  &--warning {
+    @include chip-variant-warning;
+  }
+  &--danger {
+    @include chip-variant-danger;
+  }
+}

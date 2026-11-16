@@ -1,0 +1,8 @@
+<!--
+  Grid wrapper.
+  Classes are generated via BEM (grid--cols-X).
+  CSS variables are injected via ngStyle for runtime token mapping.
+-->
+<div [ngClass]="classes()" [ngStyle]="styleVars()">
+  <ng-content></ng-content>
+</div>

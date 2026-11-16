@@ -1,0 +1,81 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: dev-n8n
+    restart: unless-stopped
+    environment:
+      N8N_HOST: ${DOMAIN_N8N}
+      N8N_PORT: 5678
+      N8N_PROTOCOL: https
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+      N8N_LOG_LEVEL: debug
+
+      # Database
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8ndb
+      DB_POSTGRESDB_USER: ${POSTGRES_USER}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+
+      # Redis queue
+      QUEUE_BULL_REDIS_HOST: redis
+      QUEUE_BULL_REDIS_PORT: 6379
+
+      # Queue mode
+      EXECUTIONS_MODE: queue
+
+    depends_on:
+      - postgres
+      - redis
+
+    networks:
+      - traefik-net
+      - internal-net
+
+    labels:
+      traefik.enable: "true"
+
+      traefik.http.routers.n8n.rule: Host(`${DOMAIN_N8N}`)
+      traefik.http.routers.n8n.entrypoints: websecure
+      traefik.http.routers.n8n.tls: "true"
+
+      traefik.http.services.n8n.loadbalancer.server.port: 5678
+
+  n8n-worker:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: dev-n8n-worker
+    restart: unless-stopped
+    command: worker
+    environment:
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+      N8N_LOG_LEVEL: debug
+
+      # Database
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8ndb
+      DB_POSTGRESDB_USER: ${POSTGRES_USER}
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}
+
+      # Redis queue
+      QUEUE_BULL_REDIS_HOST: redis
+      QUEUE_BULL_REDIS_PORT: 6379
+
+      # Queue mode
+      EXECUTIONS_MODE: queue
+      
+    depends_on:
+      - postgres
+      - redis
+      - n8n
+
+    networks:
+      - internal-net
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

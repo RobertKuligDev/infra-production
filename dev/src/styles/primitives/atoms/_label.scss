@@ -1,0 +1,19 @@
+@use '../tokens/primitives/typography' as *;
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧱 LABEL PRIMITIVE
+  Foundation-level text label.
+  Provides semantic labeling for form fields and UI elements.
+  ============================================
+*/
+
+@mixin label-base {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: semantic-colors.$color-text-secondary;
+  margin-bottom: $space-1;
+  display: block;
+}

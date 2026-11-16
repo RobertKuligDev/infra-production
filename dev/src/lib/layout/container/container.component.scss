@@ -1,0 +1,11 @@
+/*
+  Container layout primitive.
+  Uses component-level tokens for max-width and semantic spacing.
+*/
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width, var(--container-lg));
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x, var(--space-xl));
+}

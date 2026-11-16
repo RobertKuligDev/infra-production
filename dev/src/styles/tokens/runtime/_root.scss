@@ -1,0 +1,82 @@
+@use '../primitives/maps/colors-map' as colors;
+@use '../primitives/maps/spacing-map' as spacing;
+@use '../primitives/maps/radius-map' as radius;
+@use '../primitives/maps/opacity-map' as opacity;
+@use '../primitives/maps/breakpoints-map' as breakpoints;
+@use '../primitives/maps/typography-map' as typography;
+@use '../primitives/maps/shadows-map' as shadows;
+@use '../primitives/maps/zindex-map' as zindex;
+
+/*
+  ============================================
+  🌐 RUNTIME TOKENS ROOT
+  Auto-generated CSS variables bridge.
+  Provides runtime theming surface based on SCSS tokens.
+  ============================================
+*/
+
+:root {
+  /*
+    Colors
+    --------------------------------------------
+  */
+  @each $name, $value in colors.$colors-map {
+    --color-#{$name}: #{$value};
+  }
+
+  /*
+    Spacing
+    --------------------------------------------
+  */
+  @each $name, $value in spacing.$spacing-map {
+    --space-#{$name}: #{$value};
+  }
+
+  /*
+    Radius
+    --------------------------------------------
+  */
+  @each $name, $value in radius.$radius-map {
+    --radius-#{$name}: #{$value};
+  }
+
+  /*
+    Opacity
+    --------------------------------------------
+  */
+  @each $name, $value in opacity.$opacity-map {
+    --opacity-#{$name}: #{$value};
+  }
+
+  /*
+    Breakpoints
+    --------------------------------------------
+  */
+  @each $name, $value in breakpoints.$breakpoints-map {
+    --bp-#{$name}: #{$value};
+  }
+
+  /*
+    Typography
+    --------------------------------------------
+  */
+  @each $name, $value in typography.$typography-map {
+    --#{$name}: #{$value};
+  }
+
+  /*
+    Shadows
+    --------------------------------------------
+  */
+  @each $name, $value in shadows.$shadows-map {
+    --shadow-#{$name}: #{$value};
+  }
+
+  /*
+    Z-index
+    --------------------------------------------
+  */
+  @each $name, $value in zindex.$zindex-map {
+    --z-#{$name}: #{$value};
+  }
+}

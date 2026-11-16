@@ -1,0 +1,67 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Navigation Item component-level tokens.
+  Defines spacing, typography, hover, active and variant primitives.
+*/
+
+/*
+  Base
+*/
+@mixin nav-item-base {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+
+  padding: $space-2 $space-3;
+  border-radius: $radius-sm;
+
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-decoration: none;
+
+  color: $color-text-secondary;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+/*
+  Hover
+*/
+@mixin nav-item-hover {
+  color: $color-text-primary;
+  background: rgba($color-text-primary, 0.06);
+}
+
+/*
+  Active
+*/
+@mixin nav-item-active {
+  color: $color-text-primary;
+  font-weight: 600;
+}
+
+/*
+  Variants
+*/
+@mixin nav-item-variant-default {
+  color: $color-text-secondary;
+}
+
+@mixin nav-item-variant-accent {
+  color: $color-accent-primary;
+
+  &:hover {
+    background: rgba($color-accent-primary, 0.08);
+  }
+}
+
+@mixin nav-item-variant-danger {
+  color: $color-danger;
+
+  &:hover {
+    background: rgba($color-danger, 0.08);
+  }
+}

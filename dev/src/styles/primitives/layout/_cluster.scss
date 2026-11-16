@@ -1,0 +1,17 @@
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 CLUSTER PRIMITIVE (FOUNDATION)
+  Flexible horizontal/vertical wrapping layout.
+  ============================================
+*/
+
+@mixin cluster-base(
+  $gap: spacing.$spacing-content-gap-md
+) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $gap;
+}

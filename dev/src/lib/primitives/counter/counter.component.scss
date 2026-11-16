@@ -1,0 +1,22 @@
+@use "./counter.tokens" as *;
+
+/*
+  ds-counter
+  Visual primitive with variant styling.
+*/
+.ds-counter {
+  @include counter-base;
+
+  &--default {
+    @include counter-variant-default;
+  }
+  &--contrast {
+    @include counter-variant-contrast;
+  }
+  &--accent {
+    @include counter-variant-accent;
+  }
+  &--danger {
+    @include counter-variant-danger;
+  }
+}

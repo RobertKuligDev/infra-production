@@ -1,0 +1,42 @@
+@use './card.tokens' as *;
+
+/*
+  Card UI component.
+  Provides structured visual grouping with optional sections.
+  Uses component-level tokens for spacing, borders, and elevation.
+*/
+.ds-card {
+  @include card-base;
+
+  &__media {
+    @include card-media;
+  }
+
+  &__header {
+    @include card-header;
+  }
+
+  &__body {
+    @include card-body;
+  }
+
+  &__footer {
+    @include card-footer;
+  }
+
+  &--default {
+    @include card-variant-default;
+  }
+
+  &--interactive {
+    @include card-variant-interactive;
+  }
+
+  &--elevated {
+    @include card-variant-elevated;
+  }
+
+  &--outlined {
+    @include card-variant-outlined;
+  }
+}

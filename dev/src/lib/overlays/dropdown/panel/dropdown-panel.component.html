@@ -1,0 +1,11 @@
+<!--
+  ds-dropdown-panel
+  Container for dropdown items.
+-->
+<div
+  class="ds-dropdown-panel"
+  [class.ds-dropdown-panel--open]="dropdown.open()"
+  [class.ds-dropdown-panel--align-end]="dropdown.align() === 'end'"
+>
+  <ng-content></ng-content>
+</div>

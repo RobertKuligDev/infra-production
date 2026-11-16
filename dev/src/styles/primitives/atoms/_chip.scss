@@ -1,0 +1,36 @@
+@use '../tokens/primitives/colors' as *;
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/primitives/radius' as *;
+@use '../tokens/primitives/typography' as *;
+
+/*
+  ============================================
+  🧱 CHIP PRIMITIVE
+  Foundation-level UI atom.
+  Provides tag-like visual styling with optional dismiss action.
+  ============================================
+*/
+
+@mixin chip-base {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: $space-1 $space-2;
+  font-size: $font-size-xs;
+  border-radius: $radius-sm;
+}
+
+@mixin chip-variant($color) {
+  background: rgba($color, 0.12);
+  color: $color;
+}
+
+@mixin chip-close {
+  cursor: pointer;
+  font-size: $font-size-xs;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+}

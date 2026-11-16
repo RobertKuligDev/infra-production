@@ -1,0 +1,48 @@
+<!--
+  ds-stepper
+  Numeric stepper with increment/decrement buttons and ARIA spinbutton.
+-->
+<label [ngClass]="classes()">
+  <span class="ds-stepper__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+
+  <div class="ds-stepper__control">
+    <button
+      type="button"
+      class="ds-stepper__btn ds-stepper__btn--dec"
+      (click)="decrement()"
+      [disabled]="disabled()"
+    >−</button>
+
+    <input
+      type="text"
+      class="ds-stepper__input"
+      [value]="value()"
+      [disabled]="disabled()"
+      (input)="onInput($event)"
+      (keydown)="onKey($event)"
+      (blur)="onTouched()"
+      role="spinbutton"
+      [attr.aria-valuenow]="value()"
+      [attr.aria-valuemin]="min()"
+      [attr.aria-valuemax]="max()"
+      [attr.aria-invalid]="!!error()"
+    />
+
+    <button
+      type="button"
+      class="ds-stepper__btn ds-stepper__btn--inc"
+      (click)="increment()"
+      [disabled]="disabled()"
+    >+</button>
+  </div>
+</label>
+
+<p *ngIf="helper() && !error()" class="ds-stepper__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-stepper__error">
+  {{ error() }}
+</p>

@@ -1,0 +1,57 @@
+@use './file.tokens' as *;
+
+/*
+  ds-file
+  File picker with drag & drop and variant styling.
+*/
+.ds-file {
+  @include file-base;
+
+  &__label {
+    @include file-label;
+  }
+
+  &__dropzone {
+    @include file-dropzone;
+  }
+
+  &__input {
+    @include file-input;
+  }
+
+  &__placeholder {
+    @include file-placeholder;
+  }
+
+  &__list {
+    @include file-list;
+  }
+
+  &__item {
+    @include file-item;
+  }
+
+  &__helper {
+    @include file-helper;
+  }
+
+  &__error {
+    @include file-error;
+  }
+
+  &--default { @include file-variant-default; }
+  &--subtle { @include file-variant-subtle; }
+  &--contrast { @include file-variant-contrast; }
+
+  &--dragover .ds-file__dropzone {
+    @include file-dropzone-dragover;
+  }
+
+  &--error .ds-file__dropzone {
+    @include file-dropzone-error;
+  }
+
+  &--disabled {
+    @include file-disabled;
+  }
+}

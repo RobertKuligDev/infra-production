@@ -1,0 +1,47 @@
+<!--
+  ds-select
+  Custom select dropdown with label, helper, error and CVA support.
+-->
+<div [ngClass]="classes()">
+  <label *ngIf="label()" class="ds-select__label">
+    {{ label() }}
+  </label>
+
+  <button
+    class="ds-select__trigger"
+    type="button"
+    [disabled]="disabled()"
+    (click)="toggle()"
+    [attr.aria-expanded]="open()"
+    [attr.aria-haspopup]="'listbox'"
+  >
+    <span class="ds-select__value">
+      {{ selectedLabel() || placeholder() }}
+    </span>
+    <span class="ds-select__icon">▾</span>
+  </button>
+
+  <ul
+    class="ds-select__dropdown"
+    *ngIf="open()"
+    role="listbox"
+  >
+    <li
+      *ngFor="let option of options()"
+      class="ds-select__option"
+      role="option"
+      [attr.aria-selected]="value() === option.value"
+      (click)="select(option.value)"
+    >
+      {{ option.label }}
+    </li>
+  </ul>
+
+  <p *ngIf="helper() && !error()" class="ds-select__helper">
+    {{ helper() }}
+  </p>
+
+  <p *ngIf="error()" class="ds-select__error">
+    {{ error() }}
+  </p>
+</div>

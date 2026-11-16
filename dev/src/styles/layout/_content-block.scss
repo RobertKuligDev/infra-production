@@ -1,0 +1,30 @@
+@use '../_content-block' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 CONTENT BLOCK LAYOUT PRIMITIVE
+  BEM utility mapping to foundation mixins.
+  ============================================
+*/
+
+.content-block {
+  @include foundation.content-block-base(
+    spacing.$spacing-content-gap-md,
+    spacing.$spacing-wrapper-width-base
+  );
+}
+
+.content-block--narrow {
+  @include foundation.content-block-base(
+    spacing.$spacing-content-gap-md,
+    spacing.$spacing-wrapper-width-narrow
+  );
+}
+
+.content-block--wide {
+  @include foundation.content-block-base(
+    spacing.$spacing-content-gap-md,
+    spacing.$spacing-wrapper-width-wide
+  );
+}

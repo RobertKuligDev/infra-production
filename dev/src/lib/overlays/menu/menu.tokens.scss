@@ -1,0 +1,11 @@
+@use 'tokens/primitives/spacing' as *;
+
+/*
+  Menu tokens
+  Defines spacing and layout for menu container.
+*/
+@mixin menu-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}

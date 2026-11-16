@@ -1,0 +1,51 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Breadcrumb component-level tokens.
+  Defines spacing, typography, and separator primitives.
+*/
+
+/*
+  Base
+*/
+@mixin breadcrumb-base {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+/*
+  Item
+*/
+@mixin breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  color: $color-text-secondary;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
+
+/*
+  Active item
+*/
+@mixin breadcrumb-item-active {
+  color: $color-text-primary;
+  font-weight: 600;
+}
+
+/*
+  Separator
+*/
+@mixin breadcrumb-separator {
+  color: $color-text-muted;
+  user-select: none;
+}

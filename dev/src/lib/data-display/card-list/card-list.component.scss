@@ -1,0 +1,30 @@
+@use './card-list.tokens' as *;
+
+/*
+  Card List UI component.
+  Provides structured grouping of card items with spacing and layout variants.
+  Uses component-level tokens for spacing and grid configuration.
+*/
+.ds-card-list {
+  @include card-list-base;
+
+  &--grid {
+    @include card-list-grid;
+  }
+
+  &--stack {
+    @include card-list-stack;
+  }
+
+  &--gap-sm {
+    gap: var(--card-list-gap-sm);
+  }
+
+  &--gap-md {
+    gap: var(--card-list-gap-md);
+  }
+
+  &--gap-lg {
+    gap: var(--card-list-gap-lg);
+  }
+}

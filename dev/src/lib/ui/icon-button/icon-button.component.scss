@@ -1,0 +1,57 @@
+@use './icon-button.tokens' as *;
+
+/*
+  Icon Button UI component.
+  Provides icon-only interactive control with variants, sizes, and shapes.
+  Uses component-level tokens and integrates with layout primitives.
+*/
+.ds-icon-btn {
+  @include icon-button-base;
+
+  &--sm {
+    @include icon-button-size-sm;
+  }
+
+  &--md {
+    @include icon-button-size-md;
+  }
+
+  &--lg {
+    @include icon-button-size-lg;
+  }
+
+  &--square {
+    border-radius: $radius-sm;
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--primary {
+    @include icon-button-variant-primary;
+  }
+
+  &--secondary {
+    @include icon-button-variant-secondary;
+  }
+
+  &--ghost {
+    @include icon-button-variant-ghost;
+  }
+
+  &--danger {
+    @include icon-button-variant-danger;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .ds-icon-btn__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

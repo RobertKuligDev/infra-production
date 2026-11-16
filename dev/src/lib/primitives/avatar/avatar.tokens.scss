@@ -1,0 +1,45 @@
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Avatar component-level tokens.
+  Defines base container and size primitives.
+*/
+
+/*
+  Base
+*/
+@mixin avatar-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: $radius-full;
+  background: $color-surface-subtle;
+}
+
+/*
+  Sizes
+*/
+@mixin avatar-size-sm {
+  width: 24px;
+  height: 24px;
+}
+
+@mixin avatar-size-md {
+  width: 40px;
+  height: 40px;
+}
+
+@mixin avatar-size-lg {
+  width: 64px;
+  height: 64px;
+}
+
+/*
+  Placeholder
+*/
+@mixin avatar-placeholder {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}

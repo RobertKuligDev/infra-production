@@ -1,0 +1,17 @@
+<!--
+  ds-popover-panel
+  Floating panel for popover content.
+-->
+<div
+  class="ds-popover-panel"
+  [class.ds-popover-panel--open]="popover.open()"
+  [class.ds-popover-panel--side-top]="popover.side() === 'top'"
+  [class.ds-popover-panel--side-bottom]="popover.side() === 'bottom'"
+  [class.ds-popover-panel--side-left]="popover.side() === 'left'"
+  [class.ds-popover-panel--side-right]="popover.side() === 'right'"
+  [class.ds-popover-panel--align-start]="popover.align() === 'start'"
+  [class.ds-popover-panel--align-center]="popover.align() === 'center'"
+  [class.ds-popover-panel--align-end]="popover.align() === 'end'"
+>
+  <ng-content></ng-content>
+</div>

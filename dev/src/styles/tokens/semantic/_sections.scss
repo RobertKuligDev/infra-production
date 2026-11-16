@@ -1,0 +1,19 @@
+@use './colors' as *;
+
+/*
+  ============================================
+  🏷 SEMANTIC SECTIONS
+  Contextual aliases for section backgrounds.
+  Provides background roles for layout sections.
+  ============================================
+*/
+
+/*
+  Section backgrounds
+  --------------------------------------------
+*/
+$section-bg-default:   $color-bg-default;
+$section-bg-hero:      $color-accent-primary;
+$section-bg-contrast:  $color-bg-contrast;
+$section-bg-elevated:  $color-surface;
+$section-bg-footer:    $color-bg-contrast;

@@ -1,0 +1,18 @@
+@use '../../tokens/spacing' as *;
+@use '../../tokens/colors' as *;
+@use '../../tokens/radius' as *;
+
+/* ============================================
+   🧩 ICON-BOX MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+@mixin icon-box($color: $color-text-muted, $size: 64px) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $size;
+  height: $size;
+  border-radius: $radius-md;
+  background: rgba($color, 0.08);
+  color: $color;
+}

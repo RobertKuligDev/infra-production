@@ -1,0 +1,228 @@
+# =============================================================================
+# DevMorph — Portal Configuration
+# portals.yml
+#
+# Struktura:
+#   categories → portale → selektory CSS → filtry → schedule
+#
+# Selektory CSS możesz debugować przez:
+#   profil Vivaldi Dev → DevTools → Console:
+#   document.querySelectorAll("SELEKTOR").length
+# =============================================================================
+
+categories:
+
+  # ---------------------------------------------------------------------------
+  # IT & Software Development
+  # ---------------------------------------------------------------------------
+  - slug: it
+    name: IT & Software
+    portals:
+
+      - slug: justjoin
+        name: JustJoin.it
+        url: https://justjoin.it/job-offers/all-locations/all-categories
+        active: true
+        schedule: "0 8,14,20 * * *"   # 3x dziennie
+        selectors:
+          items: "div[data-index]"
+          title: "h2"
+          company: "div.css-1id4k1"
+          location: "div.css-1am4i5"
+          salary: "div.css-1pavfqb"
+          tags: "div.css-1uoml5v span"
+          link: "a[href*='/job-offers/']"
+        filters:
+          keywords: []                  # puste = bierz wszystko, AI filtruje
+          exclude: ["junior", "intern", "staż", "stażysta"]
+          wait_for: "div[data-index]"   # czekaj na ten element zanim scrape
+
+      - slug: nofluffjobs
+        name: NoFluffJobs
+        url: https://nofluffjobs.com/pl
+        active: true
+        schedule: "30 8,14,20 * * *"
+        selectors:
+          items: "a.posting-list-item"
+          title: "h3.posting-title__position"
+          company: "span.company-name"
+          location: "span.tw-text-gray-600"
+          salary: "span.salary"
+          tags: "span.posting-tag"
+          link: "a.posting-list-item"   # item = link
+        filters:
+          keywords: []
+          exclude: ["junior", "intern"]
+          wait_for: "a.posting-list-item"
+
+      - slug: bulldogjob
+        name: BulldogJob
+        url: https://bulldogjob.pl/companies/jobs
+        active: true
+        schedule: "0 9,15,21 * * *"
+        selectors:
+          items: "div.JobListItem"
+          title: "h3.JobListItem__title"
+          company: "span.JobListItem__company"
+          location: "span.JobListItem__location"
+          salary: "span.JobListItem__salary"
+          tags: "div.JobListItem__tags span"
+          link: "a.JobListItem__link"
+        filters:
+          keywords: []
+          exclude: ["junior", "trainee"]
+          wait_for: "div.JobListItem"
+
+      - slug: pracuj-it
+        name: Pracuj.pl (IT)
+        url: https://www.pracuj.pl/praca/it-administracja;cc,5016
+        active: true
+        schedule: "0 9 * * 1-5"        # tylko dni robocze
+        selectors:
+          items: "div[data-test='default-offer']"
+          title: "h2[data-test='offer-title']"
+          company: "h3[data-test='text-company-name']"
+          location: "span[data-test='text-region']"
+          salary: "span[data-test='offer-salary']"
+          tags: "div[data-test='technologies-item'] span"
+          link: "a[data-test='link-offer']"
+        filters:
+          keywords: []
+          exclude: []
+          wait_for: "div[data-test='default-offer']"
+
+  # ---------------------------------------------------------------------------
+  # Design & UX
+  # ---------------------------------------------------------------------------
+  - slug: design
+    name: Design & UX
+    portals:
+
+      - slug: justjoin-design
+        name: JustJoin.it (Design)
+        url: https://justjoin.it/job-offers/all-locations/ux
+        active: false                   # włącz gdy potrzebne
+        schedule: "0 9 * * *"
+        selectors:
+          items: "div[data-index]"
+          title: "h2"
+          company: "div.css-1id4k1"
+          location: "div.css-1am4i5"
+          salary: "div.css-1pavfqb"
+          tags: "div.css-1uoml5v span"
+          link: "a[href*='/job-offers/']"
+        filters:
+          keywords: ["ux", "ui", "figma", "design"]
+          exclude: []
+          wait_for: "div[data-index]"
+
+  # ---------------------------------------------------------------------------
+  # Copywriting & Content
+  # ---------------------------------------------------------------------------
+  - slug: copywriting
+    name: Copywriting & Content
+    portals:
+
+      - slug: pracuj-copywriting
+        name: Pracuj.pl (Marketing/Copywriting)
+        url: https://www.pracuj.pl/praca/marketing;cc,5009
+        active: false
+        schedule: "0 9 * * 1-5"
+        selectors:
+          items: "div[data-test='default-offer']"
+          title: "h2[data-test='offer-title']"
+          company: "h3[data-test='text-company-name']"
+          location: "span[data-test='text-region']"
+          salary: "span[data-test='offer-salary']"
+          tags: "div[data-test='technologies-item'] span"
+          link: "a[data-test='link-offer']"
+        filters:
+          keywords: ["copywriter", "content", "redaktor", "tekst"]
+          exclude: []
+          wait_for: "div[data-test='default-offer']"
+
+  # ---------------------------------------------------------------------------
+  # Freelance (cross-category)
+  # ---------------------------------------------------------------------------
+  - slug: freelance
+    name: Freelance & Projekty
+    portals:
+
+      - slug: useme
+        name: Useme
+        url: https://useme.com/pl/jobs/
+        active: true
+        schedule: "0 */6 * * *"        # co 6 godzin
+        selectors:
+          items: "article.job-offer"
+          title: "h2.job-offer__title"
+          company: "span.job-offer__client"
+          location: "span.job-offer__location"
+          salary: "span.job-offer__budget"
+          tags: "ul.job-offer__tags li"
+          link: "a.job-offer__link"
+        filters:
+          keywords: []
+          exclude: []
+          wait_for: "article.job-offer"
+
+      - slug: toptal
+        name: Toptal (Remote)
+        url: https://www.toptal.com/developers/blog/jobs
+        active: false
+        schedule: "0 10 * * *"
+        selectors:
+          items: "div.job-listing"
+          title: "h3.job-title"
+          company: "span.company"
+          location: "span.location"
+          salary: "span.rate"
+          tags: "div.skills span"
+          link: "a.job-link"
+        filters:
+          keywords: []
+          exclude: []
+          wait_for: "div.job-listing"
+
+# =============================================================================
+# Konfiguracja globalna pipeline'u AI
+# =============================================================================
+ai_pipeline:
+
+  # Etap 1: szybki pre-screening (każda oferta)
+  prescreening:
+    model: gemma4:e2b
+    enabled: true
+    min_score_to_pass: 5      # oferty z score < 5 nie przechodzą dalej
+    prompt: |
+      You are a job offer pre-screener. Analyze this job offer and rate it 1-10
+      based on relevance to the candidate profile. Be strict and fast.
+      Return ONLY valid JSON: {"score": N, "pass": true/false, "reason": "..."}
+
+  # Etap 2: szczegółowy scoring (oferty które przeszły prescreening)
+  scoring:
+    model: gemma4:e4b
+    enabled: true
+    min_score_to_pass: 7      # tylko score >= 7 dostanie odpowiedź
+    prompt: |
+      You are a senior career advisor. Analyze this job offer against the candidate
+      profile and provide detailed scoring.
+      Return ONLY valid JSON:
+      {
+        "score": N,
+        "match_reasons": ["..."],
+        "mismatch_reasons": ["..."],
+        "salary_match": true/false,
+        "remote_match": true/false,
+        "skills_match_percent": N
+      }
+
+  # Etap 3: generowanie odpowiedzi (tylko TOP oferty)
+  response:
+    model: gemma4:26b          # na serwerze produkcyjnym
+    enabled: false             # włącz gdy masz gemma4:26b
+    prompt: |
+      You are a professional job application writer. Based on the candidate profile
+      and job offer, write a personalized, professional application response in Polish.
+      Be specific, mention matching skills, show enthusiasm but stay professional.
+      Length: 200-300 words.

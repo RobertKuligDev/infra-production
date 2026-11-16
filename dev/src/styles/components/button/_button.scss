@@ -1,0 +1,15 @@
+@use './button.mixins' as mix;
+
+/* ============================================
+   🎛 BUTTON COMPONENT CLASSES
+   ============================================ */
+
+.btn { @include mix.button-base; }
+.btn--primary { @include mix.button-primary; }
+.btn--secondary { @include mix.button-secondary; }
+.btn--subtle { @include mix.button-subtle; }
+.btn--danger { @include mix.button-danger; }
+.btn--icon { @include mix.button-icon; }
+
+.btn--sm { font-size: 0.875rem; padding: 0.25rem 0.75rem; }
+.btn--lg { font-size: 1.125rem; padding: 0.75rem 1.5rem; }

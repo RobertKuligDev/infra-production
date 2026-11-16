@@ -1,0 +1,23 @@
+/*
+  ============================================
+  ⏱ TRANSITION TOKENS
+  Component-level motion configuration.
+  Provides durations and easing curves.
+  ============================================
+*/
+
+/*
+  Durations
+  --------------------------------------------
+*/
+$transition-fast: 120ms;
+$transition-base: 180ms;
+$transition-slow: 240ms;
+
+/*
+  Easing
+  --------------------------------------------
+*/
+$ease-out-soft:     cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-soft:      cubic-bezier(0.32, 0, 0.67, 0);
+$ease-in-out-soft:  cubic-bezier(0.4, 0, 0.2, 1);

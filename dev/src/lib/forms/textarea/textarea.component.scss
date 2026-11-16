@@ -1,0 +1,45 @@
+@use './textarea.tokens' as *;
+
+/*
+  ds-textarea
+  Multi-line text input with variant and state styling.
+*/
+.ds-textarea {
+  @include textarea-base;
+
+  &__label {
+    @include textarea-label;
+  }
+
+  &__field {
+    @include textarea-field;
+  }
+
+  &__helper {
+    @include textarea-helper;
+  }
+
+  &__error {
+    @include textarea-error;
+  }
+
+  &--default {
+    @include textarea-variant-default;
+  }
+
+  &--subtle {
+    @include textarea-variant-subtle;
+  }
+
+  &--contrast {
+    @include textarea-variant-contrast;
+  }
+
+  &--error .ds-textarea__field {
+    @include textarea-field-error;
+  }
+
+  &--disabled {
+    @include textarea-disabled;
+  }
+}

@@ -1,0 +1,45 @@
+@use './slider.tokens' as *;
+
+/*
+  ds-slider
+  Slider with variant and state styling.
+*/
+.ds-slider {
+  @include slider-base;
+
+  &__label {
+    @include slider-label;
+  }
+
+  &__track {
+    @include slider-track;
+  }
+
+  &__fill {
+    @include slider-fill;
+  }
+
+  &__thumb {
+    @include slider-thumb;
+  }
+
+  &__helper {
+    @include slider-helper;
+  }
+
+  &__error {
+    @include slider-error;
+  }
+
+  &--default { @include slider-variant-default; }
+  &--subtle { @include slider-variant-subtle; }
+  &--contrast { @include slider-variant-contrast; }
+
+  &--error .ds-slider__thumb {
+    @include slider-thumb-error;
+  }
+
+  &--disabled {
+    @include slider-disabled;
+  }
+}

@@ -1,0 +1,44 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Tabs component-level tokens.
+  Defines spacing, alignment, and variant primitives for tabs.
+*/
+/*
+  Base
+*/
+@mixin tabs-base {
+  display: flex;
+  gap: $space-4;
+}
+
+/*
+  Direction
+*/
+@mixin tabs-direction-row {
+  flex-direction: row;
+}
+
+@mixin tabs-direction-column {
+  flex-direction: column;
+}
+
+/*
+  Variants
+*/
+@mixin tabs-variant-underline {
+  border-bottom: 1px solid $color-border;
+}
+
+@mixin tabs-variant-pill {
+  gap: $space-2;
+}
+
+@mixin tabs-variant-segmented {
+  background: $color-surface-subtle;
+  padding: $space-2;
+  border-radius: $radius-md;
+}

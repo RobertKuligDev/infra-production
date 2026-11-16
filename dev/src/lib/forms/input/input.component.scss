@@ -1,0 +1,45 @@
+@use './input.tokens' as *;
+
+/*
+  Input UI Control.
+  Provides labeled text input with error and helper text.
+*/
+.ds-input {
+  @include input-base;
+
+  &__label {
+    @include input-label;
+  }
+
+  &__field {
+    @include input-field;
+  }
+
+  &__helper {
+    @include input-helper;
+  }
+
+  &__error {
+    @include input-error;
+  }
+
+  &--default {
+    @include input-variant-default;
+  }
+
+  &--subtle {
+    @include input-variant-subtle;
+  }
+
+  &--contrast {
+    @include input-variant-contrast;
+  }
+
+  &--error .ds-input__field {
+    @include input-field-error;
+  }
+
+  &--disabled .ds-input__field {
+    @include input-field-disabled;
+  }
+}

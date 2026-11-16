@@ -1,0 +1,32 @@
+@use '../tokens/spacing' as *;
+
+/*
+  ============================================
+  🧩 FLEX UTILITIES
+  Quick alignment helpers (non-semantic)
+  ============================================
+*/
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+
+.flex-wrap { flex-wrap: wrap; }
+
+.gap-1 { gap: $space-1; }
+.gap-2 { gap: $space-2; }
+.gap-3 { gap: $space-3; }
+.gap-4 { gap: $space-4; }
+.gap-5 { gap: $space-5; }
+.gap-6 { gap: $space-6; }

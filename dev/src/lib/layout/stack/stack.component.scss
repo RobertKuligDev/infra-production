@@ -1,0 +1,26 @@
+@use 'styles/primitives/_stack' as foundation;
+
+/*
+  Stack layout primitive.
+  Uses component-level tokens for spacing and semantic alignment modifiers.
+*/
+
+.stack {
+  @include foundation.stack(var(--stack-gap));
+
+  &--align-start {
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-end {
+    align-items: flex-end;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+}

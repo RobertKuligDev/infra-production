@@ -1,0 +1,19 @@
+@use "./pill.tokens" as *;
+
+/*
+  ds-pill
+  Visual primitive with variant styling.
+*/
+.ds-pill {
+  @include pill-base;
+
+  &--default {
+    @include pill-variant-default;
+  }
+  &--accent {
+    @include pill-variant-accent;
+  }
+  &--muted {
+    @include pill-variant-muted;
+  }
+}

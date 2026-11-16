@@ -1,0 +1,71 @@
+@use '../_grid' as foundation;
+@use '../../tokens/primitives/spacing' as spacing;
+
+/*
+  ============================================
+  🧱 GRID LAYOUT PRIMITIVE
+  High-level BEM utility mapping to foundation grid mixins.
+  ============================================
+*/
+
+/* Base grid (3 columns) */
+.grid {
+  @include foundation.grid-template(repeat(3, 1fr));
+}
+
+/* Column count variants */
+.grid--cols-1 {
+  @include foundation.grid-template(repeat(1, 1fr));
+}
+
+.grid--cols-2 {
+  @include foundation.grid-template(repeat(2, 1fr));
+}
+
+.grid--cols-3 {
+  @include foundation.grid-template(repeat(3, 1fr));
+}
+
+.grid--cols-4 {
+  @include foundation.grid-template(repeat(4, 1fr));
+}
+
+/* Auto-fit / auto-fill variants */
+.grid--auto {
+  @include foundation.grid-auto();
+}
+
+.grid--auto-sm {
+  @include foundation.grid-auto(
+    $min: 12rem,
+    $gap: spacing.$spacing-grid-gap-sm
+  );
+}
+
+.grid--auto-lg {
+  @include foundation.grid-auto(
+    $min: 20rem,
+    $gap: spacing.$spacing-grid-gap-lg
+  );
+}
+
+/* Gap variants */
+.grid--gap-sm {
+  gap: spacing.$spacing-grid-gap-sm;
+}
+
+.grid--gap-md {
+  gap: spacing.$spacing-grid-gap-md;
+}
+
+.grid--gap-lg {
+  gap: spacing.$spacing-grid-gap-lg;
+}
+
+.grid--gap-xl {
+  gap: spacing.$spacing-grid-gap-xl;
+}
+
+.grid--gap-xxl {
+  gap: spacing.$spacing-grid-gap-xxl;
+}

@@ -1,0 +1,98 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Textarea component-level tokens.
+  Defines spacing, colors, and variant primitives.
+*/
+/*
+  Base
+*/
+@mixin textarea-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+/*
+  Label
+*/
+@mixin textarea-label {
+  font-size: $font-size-md;
+  color: $color-text-primary;
+}
+
+/*
+  Field
+*/
+@mixin textarea-field {
+  width: 100%;
+  min-height: 80px;
+  padding: $space-3;
+  border-radius: $radius-md;
+  border: 1px solid $color-border;
+  background: $color-surface;
+  font-size: $font-size-md;
+  color: $color-text-primary;
+  resize: none;
+  transition: border-color 0.15s ease;
+
+  &:focus {
+    border-color: $color-accent-primary;
+    outline: none;
+  }
+}
+
+/*
+  Field error
+*/
+@mixin textarea-field-error {
+  border-color: $color-danger;
+}
+
+/*
+  Helper
+*/
+@mixin textarea-helper {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  margin-left: 4px;
+}
+
+/*
+  Error
+*/
+@mixin textarea-error {
+  font-size: $font-size-sm;
+  color: $color-danger;
+  margin-left: 4px;
+}
+
+/*
+  Disabled
+*/
+@mixin textarea-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/*
+  Variants
+*/
+@mixin textarea-variant-default {}
+
+@mixin textarea-variant-subtle {
+  .ds-textarea__field {
+    background: $color-surface-subtle;
+  }
+}
+
+@mixin textarea-variant-contrast {
+  .ds-textarea__field {
+    background: $color-surface-contrast;
+    color: $color-white;
+    border-color: transparent;
+  }
+}

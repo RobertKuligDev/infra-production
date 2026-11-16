@@ -1,0 +1,25 @@
+@use '../primitives/spacing' as *;
+
+/*
+  ============================================
+  🧱 GRID TOKENS
+  Component-level grid configuration.
+  Provides gaps and minimum column widths.
+  ============================================
+*/
+
+/*
+  Gaps
+  --------------------------------------------
+*/
+$grid-gap-sm: $space-3;
+$grid-gap-md: $space-4;
+$grid-gap-lg: $space-6;
+$grid-gap-xl: $space-8;
+
+/*
+  Column sizing
+  --------------------------------------------
+*/
+$grid-min-col: 16rem;
+$grid-auto-min: 18rem;

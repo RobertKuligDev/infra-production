@@ -1,0 +1,15 @@
+@use '../tokens/semantic/colors' as semantic-colors;
+
+/*
+  ============================================
+  🧱 DIVIDER PRIMITIVE
+  Foundation-level separator.
+  Provides horizontal rule for grouping and visual separation.
+  ============================================
+*/
+
+@mixin divider-base {
+  width: 100%;
+  height: 1px;
+  background: semantic-colors.$color-border-subtle;
+}

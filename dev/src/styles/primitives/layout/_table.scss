@@ -1,0 +1,47 @@
+@use '../../tokens/primitives/spacing' as spacing;
+@use '../../tokens/semantic/colors' as colors;
+
+/*
+  ============================================
+  🧱 TABLE PRIMITIVE (FOUNDATION)
+  Grid-based table structure with semantic
+  spacing, borders and row/cell utilities.
+  ============================================
+*/
+
+/* Table wrapper */
+@mixin table-base {
+  width: 100%;
+  border-collapse: collapse;
+  display: grid;
+}
+
+/* Table row */
+@mixin table-row-base {
+  display: grid;
+  align-items: center;
+  padding-block: spacing.$spacing-table-row-padding-y;
+  padding-inline: spacing.$spacing-table-row-padding-x;
+  border-bottom: 1px solid colors.$border-subtle;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Table cell */
+@mixin table-cell-base {
+  padding-block: spacing.$spacing-table-cell-padding-y;
+  padding-inline: spacing.$spacing-table-cell-padding-x;
+}
+
+/* Variants */
+@mixin table-row-contrast {
+  background: colors.$surface-subtle;
+}
+
+@mixin table-row-hover {
+  &:hover {
+    background: colors.$surface-hover;
+  }
+}

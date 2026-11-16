@@ -1,0 +1,9 @@
+@use './carousel-control.tokens' as *;
+
+/*
+  ds-carousel-next
+  Next slide control button.
+*/
+.ds-carousel__control--next {
+  @include carousel-control-base;
+}

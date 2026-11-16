@@ -1,0 +1,54 @@
+@use '../primitives/colors';
+
+/*
+  ============================================
+  🏷 SEMANTIC COLORS
+  Contextual aliases for primitive colors.
+  Provides background, surface, text and accent roles.
+  ============================================
+*/
+
+/* Backgrounds */
+$color-bg-default:   $color-gray-50;
+$color-bg-subtle:    $color-gray-100;
+$color-bg-contrast:  $color-gray-900;
+
+/* Surfaces */
+$color-surface:           $color-white;
+$color-surface-subtle:    $color-gray-50;
+$color-surface-hover:     $color-gray-100;
+$color-surface-contrast:  $color-gray-900;
+
+/* Text */
+$color-text-primary:    $color-gray-900;
+$color-text-secondary:  rgba($color-gray-900, 0.75);
+$color-text-muted:      rgba($color-gray-900, 0.55);
+$color-text-label:      $color-gray-600;
+$color-text-inverse:    $color-white;
+
+/* Border */
+$color-border:          $color-gray-200;
+$color-border-subtle:   $color-gray-100;
+$color-border-strong:   $color-gray-400;
+
+/* Accents */
+$color-accent-primary:   $color-blue-600;
+$color-accent-secondary: #10b981;   /* teal */
+
+/* States / Feedback */
+$color-success:   #10b981;
+$color-warning:   #f59e0b;
+$color-danger:    #ef4444;
+$color-info:      #3b82f6;
+
+/* Dark variants (for hover/active) */
+$color-danger-dark:       #dc2626;
+$color-accent-primary-dark: #2563eb;
+
+/*
+  ============================================
+  VARIANTS (using in mixins)
+  ============================================
+*/
+$color-surface-hover:     $color-gray-100;
+$color-border-hover:      $color-gray-400;

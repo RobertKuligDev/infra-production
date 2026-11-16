@@ -1,0 +1,38 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/breakpoints' as *;
+
+/*
+  Card List component-level tokens.
+  Defines spacing and layout primitives for grid and stack variants.
+  Used exclusively by the ds-card-list UI component.
+*/
+/*
+  Base
+*/
+@mixin card-list-base {
+  display: grid;
+}
+
+/*
+  Grid variant
+*/
+@mixin card-list-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/*
+  Stack variant
+*/
+@mixin card-list-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+  Spacing tokens
+*/
+:root {
+  --card-list-gap-sm: #{$space-3};
+  --card-list-gap-md: #{$space-5};
+  --card-list-gap-lg: #{$space-7};
+}

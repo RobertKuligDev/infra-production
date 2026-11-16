@@ -1,0 +1,22 @@
+@use '../tokens/primitives/spacing' as *;
+@use '../tokens/primitives/radius' as *;
+@use '../tokens/semantic/colors' as semantic-colors;
+@use './stack' as stack;
+
+/*
+  ============================================
+  🧱 STAT BLOCK PRIMITIVE
+  Foundation-level data block.
+  Provides padded, bordered container for metrics and statistics.
+  ============================================
+*/
+
+@mixin stat-block-base {
+  @include stack.stack-base;
+  @include stack.stack-gap-xs;
+
+  padding: $space-4;
+  background: semantic-colors.$color-surface;
+  border-radius: $radius-md;
+  border: 1px solid semantic-colors.$color-border-subtle;
+}

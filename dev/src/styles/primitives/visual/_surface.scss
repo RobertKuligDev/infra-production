@@ -1,0 +1,33 @@
+@use '../../tokens/semantic/colors' as semantic-colors;
+@use '../../tokens/semantic/radius' as radius;
+@use '../../tokens/primitives/spacing' as spacing;
+@use '../../tokens/semantic/elevation' as elevation;
+
+/*
+  ============================================
+  🧱 SURFACE PRIMITIVE (FOUNDATION)
+  Visual container with semantic background,
+  radius, padding and elevation.
+  ============================================
+*/
+
+@mixin surface-base {
+  display: block;
+  background: semantic-colors.$surface-default;
+  border-radius: radius.$radius-md;
+  padding: spacing.$spacing-surface-padding;
+}
+
+/* Variants */
+@mixin surface-variant-default  { background: semantic-colors.$surface-default; }
+@mixin surface-variant-subtle   { background: semantic-colors.$surface-subtle; }
+@mixin surface-variant-contrast {
+  background: semantic-colors.$surface-contrast;
+  color: semantic-colors.$text-on-contrast;
+}
+
+/* Elevation */
+@mixin surface-elevation-0 { box-shadow: elevation.$elev-0; }
+@mixin surface-elevation-1 { box-shadow: elevation.$elev-1; }
+@mixin surface-elevation-2 { box-shadow: elevation.$elev-2; }
+@mixin surface-elevation-3 { box-shadow: elevation.$elev-3; }

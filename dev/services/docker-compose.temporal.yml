@@ -1,0 +1,49 @@
+services:
+  temporal:
+      image: temporalio/auto-setup:latest
+      container_name: dev-temporal
+      restart: unless-stopped
+      environment:
+        # Database type
+        - DB=postgres12
+        # Access data from .env
+        - DB_SERVER=postgres
+        - DB_PORT=5432
+        - POSTGRES_USER=${TEMPORAL_USER}
+        - POSTGRES_PWD=${TEMPORAL_PASSWORD}
+        - POSTGRES_SEEDS=postgres
+        # Databases names
+        - DB_NAME=${TEMPORAL_DB}
+        - VISIBILITY_DB_NAME=${TEMPORAL_DB}_visibility
+        # Broadcast address (required by auto-setup)
+        - BIND_ON_IP=0.0.0.0
+      depends_on:
+        postgres:
+          condition: service_healthy
+      networks:
+        - traefik-net
+        - internal-net
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    container_name: dev-temporal-ui
+    restart: unless-stopped
+    environment:
+      TEMPORAL_ADDRESS: temporal:7233
+    depends_on:
+      - temporal
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.temporal.rule: Host(`${DOMAIN_TEMPORAL}`)
+      traefik.http.routers.temporal.entrypoints: websecure
+      traefik.http.routers.temporal.tls: "true"
+      traefik.http.services.temporal.loadbalancer.server.port: 8080
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

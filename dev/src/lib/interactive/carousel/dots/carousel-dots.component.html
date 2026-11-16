@@ -1,0 +1,13 @@
+<!--
+  ds-carousel-dots
+  Pagination dots for carousel navigation.
+-->
+<div class="ds-carousel__dots">
+  <button
+    *ngFor="let _ of [].constructor(carousel.count()); let i = index"
+    type="button"
+    class="ds-carousel__dot"
+    [class.is-active]="carousel.isActive(i)"
+    (click)="onSelect(i)"
+  ></button>
+</div>

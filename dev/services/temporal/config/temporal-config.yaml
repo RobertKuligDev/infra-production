@@ -1,0 +1,67 @@
+persistence:
+  defaultStore: default
+  visibilityStore: visibility
+  datastores:
+    default:
+      sql:
+        pluginName: "postgres"
+        databaseName: "${TEMPORAL_DB}"
+        connectAddr: "postgres:5432"
+        user: "${TEMPORAL_USER}"
+        password: "${TEMPORAL_PASSWORD}"
+        maxConns: 20
+        maxIdleConns: 20
+        maxConnLifetime: 1h
+    visibility:
+      sql:
+        pluginName: "postgres"
+        databaseName: "${TEMPORAL_DB}_visibility"
+        connectAddr: "postgres:5432"
+        user: "${TEMPORAL_USER}"
+        password: "${TEMPORAL_PASSWORD}"
+        maxConns: 10
+        maxIdleConns: 10
+        maxConnLifetime: 1h
+
+global:
+  membership:
+    maxJoinDuration: 30s
+    broadcastAddress: "127.0.0.1"
+
+services:
+  frontend:
+    rpc:
+      grpcPort: 7233
+      membershipPort: 6933
+  matching:
+    rpc:
+      grpcPort: 7235
+      membershipPort: 6935
+  history:
+    rpc:
+      grpcPort: 7234
+      membershipPort: 6934
+  worker:
+    rpc:
+      grpcPort: 7239
+      membershipPort: 6939
+
+clusterMetadata:
+  enableGlobalNamespace: false
+  failoverVersionIncrement: 10
+  masterClusterName: "active"
+  clusterInformation:
+    - clusterName: "active"
+      enabled: true
+
+dcRedirectionPolicy:
+  policy: "noop"
+
+archival:
+  history:
+    state: "disabled"
+  visibility:
+    state: "disabled"
+
+publicClient:
+  hostPort: "temporal:7233"

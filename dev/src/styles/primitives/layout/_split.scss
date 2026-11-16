@@ -1,0 +1,21 @@
+@use '../../tokens/primitives/spacing' as spacing;
+@use '../layout-helpers/breakpoints' as *;
+
+/*
+  ============================================
+  🧱 SPLIT PRIMITIVE (FOUNDATION)
+  Two-column layout with responsive collapse.
+  ============================================
+*/
+
+@mixin split-base(
+  $gap: spacing.$spacing-content-gap-lg
+) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $gap;
+
+  @include respond-md {
+    grid-template-columns: 1fr;
+  }
+}

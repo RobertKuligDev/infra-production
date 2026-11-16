@@ -1,0 +1,31 @@
+<!--
+  ds-toggle
+  Accessible binary toggle with label, helper, and error.
+-->
+<label [ngClass]="classes()" role="switch" [attr.aria-checked]="checked()">
+  <input
+    type="checkbox"
+    class="ds-toggle__input"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    (change)="toggle()"
+    (blur)="onTouched()"
+    [attr.aria-invalid]="!!error()"
+  />
+
+  <span class="ds-toggle__track">
+    <span class="ds-toggle__thumb"></span>
+  </span>
+
+  <span class="ds-toggle__label" *ngIf="label()">
+    {{ label() }}
+  </span>
+</label>
+
+<p *ngIf="helper() && !error()" class="ds-toggle__helper">
+  {{ helper() }}
+</p>
+
+<p *ngIf="error()" class="ds-toggle__error">
+  {{ error() }}
+</p>

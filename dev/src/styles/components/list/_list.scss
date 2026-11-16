@@ -1,0 +1,14 @@
+@use '../tokens/spacing' as *;
+
+/* ============================================
+   📋 LIST COMPONENT CLASSES
+   ============================================ */
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}

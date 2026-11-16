@@ -1,0 +1,67 @@
+@use './tokens/forms' as *;
+
+/* ============================================
+   🧩 FORM MIXINS
+   ============================================ */
+
+@mixin input-base {
+  width: 100%;
+  background: $input-bg;
+  border: 1px solid $input-border;
+  border-radius: $input-radius;
+  padding: $input-padding-y $input-padding-x;
+  font-size: $input-font-size;
+  line-height: $input-line-height;
+  color: $input-text;
+  transition: border-color var(--transition-base), background var(--transition-base);
+  outline: none;
+
+  &::placeholder {
+    color: $input-placeholder;
+  }
+
+  &:hover {
+    border-color: $input-border-hover;
+  }
+
+  &:focus {
+    border-color: $input-border-focus;
+    box-shadow: 0 0 0 0.15rem rgba(78, 163, 255, 0.25);
+  }
+
+  &:disabled {
+    background: $input-disabled-bg;
+    color: $input-disabled-text;
+    cursor: not-allowed;
+  }
+}
+
+@mixin input-error {
+  border-color: $input-border-error;
+
+  &:focus {
+    box-shadow: 0 0 0 0.15rem rgba(255, 75, 92, 0.25);
+  }
+}
+
+@mixin form-label {
+  display: block;
+  font-size: $label-size;
+  font-weight: $label-weight;
+  letter-spacing: $label-tracking;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+  color: var(--color-text-label);
+}
+
+@mixin form-helper {
+  font-size: $helper-text-size;
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+@mixin form-error {
+  font-size: $error-text-size;
+  color: $error-text-color;
+  margin-top: var(--space-1);
+}

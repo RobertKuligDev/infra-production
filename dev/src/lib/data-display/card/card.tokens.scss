@@ -1,0 +1,72 @@
+
+@use 'tokens/semantic/colors' as *;
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/radius' as *;
+@use 'tokens/primitives/shadows' as *;
+
+/*
+  Card component-level tokens.
+  Defines styling primitives for card spacing, borders, and elevation.
+  Used exclusively by the ds-card UI component.
+*/
+/*
+  Base
+*/
+@mixin card-base {
+  display: flex;
+  flex-direction: column;
+  border-radius: $radius-md;
+  background: $color-surface;
+  overflow: hidden;
+}
+
+/*
+  Sections
+*/
+@mixin card-media {
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@mixin card-header {
+  padding: $space-4;
+  border-bottom: 1px solid $color-border;
+}
+
+@mixin card-body {
+  padding: $space-4;
+}
+
+@mixin card-footer {
+  padding: $space-4;
+  border-top: 1px solid $color-border;
+}
+
+/*
+  Variants
+*/
+@mixin card-variant-default {
+  border: 1px solid $color-border;
+}
+
+@mixin card-variant-interactive {
+  border: 1px solid $color-border;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    background: $color-surface-hover;
+    border-color: $color-text-primary;
+  }
+}
+
+@mixin card-variant-elevated {
+  box-shadow: $shadow-md;
+}
+
+@mixin card-variant-outlined {
+  border: 2px solid $color-accent-primary;
+}

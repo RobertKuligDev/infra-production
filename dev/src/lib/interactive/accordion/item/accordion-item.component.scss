@@ -1,0 +1,37 @@
+@use './accordion-item.tokens' as *;
+
+/*
+  ds-accordion-item
+  Expandable item with header and collapsible content.
+  Uses BEM structure:
+  - __header
+  - __chevron
+  - __content
+  - --open
+*/
+.ds-accordion-item {
+  @include accordion-item-base;
+
+  &__header {
+    @include accordion-item-header;
+  }
+
+  &__chevron {
+    @include accordion-item-chevron;
+  }
+
+  &__content {
+    @include accordion-item-content;
+  }
+
+  &--open {
+    .ds-accordion-item__chevron {
+      transform: rotate(180deg);
+    }
+
+    .ds-accordion-item__content {
+      max-height: 500px;
+      opacity: 1;
+    }
+  }
+}

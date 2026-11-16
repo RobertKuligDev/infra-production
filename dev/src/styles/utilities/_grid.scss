@@ -1,0 +1,15 @@
+@use '../tokens/grid' as *;
+
+/* ============================================
+   🧱 GRID UTILITIES
+   ============================================ */
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: $grid-gap-md; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: $grid-gap-md; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: $grid-gap-md; }
+
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: $grid-gap-md;
+}

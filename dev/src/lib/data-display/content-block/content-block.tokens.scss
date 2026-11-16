@@ -1,0 +1,84 @@
+@use 'tokens/primitives/spacing' as *;
+@use 'tokens/primitives/typography' as *;
+@use 'tokens/semantic/colors' as *;
+
+/*
+  Content Block component-level tokens.
+  Defines spacing, typography, and variant primitives for content containers.
+  Used exclusively by the ds-content-block UI component.
+*/
+/*
+  Base container
+*/
+@mixin content-block-base {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-6 0;
+}
+
+/*
+  Header
+*/
+@mixin content-block-header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+/*
+  Title
+*/
+@mixin content-block-title {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  color: $color-text-primary;
+}
+
+/*
+  Description
+*/
+@mixin content-block-description {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  max-width: 60ch;
+}
+
+/*
+  Actions
+*/
+@mixin content-block-actions {
+  margin-top: $space-2;
+}
+
+/*
+  Body
+*/
+@mixin content-block-body {
+  display: block;
+}
+
+/*
+  Variants
+*/
+@mixin content-block-variant-default {
+  background: transparent;
+}
+
+@mixin content-block-variant-subtle {
+  background: $color-surface-subtle;
+  padding: $space-6;
+  border-radius: 8px;
+}
+
+@mixin content-block-variant-contrast {
+  background: $color-surface-contrast;
+  padding: $space-6;
+  border-radius: 8px;
+  color: $color-white;
+
+  .ds-content-block__title,
+  .ds-content-block__description {
+    color: $color-white;
+  }
+}

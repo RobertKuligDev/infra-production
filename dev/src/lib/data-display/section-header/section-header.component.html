@@ -1,0 +1,25 @@
+<!--
+  Section Header UI component.
+  Renders label, heading, and description with semantic heading levels.
+-->
+<div [ngClass]="classes()">
+  <span class="ds-section-header__label" *ngIf="hasLabel()">
+    {{ label() }}
+  </span>
+
+  <ng-container [ngSwitch]="levelTag()">
+    <h1 *ngSwitchCase="'h1'" class="ds-section-header__title">
+      {{ title() }}
+    </h1>
+    <h2 *ngSwitchCase="'h2'" class="ds-section-header__title">
+      {{ title() }}
+    </h2>
+    <h3 *ngSwitchCase="'h3'" class="ds-section-header__title">
+      {{ title() }}
+    </h3>
+  </ng-container>
+
+  <p class="ds-section-header__description" *ngIf="hasDescription()">
+    {{ description() }}
+  </p>
+</div>

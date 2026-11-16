@@ -1,0 +1,36 @@
+/*
+  ============================================
+  🧱 TOKENS INDEX
+  Aggregates all token layers for the design system.
+  ============================================
+*/
+
+/* Primitives */
+@forward './primitives/colors';
+@forward './primitives/spacing';
+@forward './primitives/radius';
+@forward './primitives/opacity';
+@forward './primitives/breakpoints';
+@forward './primitives/typography';
+@forward './primitives/shadows';
+@forward './primitives/zindex';
+
+/* Semantic */
+@forward './semantic/colors';
+@forward './semantic/sections';
+@forward './semantic/text';
+@forward './semantic/surface';
+@forward './semantic/states';
+
+/* Component-level tokens */
+@forward './component-tokens/layout';
+@forward './component-tokens/grid';
+@forward './component-tokens/buttons';
+@forward './component-tokens/cards';
+@forward './component-tokens/cta';
+@forward './component-tokens/sidebar';
+@forward './component-tokens/transition';
+@forward './component-tokens/typography';
+
+/* Runtime bridge */
+@forward './runtime/root';

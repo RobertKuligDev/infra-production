@@ -1,0 +1,32 @@
+<!--
+  ds-modal
+  Standard centered modal dialog with overlay and ARIA support.
+  Closes on ESC and click-outside.
+-->
+<div
+  class="ds-modal__overlay"
+  *ngIf="open()"
+  (click)="onBackdropClick($event)"
+>
+  <div
+    #dialog
+    class="ds-modal__dialog"
+    [ngClass]="classes()"
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
+  >
+    <header class="ds-modal__header">
+      <ng-content select="[modal-title]"></ng-content>
+      <button class="ds-modal__close" (click)="close()">×</button>
+    </header>
+
+    <section class="ds-modal__body">
+      <ng-content select="[modal-body]"></ng-content>
+    </section>
+
+    <footer class="ds-modal__footer">
+      <ng-content select="[modal-footer]"></ng-content>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+@use './colors' as *;
+
+/*
+  ============================================
+  🏷 SEMANTIC TEXT
+  Contextual aliases for text roles.
+  Provides heading, body and label roles.
+  ============================================
+*/
+
+$heading-text: $color-text-primary;
+$body-text:    $color-text-secondary;
+$muted-text:   $color-text-muted;
+$label-text:   $color-text-label;
+$inverse-text: $color-text-inverse;

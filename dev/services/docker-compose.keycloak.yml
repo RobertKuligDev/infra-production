@@ -1,0 +1,38 @@
+services:
+  dev-keycloak:
+    image: quay.io/keycloak/keycloak:25.0
+    container_name: dev-keycloak
+    command:
+      - start-dev
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: ${POSTGRES_USER}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      KC_HOSTNAME: keycloak.localhost
+      KC_PROXY: edge
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+
+    depends_on:
+      - postgres
+
+    networks:
+      - traefik-net
+      - internal-net
+    labels:
+      traefik.enable: "true"
+
+      # Router
+      traefik.http.routers.keycloak.rule: Host(`${DOMAIN_KEYCLOAK}`)
+      traefik.http.routers.keycloak.entrypoints: websecure
+      traefik.http.routers.keycloak.tls: "true"
+
+      # Service
+      traefik.http.services.keycloak.loadbalancer.server.port: 8080
+
+networks:
+  traefik-net:
+    external: true
+  internal-net:
+    external: true

@@ -1,0 +1,29 @@
+@use './tooltip.tokens' as *;
+
+/*
+  ds-tooltip
+  Minimal tooltip with directional positioning.
+*/
+.ds-tooltip__trigger {
+  @include tooltip-trigger;
+}
+
+.ds-tooltip__content {
+  @include tooltip-base;
+
+  &.ds-tooltip--top {
+    @include tooltip-position-top;
+  }
+
+  &.ds-tooltip--bottom {
+    @include tooltip-position-bottom;
+  }
+
+  &.ds-tooltip--left {
+    @include tooltip-position-left;
+  }
+
+  &.ds-tooltip--right {
+    @include tooltip-position-right;
+  }
+}

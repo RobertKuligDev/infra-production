@@ -1,0 +1,37 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: dev-ollama
+    restart: unless-stopped
+    volumes:
+      - ./services/ollama/models:/root/.ollama
+    networks:
+      - internal-net
+    # Port wystawiony tylko lokalnie do testowania przez curl/Postman
+    # Wewnętrznie kontenery używają ollama:11434
+    ports:
+      - "127.0.0.1:11434:11434"
+    # healthcheck:
+    #   test: ["CMD-SHELL", "wget -qO- http://localhost:11434/api/tags > /dev/null 2>&1 || exit 1"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 10
+    #   start_period: 15s
+
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: dev-ollama-init
+    restart: "no"
+    networks:
+      - internal-net
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    # Pobiera domyślny model przy pierwszym uruchomieniu
+    # Zmień na dowolny: llama3.2, qwen2.5, phi3, gemma2, deepseek-r1
+    entrypoint: ["/bin/sh", "-c", "ollama pull llama3.2:1b"]
+
+networks:
+  internal-net:
+    external: true

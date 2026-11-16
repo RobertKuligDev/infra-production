@@ -1,0 +1,29 @@
+@use './_typography.mixins' as mixins;
+@use '../../primitives/_stack' as *;
+
+/* ============================================
+   ✍️ TYPOGRAPHY COMPONENT CLASSES
+   ============================================ */
+
+/* Accent text */
+.text-accent {
+  @include mixins.text-accent();
+}
+
+.text-accent--teal {
+  @include mixins.text-accent($color-accent-secondary);
+}
+
+/* Gradient text */
+.text-gradient {
+  @include mixins.text-gradient();
+}
+
+/* Text block (uses stack primitive) */
+.text-block {
+  @include stack();
+}
+
+.text-block--lg {
+  @include stack($space-4);
+}

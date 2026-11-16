@@ -1,0 +1,11 @@
+<!--
+  ds-toast
+  Single toast message with variant styling and close button.
+-->
+<div [ngClass]="classes()" role="status" aria-live="polite">
+  <span class="ds-toast__text">{{ text() }}</span>
+
+  <button class="ds-toast__close" (click)="close()">
+    ×
+  </button>
+</div>

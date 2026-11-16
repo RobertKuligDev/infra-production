@@ -1,0 +1,22 @@
+@use "./status-dot.tokens" as *;
+
+/*
+  ds-status-dot
+  Visual primitive with status variants.
+*/
+.ds-status-dot {
+  @include status-dot-base;
+
+  &--success {
+    @include status-dot-variant-success;
+  }
+  &--warning {
+    @include status-dot-variant-warning;
+  }
+  &--danger {
+    @include status-dot-variant-danger;
+  }
+  &--muted {
+    @include status-dot-variant-muted;
+  }
+}

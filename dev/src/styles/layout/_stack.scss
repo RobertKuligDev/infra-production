@@ -1,0 +1,36 @@
+@use '../_stack' as foundation;
+
+/*
+  ============================================
+  🧱 STACK LAYOUT PRIMITIVE
+  BEM utility mapping to foundation stack mixins.
+  ============================================
+*/
+
+.stack {
+  @include foundation.stack-base;
+  @include foundation.stack-gap-md;
+}
+
+/* Gap variants */
+.stack--sm {
+  @include foundation.stack-base;
+  @include foundation.stack-gap-sm;
+}
+
+.stack--lg {
+  @include foundation.stack-base;
+  @include foundation.stack-gap-lg;
+}
+
+/* Alignment variants */
+.stack--align-start   { @include foundation.stack-base; @include foundation.stack-align-start; }
+.stack--align-center  { @include foundation.stack-base; @include foundation.stack-align-center; }
+.stack--align-end     { @include foundation.stack-base; @include foundation.stack-align-end; }
+.stack--align-stretch { @include foundation.stack-base; @include foundation.stack-align-stretch; }
+
+/* Justification variants */
+.stack--justify-start   { @include foundation.stack-base; @include foundation.stack-justify-start; }
+.stack--justify-center  { @include foundation.stack-base; @include foundation.stack-justify-center; }
+.stack--justify-end     { @include foundation.stack-base; @include foundation.stack-justify-end; }
+.stack--justify-between { @include foundation.stack-base; @include foundation.stack-justify-between; }

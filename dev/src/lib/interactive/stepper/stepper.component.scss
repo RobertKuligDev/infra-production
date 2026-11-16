@@ -1,0 +1,48 @@
+@use './stepper.tokens' as *;
+
+/*
+  ds-stepper
+  Numeric stepper with variant and state styling.
+*/
+.ds-stepper {
+  @include stepper-base;
+
+  &__label {
+    @include stepper-label;
+  }
+
+  &__control {
+    @include stepper-control;
+  }
+
+  &__input {
+    @include stepper-input;
+  }
+
+  &__btn {
+    @include stepper-btn;
+
+    &--inc { @include stepper-btn-inc; }
+    &--dec { @include stepper-btn-dec; }
+  }
+
+  &__helper {
+    @include stepper-helper;
+  }
+
+  &__error {
+    @include stepper-error;
+  }
+
+  &--default { @include stepper-variant-default; }
+  &--subtle { @include stepper-variant-subtle; }
+  &--contrast { @include stepper-variant-contrast; }
+
+  &--error .ds-stepper__input {
+    @include stepper-input-error;
+  }
+
+  &--disabled {
+    @include stepper-disabled;
+  }
+}

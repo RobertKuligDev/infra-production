@@ -1,0 +1,21 @@
+@use './breadcrumb.tokens' as *;
+
+/*
+  ds-breadcrumb
+  Navigation primitive with item and separator styling.
+*/
+.ds-breadcrumb {
+  @include breadcrumb-base;
+
+  &__item {
+    @include breadcrumb-item;
+
+    &--active {
+      @include breadcrumb-item-active;
+    }
+  }
+
+  &__separator {
+    @include breadcrumb-separator;
+  }
+}

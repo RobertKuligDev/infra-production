@@ -1,0 +1,33 @@
+@use '../../tokens/spacing' as *;
+@use '../../tokens/colors' as *;
+@use '../../tokens/typography' as *;
+
+/* ============================================
+   🏷 SECTION-HEADER MIXINS - COMPONENT PRIMITIVES
+   ============================================ */
+
+@mixin section-header-base($align: left) {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  text-align: $align;
+}
+
+@mixin section-header-label {
+  font-size: $label-size;
+  font-weight: $label-weight;
+  letter-spacing: $label-tracking;
+  color: $color-text-label;
+  text-transform: uppercase;
+}
+
+@mixin section-header-title {
+  font-size: $heading-2-size;
+  font-weight: $heading-2-weight;
+  color: $color-text-primary;
+}
+
+@mixin section-header-description {
+  font-size: $body-lg-size;
+  color: $color-text-secondary;
+}
