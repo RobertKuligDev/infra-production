@@ -9,6 +9,7 @@
 .env
 **/.env
 *.env
+.env.local
 
 # Allow example templates
 !.env.example
@@ -161,6 +162,8 @@ target/
 *.sqlite
 *.sqlite3
 *.db
+**/db/data/
+**/data/
 
 # =============================================================================
 # Archive Files (except documentation)
@@ -218,3 +221,18 @@ NOTES.md
 dev/services/ollama/models/
 dev/apps/*/db/
 dev/services/monitoring/grafana/plugins/
+
+# AI Models & Cache
+**/ollama/models/
+**/models/blobs/
+**/models/manifests/
+
+# Plugins & Dynamic Service Files
+**/grafana/plugins/
+**/grafana/png/
+**/grafana/csv/
+**/grafana/pdf/
+
+# Local development overrides
+*.local.yml
+docker-compose.override.yml
